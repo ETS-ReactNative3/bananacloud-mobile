@@ -18,7 +18,8 @@ const SelfcareStack = () => {
                     tabBarIcon: ({ color, size }) => (
                         <IonIcons name="home-outline" color={color} size={size} />
                     ),
-                    title: 'Banana Cloud',
+                    headerTitle: 'Banana Cloud',
+                    tabBarLabel: 'Accueil',
                 }}
             />
             <Tab.Screen
@@ -28,6 +29,7 @@ const SelfcareStack = () => {
                     tabBarIcon: ({ color, size }) => (
                         <IonIcons name="settings-outline" color={color} size={size} />
                     ),
+                    title: 'Réglages',
                 }}
             />
         </Tab.Navigator>
