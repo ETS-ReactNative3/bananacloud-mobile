@@ -18,7 +18,7 @@ const SelfcareStack = () => {
                     tabBarIcon: ({ color, size }) => (
                         <IonIcons name="home-outline" color={color} size={size} />
                     ),
-                    headerTitle: 'Banana Cloud',
+                    headerTitle: '🍌 Banana Cloud',
                     tabBarLabel: 'Accueil',
                 }}
             />
