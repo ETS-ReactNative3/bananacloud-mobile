@@ -34,6 +34,7 @@ module.exports = function (api) {
                         '@components': './src/components',
                         '@screens': './src/screens',
                         '@configs': './src/configs',
+                        '@actions': './src/actions',
                         '@utils': './src/utils',
                     },
                 },
