@@ -6,7 +6,7 @@ export const Button = ({ title, onPress, icon, style }) => (
     <ButtonContainer onPress={onPress} style={style}>
         {icon && (
             <IconContainer>
-                <IonIcons name={icon} size={18} color={style?.color} />
+                <IonIcons name={icon} size={18} color={`${style?.color ? style.color : 'white'}`} />
             </IconContainer>
         )}
         <ButtonText>{title}</ButtonText>
@@ -20,9 +20,9 @@ const ButtonContainer = styled.TouchableOpacity`
     justify-content: center;
     margin: 10px 0;
     padding: 15px 30px;
-    border: 1px solid ${({ style }) => (style.bgColor ? style.bgColor : 'black')};
+    border: 1px solid ${({ style }) => (style?.bgColor ? style?.bgColor : 'black')};
     border-radius: 10px;
-    background-color: ${({ style }) => (style.bgColor ? style.bgColor : 'black')};
+    background-color: ${({ style }) => (style?.bgColor ? style?.bgColor : 'black')};
 `
 
 const IconContainer = styled.View`
