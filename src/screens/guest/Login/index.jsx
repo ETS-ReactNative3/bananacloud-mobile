@@ -1,11 +1,12 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
 
-import AuthContext from '@configs/contexts/AuthContext'
+import { login } from '@actions/auth'
 
 import { Container, TextInput, Button } from '@components/styled-components'
 
 const Index = () => {
-    const { login } = useContext(AuthContext)
+    const dispatch = useDispatch()
 
     const [user, setUser] = useState({
         username: '',
@@ -29,9 +30,7 @@ const Index = () => {
             />
             <Button
                 title="Connexion"
-                onPress={() => {
-                    login(user)
-                }}
+                onPress={() => dispatch(login(user))}
                 style={{ bgColor: '#00b894' }}
             />
         </Container>
