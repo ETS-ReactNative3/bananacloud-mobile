@@ -34,6 +34,10 @@ yarn ios
 ## 🗒 To Do :
 
 -   Many things... 😮‍💨
+-   [x] Create project
+-   [x] Navigate into the app
+-   [x] Install Redux
+-   [_] ...
 
 ## 👥 Collaborators
 
