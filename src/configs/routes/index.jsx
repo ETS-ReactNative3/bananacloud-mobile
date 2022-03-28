@@ -1,10 +1,11 @@
-import React, { useContext } from 'react'
+import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
-import AuthContext from '../contexts/AuthContext'
-
 import SelfcareStack from './SelfcareStack'
+
+import { hydrateUser } from '@actions/auth'
 
 import Login from '@screens/guest/Login'
 import Register from '@screens/guest/Register'
@@ -12,12 +13,15 @@ import Register from '@screens/guest/Register'
 const Stack = createNativeStackNavigator()
 
 const StackNavigator = () => {
-    const { isLoggedIn } = useContext(AuthContext)
+    const dispatch = useDispatch()
+    dispatch(hydrateUser())
+
+    const isAuth = useSelector(state => state.auth.isAuth)
 
     return (
         <NavigationContainer>
             <Stack.Navigator>
-                {isLoggedIn ? (
+                {isAuth ? (
                     <Stack.Group screenOptions={{ headerShown: false }}>
                         <Stack.Screen name="Selfcare" component={SelfcareStack} />
                     </Stack.Group>
