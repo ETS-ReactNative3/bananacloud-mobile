@@ -5,7 +5,6 @@ import { ThemeProvider } from 'styled-components'
 import { Provider } from 'react-redux'
 
 import StackNavigator from '@configs/routes'
-import { AuthContextProvider } from '@configs/contexts/AuthContext'
 import { darkTheme, lightTheme } from '@configs/themes/Theme'
 import { store } from '@configs/store'
 
@@ -15,10 +14,8 @@ export default function App() {
     return (
         <Provider store={store}>
             <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
-                <AuthContextProvider>
-                    <StackNavigator />
-                    <FlashMessage position="top" />
-                </AuthContextProvider>
+                <StackNavigator />
+                <FlashMessage position="top" />
             </ThemeProvider>
         </Provider>
     )
