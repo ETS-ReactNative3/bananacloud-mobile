@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useColorScheme } from 'react-native'
 import SplashScreen from 'react-native-splash-screen'
 import FlashMessage from 'react-native-flash-message'
