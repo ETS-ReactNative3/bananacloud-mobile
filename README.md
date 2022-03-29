@@ -37,6 +37,8 @@ yarn ios
 -   [x] Create project
 -   [x] Navigate into the app
 -   [x] Install Redux
+-   [x] Set Icons
+-   [x] Custom Splash Screen
 -   [_] ...
 
 ## 👥 Collaborators
