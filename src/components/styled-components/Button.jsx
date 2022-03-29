@@ -20,7 +20,7 @@ const ButtonContainer = styled.TouchableOpacity`
     justify-content: center;
     margin: 10px 0;
     padding: 15px 30px;
-    border: 1px solid ${({ style }) => (style?.color ? style?.color : 'black')};
+    border: 1px solid ${({ style }) => (style?.color ? style?.color : 'transparent')};
     border-radius: 10px;
     background-color: ${({ style }) => (style?.bgColor ? style?.bgColor : 'black')};
 `
