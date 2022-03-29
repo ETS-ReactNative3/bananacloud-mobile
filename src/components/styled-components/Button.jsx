@@ -9,7 +9,7 @@ export const Button = ({ title, onPress, icon, style }) => (
                 <IonIcons name={icon} size={18} color={`${style?.color ? style.color : 'white'}`} />
             </IconContainer>
         )}
-        <ButtonText>{title}</ButtonText>
+        <ButtonText color={`${style?.color ? style.color : null}`}>{title}</ButtonText>
     </ButtonContainer>
 )
 
@@ -20,7 +20,7 @@ const ButtonContainer = styled.TouchableOpacity`
     justify-content: center;
     margin: 10px 0;
     padding: 15px 30px;
-    border: 1px solid ${({ style }) => (style?.bgColor ? style?.bgColor : 'black')};
+    border: 1px solid ${({ style }) => (style?.color ? style?.color : 'black')};
     border-radius: 10px;
     background-color: ${({ style }) => (style?.bgColor ? style?.bgColor : 'black')};
 `
@@ -32,6 +32,6 @@ const IconContainer = styled.View`
 const ButtonText = styled.Text`
     font-weight: bold;
     text-align: center;
-    color: white;
+    color: ${({ color }) => (color ? color : 'white')};
     font-size: 16px;
 `

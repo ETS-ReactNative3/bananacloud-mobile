@@ -25,7 +25,7 @@ const SelfcareStack = () => {
                     <Button
                         onPress={() => navigation.navigate('Profile')}
                         color="#000"
-                        title="aaa"
+                        title="Profil"
                     />
                 ),
             })}>
