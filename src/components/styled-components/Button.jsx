@@ -9,7 +9,7 @@ export const Button = ({ title, onPress, icon, style }) => (
                 <IonIcons name={icon} size={18} color={`${style?.color ? style.color : 'white'}`} />
             </IconContainer>
         )}
-        <ButtonText color={`${style?.color ? style.color : null}`}>{title}</ButtonText>
+        <ButtonText color={`${style?.color ? style.color : 'white'}`}>{title}</ButtonText>
     </ButtonContainer>
 )
 
