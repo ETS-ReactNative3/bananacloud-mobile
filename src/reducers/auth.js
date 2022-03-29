@@ -20,7 +20,7 @@ export default (state = initialState, action) => {
                 ...state,
                 isAuth: true,
                 token: action.payload.token,
-                user: { test: 'okok' },
+                user: action.payload.user,
             }
         case LOGIN_FAILURE:
             return {

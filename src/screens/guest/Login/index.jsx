@@ -9,15 +9,15 @@ const Index = () => {
     const dispatch = useDispatch()
 
     const [user, setUser] = useState({
-        username: '',
+        email: '',
         password: '',
     })
 
     return (
         <Container>
             <TextInput
-                placeholder="johndoe"
-                onChangeText={e => setUser({ ...user, username: e })}
+                placeholder="john.doe@bananacloud.com"
+                onChangeText={e => setUser({ ...user, email: e })}
                 color="#dfe6e9"
                 icon="person-outline"
             />
