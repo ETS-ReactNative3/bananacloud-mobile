@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "bananateam.jpg",
+      "filename" : "bananacloud.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "bananateam@2x.jpg",
+      "filename" : "bananacloud@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "bananateam@3x.jpg",
+      "filename" : "bananacloud@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

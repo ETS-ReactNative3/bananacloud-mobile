@@ -44,5 +44,5 @@ yarn ios
 ## 👥 Collaborators
 
 <a href="https://github.com/A-Lamine">@A-Lamine</a> Lamine ADEL  
-<a href="https://github.com/A-Lamine">@walidmokhtari</a> Walid MOKHTARI  
+<a href="https://github.com/walidmokhtari">@walidmokhtari</a> Walid MOKHTARI  
 <a href="https://github.com/A-Lamine">@lucasmelly</a> Mely LUCAS
