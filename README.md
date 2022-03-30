@@ -41,6 +41,9 @@ yarn ios
 -   [x] Custom Splash Screen
 -   [_] Manage error
 -   [_] Input verification
+-   [_] Manage theme
+-   [_] DarkMode / LightMode
+-   [_] Google Auth / Github Auth
 -   [_] Use styled-components :(
 -   [_] ...
 
