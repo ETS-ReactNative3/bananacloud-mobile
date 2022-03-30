@@ -39,6 +39,8 @@ yarn ios
 -   [x] Install Redux
 -   [x] Set Icons
 -   [x] Custom Splash Screen
+-   [_] Manage error
+-   [_] Input verification
 -   [_] ...
 
 ## 👥 Collaborators
