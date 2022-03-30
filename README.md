@@ -41,6 +41,7 @@ yarn ios
 -   [x] Custom Splash Screen
 -   [_] Manage error
 -   [_] Input verification
+-   [_] Use styled-components :(
 -   [_] ...
 
 ## 👥 Collaborators
