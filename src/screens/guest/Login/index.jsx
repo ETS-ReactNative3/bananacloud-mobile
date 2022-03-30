@@ -11,8 +11,6 @@ import logo from '@root/assets/bananacloud.png'
 const Index = ({ navigation }) => {
     const dispatch = useDispatch()
 
-    console.log(logo)
-
     const [user, setUser] = useState({
         email: '',
         password: '',
