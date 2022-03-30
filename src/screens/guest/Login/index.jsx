@@ -1,13 +1,17 @@
 import React, { useState } from 'react'
-import { View, TouchableOpacity, Text } from 'react-native'
+import { View, TouchableOpacity, Text, Image } from 'react-native'
 import { useDispatch } from 'react-redux'
 
 import { login } from '@actions/auth'
 
 import { Container, TextInput, Button } from '@components/styled-components'
 
+import logo from '@root/assets/bananacloud.png'
+
 const Index = ({ navigation }) => {
     const dispatch = useDispatch()
+
+    console.log(logo)
 
     const [user, setUser] = useState({
         email: '',
@@ -18,11 +22,17 @@ const Index = ({ navigation }) => {
         <Container>
             <View
                 style={{
-                    height: '100%',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
                 }}>
+                <Image
+                    source={logo}
+                    style={{ width: 200, height: 200, borderRadius: 10, marginBottom: 20 }}
+                />
+                <Text style={{ fontWeight: 'bold', fontSize: 32, marginBottom: 20 }}>
+                    Se connecter
+                </Text>
                 <TextInput
                     placeholder="john.doe@bananacloud.com"
                     onChangeText={e => setUser({ ...user, email: e })}
@@ -37,7 +47,7 @@ const Index = ({ navigation }) => {
                     icon="key-outline"
                 />
                 <Button
-                    title="Connexion"
+                    title="Valider"
                     onPress={() => dispatch(login(user))}
                     style={{ bgColor: '#00b894' }}
                 />
