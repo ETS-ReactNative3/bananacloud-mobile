@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, Button } from 'react-native'
+import { View, Text, Button } from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import IonIcons from 'react-native-vector-icons/Ionicons'
 IonIcons.loadFont()
@@ -7,6 +7,7 @@ IonIcons.loadFont()
 import Photos from '@screens/selfcare/Photos'
 import Search from '@screens/selfcare/Search'
 import Library from '@screens/selfcare/Library'
+import { useSelector } from 'react-redux'
 
 const Tab = createBottomTabNavigator()
 
@@ -16,18 +17,37 @@ const HeaderTitle = () => (
     </Text>
 )
 
+const ProfileButton = ({ letter, navigation }) => {
+    return (
+        <View
+            style={{
+                position: 'relative',
+                backgroundColor: 'black',
+                marginEnd: 5,
+                borderRadius: 99,
+                width: 35,
+                height: 35,
+                paddingHorizontal: 3,
+            }}>
+            <View style={{ position: 'absolute', top: 0, right: 0, left: 0, bottom: 0 }}>
+                <Button
+                    onPress={() => navigation.navigate('Profile')}
+                    color="#fff"
+                    title={letter}
+                />
+            </View>
+        </View>
+    )
+}
+
 const SelfcareStack = () => {
+    const { email } = useSelector(state => state.auth.user)
+
     return (
         <Tab.Navigator
             screenOptions={({ navigation }) => ({
                 headerTitle: props => <HeaderTitle {...props} />,
-                headerRight: () => (
-                    <Button
-                        onPress={() => navigation.navigate('Profile')}
-                        color="#000"
-                        title="Profil"
-                    />
-                ),
+                headerRight: () => <ProfileButton letter={email[0]} navigation={navigation} />,
             })}>
             <Tab.Screen
                 name="Photos"
