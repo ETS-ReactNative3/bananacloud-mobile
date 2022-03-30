@@ -45,7 +45,7 @@ const Index = ({ navigation }) => {
                     icon="key-outline"
                 />
                 <Button
-                    title="Connexion"
+                    title="S'enregistrer"
                     onPress={() => dispatch(register(user))}
                     style={{ bgColor: '#00b894' }}
                 />
