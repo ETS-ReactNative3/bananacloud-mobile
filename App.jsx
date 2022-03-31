@@ -7,7 +7,7 @@ import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/lib/integration/react'
 
 import StackNavigator from '@configs/routes'
-import { darkTheme, lightTheme } from '@configs/themes/Theme'
+import { darkTheme, lightTheme } from '@configs/themes'
 import { persistor, store } from '@configs/store'
 
 export default function App() {
