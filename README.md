@@ -37,6 +37,7 @@ yarn ios
 -   [x] Create project
 -   [x] Navigate into the app
 -   [x] Install Redux
+-   [x] Init Redux-Persist
 -   [x] Set Icons
 -   [x] Custom Splash Screen
 -   [_] Manage error
@@ -51,4 +52,4 @@ yarn ios
 
 <a href="https://github.com/A-Lamine">@A-Lamine</a> Lamine ADEL  
 <a href="https://github.com/walidmokhtari">@walidmokhtari</a> Walid MOKHTARI  
-<a href="https://github.com/A-Lamine">@lucasmelly</a> Mely LUCAS
+<a href="https://github.com/lucasmelly">@lucasmelly</a> Melly LUCAS

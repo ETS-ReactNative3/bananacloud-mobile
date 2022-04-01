@@ -1,5 +1,4 @@
 import {
-    HYDRATE_USER,
     LOGIN_SUCCESS,
     LOGIN_FAILURE,
     REGISTER_SUCCESS,
@@ -15,13 +14,6 @@ const initialState = {
 
 export default (state = initialState, action) => {
     switch (action.type) {
-        case HYDRATE_USER:
-            return {
-                ...state,
-                isAuth: action.payload.isAuth,
-                token: action.payload.token,
-                user: action.payload.user,
-            }
         case LOGIN_SUCCESS:
             return {
                 ...state,

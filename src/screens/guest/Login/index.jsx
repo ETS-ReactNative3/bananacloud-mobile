@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { SafeAreaView, View, TouchableOpacity, Text, Image } from 'react-native'
 import { useDispatch } from 'react-redux'
 
@@ -9,12 +10,19 @@ import { Padding, TextInput, Button } from '@components/styled-components'
 import logo from '@root/assets/bananacloud.png'
 
 const Index = ({ navigation }) => {
+    const { t, i18n } = useTranslation()
     const dispatch = useDispatch()
+
+    // useEffect(() => {
+    //     i18next..changeLanguage('fr')
+    // }, [])
 
     const [user, setUser] = useState({
         email: '',
         password: '',
     })
+
+    console.log(t('login.register'))
 
     return (
         <SafeAreaView style={{ backgroundColor: '#00dafe', height: '100%' }}>
@@ -36,7 +44,7 @@ const Index = ({ navigation }) => {
                             marginBottom: 20,
                             color: '#ffffff',
                         }}>
-                        Se connecter
+                        {t('login.title')}
                     </Text>
                     <TextInput
                         placeholder="john.doe@bananacloud.com"

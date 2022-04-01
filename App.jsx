@@ -6,9 +6,11 @@ import { ThemeProvider } from 'styled-components'
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/lib/integration/react'
 
-import StackNavigator from '@configs/routes'
+import Routes from '@configs/routes'
 import { darkTheme, lightTheme } from '@configs/themes'
 import { persistor, store } from '@configs/store'
+
+import './src/configs/translations/initTranslation'
 
 export default function App() {
     const isDarkMode = useColorScheme() === 'dark'
@@ -21,7 +23,7 @@ export default function App() {
         <Provider store={store}>
             <PersistGate loading={null} persistor={persistor}>
                 <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
-                    <StackNavigator />
+                    <Routes />
                     <FlashMessage position="top" />
                 </ThemeProvider>
             </PersistGate>
