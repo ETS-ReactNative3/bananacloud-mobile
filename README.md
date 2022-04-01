@@ -50,6 +50,7 @@ yarn ios
 
 ## 👥 Collaborators
 
+<a href="https://github.com/ecandotti">@ecandotti</a> Enzo CANDOTTI  
 <a href="https://github.com/A-Lamine">@A-Lamine</a> Lamine ADEL  
 <a href="https://github.com/walidmokhtari">@walidmokhtari</a> Walid MOKHTARI  
 <a href="https://github.com/lucasmelly">@lucasmelly</a> Melly LUCAS
