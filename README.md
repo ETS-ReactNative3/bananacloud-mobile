@@ -17,7 +17,7 @@ Prettier & ESLint for beautiful code 🥰
 _Don't forget to update your .env.example to .env.local and set variables_
 
 ```
-git clone https://github.com/ecandotti/bananacloud.git
+git clone https://github.com/ecandotti/bananacloud-mobile.git
 cd /bananacloud
 yarn install
 
@@ -40,6 +40,7 @@ yarn ios
 -   [x] Init Redux-Persist
 -   [x] Set Icons
 -   [x] Custom Splash Screen
+-   [x] Google Admob
 -   [_] Manage error
 -   [_] Input verification
 -   [_] Manage theme
