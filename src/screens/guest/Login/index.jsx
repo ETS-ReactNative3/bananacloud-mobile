@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { SafeAreaView, View, TouchableOpacity, Text, Image } from 'react-native'
+import { InterstitialAd } from '@react-native-firebase/admob'
 import { useDispatch } from 'react-redux'
 
 import { login } from '@actions/auth'
@@ -9,12 +10,15 @@ import { Padding, TextInput, Button } from '@components/styled-components'
 
 import logo from '@root/assets/bananacloud.png'
 
+const interstitial = InterstitialAd.createForAdRequest('ca-app-pub-9539113506509263/9888016585')
+
 const Index = ({ navigation }) => {
     const { t, i18n } = useTranslation()
     const dispatch = useDispatch()
 
     useEffect(() => {
         i18n.changeLanguage('fr')
+        interstitial.load()
     }, [])
 
     const [user, setUser] = useState({
