@@ -13,16 +13,14 @@ const Index = ({ navigation }) => {
     const { t, i18n } = useTranslation()
     const dispatch = useDispatch()
 
-    // useEffect(() => {
-    //     i18next..changeLanguage('fr')
-    // }, [])
+    useEffect(() => {
+        i18n.changeLanguage('fr')
+    }, [])
 
     const [user, setUser] = useState({
         email: '',
         password: '',
     })
-
-    console.log(t('login.register'))
 
     return (
         <SafeAreaView style={{ backgroundColor: '#00dafe', height: '100%' }}>
