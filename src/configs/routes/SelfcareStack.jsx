@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, Button } from 'react-native'
+import { View, Text, TouchableOpacity } from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import IonIcons from 'react-native-vector-icons/Ionicons'
 IonIcons.loadFont()
@@ -19,24 +19,20 @@ const HeaderTitle = () => (
 
 const ProfileButton = ({ letter, navigation }) => {
     return (
-        <View
+        <TouchableOpacity
             style={{
-                position: 'relative',
                 backgroundColor: 'black',
-                marginEnd: 5,
-                borderRadius: 99,
-                width: 35,
-                height: 35,
-                paddingHorizontal: 3,
-            }}>
-            <View style={{ position: 'absolute', top: 0, right: 0, left: 0, bottom: 0 }}>
-                <Button
-                    onPress={() => navigation.navigate('Profile')}
-                    color="#fff"
-                    title={letter}
-                />
-            </View>
-        </View>
+                margin: 10,
+                width: 40,
+                height: 40,
+                borderRadius: 40,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+            }}
+            onPress={() => navigation.navigate('Profile')}>
+            <Text style={{ color: 'white', fontSize: 20 }}>{letter}</Text>
+        </TouchableOpacity>
     )
 }
 
