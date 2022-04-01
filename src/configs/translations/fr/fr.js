@@ -1,8 +1,10 @@
 export default {
-    login: {
-        title: 'Se connecter',
-    },
-    register: {
-        title: "S'enregistrer",
+    translation: {
+        login: {
+            title: 'Se connecter',
+        },
+        register: {
+            title: "S'enregistrer",
+        },
     },
 }
