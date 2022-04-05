@@ -1,18 +1,17 @@
 import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
 
-import en from './en/en'
-import fr from './fr/fr'
+import EN from './en/en'
+import FR from './fr/fr'
 
 const resources = {
-    en,
-    fr,
+    EN,
+    FR,
 }
 
 i18n.use(initReactI18next).init({
     resources,
-    lng: 'fr',
-    fallbackLng: 'fr',
+    fallbackLng: 'FR',
     interpolation: {
         escapeValue: false, // react already safes from xss
     },

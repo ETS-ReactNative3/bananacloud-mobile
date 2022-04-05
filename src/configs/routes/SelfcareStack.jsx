@@ -1,13 +1,14 @@
 import React from 'react'
-import { View, Text, TouchableOpacity } from 'react-native'
+import { Text, TouchableOpacity } from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { useSelector } from 'react-redux'
+import { useTranslation } from 'react-i18next'
 import IonIcons from 'react-native-vector-icons/Ionicons'
 IonIcons.loadFont()
 
 import Photos from '@screens/selfcare/Photos'
 import Search from '@screens/selfcare/Search'
 import Library from '@screens/selfcare/Library'
-import { useSelector } from 'react-redux'
 
 const Tab = createBottomTabNavigator()
 
@@ -37,6 +38,7 @@ const ProfileButton = ({ letter, navigation }) => {
 }
 
 const SelfcareStack = () => {
+    const { t } = useTranslation()
     const { email } = useSelector(state => state.auth.user)
 
     return (
@@ -52,6 +54,7 @@ const SelfcareStack = () => {
                     tabBarIcon: ({ color, size }) => (
                         <IonIcons name="images-outline" color={color} size={size} />
                     ),
+                    title: t('photos.title'),
                 }}
             />
             <Tab.Screen
@@ -61,7 +64,7 @@ const SelfcareStack = () => {
                     tabBarIcon: ({ color, size }) => (
                         <IonIcons name="search-outline" color={color} size={size} />
                     ),
-                    title: 'Rechercher',
+                    title: t('search.title'),
                 }}
             />
             <Tab.Screen
@@ -71,7 +74,7 @@ const SelfcareStack = () => {
                     tabBarIcon: ({ color, size }) => (
                         <IonIcons name="library-outline" color={color} size={size} />
                     ),
-                    title: 'Bibliothèque',
+                    title: t('library.title'),
                 }}
             />
         </Tab.Navigator>
