@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Text } from 'react-native'
 
-const Index = () => {
+const Favorites = () => {
     return (
         <View style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <Text>Favoris</Text>
@@ -9,4 +9,4 @@ const Index = () => {
     )
 }
 
-export default Index
+export default Favorites

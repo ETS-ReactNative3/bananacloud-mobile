@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { SafeAreaView, View, Text, TouchableOpacity, Image } from 'react-native'
 
 import { register } from '@actions/auth'
@@ -7,15 +7,26 @@ import { register } from '@actions/auth'
 import { Padding, TextInput, Button } from '@components/styled-components'
 
 import logo from '@root/assets/bananacloud.png'
+import { useTranslation } from 'react-i18next'
 
-const Index = ({ navigation }) => {
+const Register = ({ navigation }) => {
+    const { t } = useTranslation()
     const dispatch = useDispatch()
 
+    const errorValue = useSelector(state => state.auth.error)
+
+    const [isLoading, setIsLoading] = useState(false)
     const [user, setUser] = useState({
         email: '',
         password: '',
         confirmPassword: '',
     })
+
+    const registerMe = async () => {
+        await setIsLoading(true)
+        await dispatch(register(user))
+        await setIsLoading(false)
+    }
 
     return (
         <SafeAreaView style={{ backgroundColor: '#00dafe', height: '100%' }}>
@@ -37,7 +48,7 @@ const Index = ({ navigation }) => {
                             marginBottom: 20,
                             color: '#ffffff',
                         }}>
-                        S'enregistrer
+                        {t('register.title')}
                     </Text>
                     <TextInput
                         placeholder="john.doe@bananacloud.com"
@@ -59,9 +70,11 @@ const Index = ({ navigation }) => {
                         color="#dfe6e9"
                         icon="key-outline"
                     />
+                    <Text style={{ color: 'red' }}>{errorValue}</Text>
                     <Button
-                        title="Valider"
-                        onPress={() => dispatch(register(user))}
+                        title={`${isLoading ? t('register.loading') : t('register.validate')}`}
+                        disabled={isLoading}
+                        onPress={registerMe}
                         style={{ bgColor: '#00b894' }}
                     />
                     <TouchableOpacity onPress={() => navigation.navigate('Login')}>
@@ -72,7 +85,7 @@ const Index = ({ navigation }) => {
                                 marginTop: 20,
                                 color: '#ffffff',
                             }}>
-                            J'ai déjà un compte
+                            {t('register.goLogin')}
                         </Text>
                     </TouchableOpacity>
                 </View>
@@ -81,4 +94,4 @@ const Index = ({ navigation }) => {
     )
 }
 
-export default Index
+export default Register

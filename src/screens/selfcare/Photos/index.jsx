@@ -3,7 +3,7 @@ import { View, Text } from 'react-native'
 
 import HeaderPhoto from '@components/HeaderPhoto'
 
-const Index = () => {
+const Photos = () => {
     return (
         <View style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <Text>Photos</Text>
@@ -11,4 +11,4 @@ const Index = () => {
     )
 }
 
-export default Index
+export default Photos
