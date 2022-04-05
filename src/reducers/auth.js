@@ -10,6 +10,7 @@ const initialState = {
     isAuth: false,
     token: null,
     user: {},
+    error: '',
 }
 
 export default (state = initialState, action) => {
@@ -20,6 +21,7 @@ export default (state = initialState, action) => {
                 isAuth: true,
                 token: action.payload.token,
                 user: action.payload.user,
+                error: '',
             }
         case LOGIN_FAILURE:
             return {
@@ -27,7 +29,7 @@ export default (state = initialState, action) => {
                 isAuth: false,
                 token: null,
                 user: {},
-                err: action.payload,
+                error: action.payload.error,
             }
         case REGISTER_SUCCESS:
             return {
@@ -35,6 +37,7 @@ export default (state = initialState, action) => {
                 isAuth: true,
                 token: action.payload.token,
                 user: action.payload.user,
+                error: '',
             }
         case REGISTER_FAILURE:
             return {
@@ -42,7 +45,7 @@ export default (state = initialState, action) => {
                 isAuth: false,
                 token: null,
                 user: {},
-                err: action.payload,
+                error: action.payload.error,
             }
         case LOGOUT:
             return {
@@ -50,6 +53,7 @@ export default (state = initialState, action) => {
                 isAuth: false,
                 token: null,
                 user: {},
+                error: '',
             }
         default:
             return state

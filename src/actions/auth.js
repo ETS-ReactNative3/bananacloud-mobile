@@ -28,7 +28,7 @@ export const login =
 
             dispatch({ type: LOGIN_SUCCESS, payload: { token, user } })
         } catch (err) {
-            dispatch({ type: LOGIN_FAILURE, payload: err.message })
+            dispatch({ type: LOGIN_FAILURE, payload: { error: err.message } })
         }
     }
 
@@ -37,7 +37,10 @@ export const register =
     async dispatch => {
         try {
             if (password !== confirmPassword) {
-                dispatch({ type: REGISTER_FAILURE, payload: 'Mot de passe non identique' })
+                return dispatch({
+                    type: REGISTER_FAILURE,
+                    payload: { error: 'Mot de passe non identique' },
+                })
             }
 
             const { data } = await api.post('auth/register', { email, password })
@@ -54,7 +57,7 @@ export const register =
 
             dispatch({ type: REGISTER_SUCCESS, payload: { token, user } })
         } catch (err) {
-            dispatch({ type: REGISTER_FAILURE, payload: err.message })
+            dispatch({ type: REGISTER_FAILURE, payload: { error: err.message } })
         }
     }
 
