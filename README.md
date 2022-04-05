@@ -44,6 +44,8 @@ yarn ios
 -   [_] Manage error
 -   [_] Input verification
 -   [_] Manage theme
+-   [_] Translation FR/EN
+-   [_] Don't forget to inform user about state of app
 -   [_] DarkMode / LightMode
 -   [_] Google Auth / Github Auth
 -   [_] Use styled-components :(
