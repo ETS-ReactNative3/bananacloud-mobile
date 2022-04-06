@@ -41,13 +41,15 @@ yarn ios
 -   [x] Set Icons
 -   [x] Custom Splash Screen
 -   [x] Google Admob
+-   [x] Google Analytics
+-   [x] Google Messaging (for Notification Push)
+-   [_] Google Auth (Login thanks Google Account)
 -   [_] Manage error
 -   [_] Input verification
 -   [_] Manage theme
 -   [_] Translation FR/EN
 -   [_] Don't forget to inform user about state of app
 -   [_] DarkMode / LightMode
--   [_] Google Auth / Github Auth
 -   [_] Use styled-components :(
 -   [_] ...
 
