@@ -1,7 +1,7 @@
 import React from 'react'
 import { SafeAreaView, View, Text } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
-import { PaymentRequest } from 'react-native-payments'
+// import { PaymentRequest } from 'react-native-payments'
 
 import { version as version } from '@root/package.json'
 
