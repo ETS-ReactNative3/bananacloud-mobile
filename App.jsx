@@ -6,10 +6,12 @@ import { ThemeProvider } from 'styled-components'
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/lib/integration/react'
 import admob, { MaxAdContentRating } from '@react-native-firebase/admob'
+import messaging from '@react-native-firebase/messaging'
 
 import Routes from '@configs/routes'
 import { darkTheme, lightTheme } from '@configs/themes'
 import { persistor, store } from '@configs/store'
+import { requestUserPermission } from '@utils/grantedNotification'
 
 import '@configs/translations/initTranslation'
 
@@ -26,6 +28,25 @@ export default function App() {
 
     useEffect(() => {
         SplashScreen.hide()
+        requestUserPermission()
+
+        const askToken = async () => {
+            const token = await messaging().getToken()
+            console.log(token)
+        }
+        askToken()
+
+        messaging().setBackgroundMessageHandler(remoteMessage => {
+            console.log(
+                'Notification caused app to open from background state:',
+                remoteMessage.notification,
+            )
+            // navigation.navigate(remoteMessage.data.type);
+        })
+
+        messaging().onMessage(mess => {
+            console.log('from onMessage ', mess)
+        })
     }, [])
 
     return (
