@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { SafeAreaView, View, TouchableOpacity, Text, Image } from 'react-native'
-import { InterstitialAd } from '@react-native-firebase/admob'
+import { InterstitialAd, TestIds } from '@react-native-firebase/admob'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { login } from '@actions/auth'
@@ -9,8 +9,6 @@ import { login } from '@actions/auth'
 import { Padding, TextInput, Button } from '@components/styled-components'
 
 import logo from '@root/assets/bananacloud.png'
-
-const interstitial = InterstitialAd.createForAdRequest('ca-app-pub-9539113506509263/9888016585')
 
 const Login = ({ navigation }) => {
     const { t } = useTranslation()
@@ -20,11 +18,8 @@ const Login = ({ navigation }) => {
     const errorValue = useSelector(state => state.auth.error)
 
     useEffect(() => {
-        if (!isPremium) {
-            return () => {
-                interstitial.load()
-            }
-        }
+        const interstitial = InterstitialAd.createForAdRequest(TestIds.INTERSTITIAL)
+        interstitial.load()
     }, [])
 
     const [isLoading, setIsLoading] = useState(false)
