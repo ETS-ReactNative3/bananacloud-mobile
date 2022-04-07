@@ -6,7 +6,6 @@ import IonIcons from 'react-native-vector-icons/Ionicons'
 IonIcons.loadFont()
 
 import Photos from '@screens/selfcare/Photos'
-import Settings from '@screens/selfcare/Settings'
 import Search from '@screens/selfcare/Search'
 import Library from '@screens/selfcare/Library'
 import { useSelector } from 'react-redux'
@@ -58,17 +57,6 @@ const SelfcareStack = () => {
                     title: '',
                     tabBarIcon: ({ size }) => (
                         <IonIcons name="images-outline" color={Color.Color.DEFAULT} size={size} />
-                    ),
-                }}
-            />
-
-            <Tab.Screen
-                name="Settings"
-                component={Settings}
-                options={{
-                    title: '',
-                    tabBarIcon: ({ size }) => (
-                        <IonIcons name="settings-outline" color={Color.Color.DEFAULT} size={size} />
                     ),
                 }}
             />
