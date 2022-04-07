@@ -1,41 +1,30 @@
 import React from 'react'
-import { View, Text } from 'react-native'
-import { List, Switch } from 'react-native-paper'
 import { useDispatch, useSelector } from 'react-redux'
-import { ToggleDarkTheme, ToggleLightTheme } from '@actions/theme'
+import { Picker } from '@react-native-picker/picker'
+import { View } from 'react-native'
 
+import { DARK_THEME, LIGHT_THEME, SYSTEM_THEME, chooseTheme } from '@actions/theme'
 import { logout } from '@actions/auth'
 
 import { Button } from '@components/styled-components'
 
 const Index = () => {
     const dispatch = useDispatch()
-    const themeReducer = useSelector(state => state.theme)
 
-    const ToggleTheme = theme => {
-        if (theme === true) {
-            dispatch(ToggleDarkTheme())
-        } else {
-            dispatch(ToggleLightTheme())
-        }
-    }
+    const currentTheme = useSelector(state => state.theme.currentTheme)
 
     return (
         <>
-            <View style={{ flex: 1 }}>
-                <List.Item
-                    title="Dark Mode"
-                    left={() => <List.Icon icon="brightness-4" />}
-                    right={() => (
-                        <Switch
-                            value={themeReducer.theme}
-                            onValueChange={val => {
-                                ToggleTheme(val)
-                            }}
-                        />
-                    )}
-                />
-            </View>
+            <Picker
+                selectedValue={currentTheme}
+                mode={'dialog'}
+                onValueChange={theme => dispatch(chooseTheme(theme))}
+                style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                <Picker.Item label="Light" value={LIGHT_THEME} />
+                <Picker.Item label="Dark" value={DARK_THEME} />
+                <Picker.Item label="System" value={SYSTEM_THEME} />
+            </Picker>
+
             <View style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 <Button
                     title="Deconnexion"

@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react'
-import { useColorScheme } from 'react-native'
 import SplashScreen from 'react-native-splash-screen'
 import FlashMessage from 'react-native-flash-message'
-import { ThemeProvider } from 'styled-components'
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/lib/integration/react'
 
@@ -12,7 +10,6 @@ import { persistor, store } from '@configs/store'
 import './src/configs/translations/initTranslation'
 
 export default function App() {
-
     useEffect(() => {
         SplashScreen.hide()
     }, [])

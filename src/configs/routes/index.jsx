@@ -1,32 +1,35 @@
 import React from 'react'
+import { useColorScheme } from 'react-native'
 import { useSelector } from 'react-redux'
-import { NavigationContainer, DarkTheme, DefaultTheme } from '@react-navigation/native'
+import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import { darkTheme, lightTheme } from '@components/styled-components/Color'
+import { ThemeProvider } from 'styled-components'
 
-import SelfcareStack from './SelfcareStack'
-import {
-    Provider as PaperProvider,
-    DarkTheme as PaperDarkTheme,
-    DefaultTheme as PaperDefaultTheme,
-} from 'react-native-paper'
+import { whichTheme } from '@utils/theme'
+
 import Login from '@screens/guest/Login'
 import Register from '@screens/guest/Register'
 
+import SelfcareStack from './SelfcareStack'
 import Profile from '@screens/selfcare/Profile'
 import Favorites from '@screens/selfcare/Favorites'
 import Albums from '@screens/selfcare/Albums'
+
 import { GoBack } from '@components/styled-components'
 
 const Stack = createNativeStackNavigator()
 
 const StackNavigator = () => {
     const isAuth = useSelector(state => state.auth.isAuth)
-    const themeDark = useSelector(state => state.theme)
+    const currentTheme = useSelector(state => state.theme.currentTheme)
+
+    const colorScheme = useColorScheme()
+
+    const theme = whichTheme(currentTheme, colorScheme)
 
     return (
-        <NavigationContainer theme={themeDark.theme ? DarkTheme : DefaultTheme}>
-            <PaperProvider theme={themeDark.theme ? PaperDarkTheme : PaperDefaultTheme}>
+        <ThemeProvider theme={theme}>
+            <NavigationContainer theme={theme}>
                 <Stack.Navigator>
                     {isAuth ? (
                         <Stack.Group>
@@ -78,8 +81,8 @@ const StackNavigator = () => {
                         </Stack.Group>
                     )}
                 </Stack.Navigator>
-            </PaperProvider>
-        </NavigationContainer>
+            </NavigationContainer>
+        </ThemeProvider>
     )
 }
 
