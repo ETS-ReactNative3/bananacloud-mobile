@@ -30,12 +30,6 @@ export default function App() {
         SplashScreen.hide()
         requestUserPermission()
 
-        const askToken = async () => {
-            const token = await messaging().getToken()
-            console.log(token)
-        }
-        askToken()
-
         messaging().setBackgroundMessageHandler(remoteMessage => {
             console.log(
                 'Notification caused app to open from background state:',
