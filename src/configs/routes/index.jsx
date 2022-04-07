@@ -22,7 +22,7 @@ const Stack = createNativeStackNavigator()
 
 const StackNavigator = () => {
     const { t } = useTranslation()
-    const isAuth = useSelector(state => state.auth.isAuth)
+    const isAuth = useSelector(state => state.user.isAuth)
     const currentLang = useSelector(state => state.langage.currentLang)
 
     useEffect(() => {

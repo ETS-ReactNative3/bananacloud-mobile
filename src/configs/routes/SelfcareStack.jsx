@@ -39,7 +39,7 @@ const ProfileButton = ({ letter, navigation }) => {
 
 const SelfcareStack = () => {
     const { t } = useTranslation()
-    const { email } = useSelector(state => state.auth.user)
+    const { email } = useSelector(state => state.user.user)
 
     return (
         <Tab.Navigator

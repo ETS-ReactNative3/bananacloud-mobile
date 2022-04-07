@@ -1,7 +1,6 @@
 import { combineReducers } from 'redux'
 
-import auth from './auth'
-import premium from './premium'
+import user from './user'
 import langage from './langage'
 
-export default combineReducers({ auth, premium, langage })
+export default combineReducers({ user, langage })

@@ -4,12 +4,17 @@ import {
     REGISTER_SUCCESS,
     REGISTER_FAILURE,
     LOGOUT,
-} from '@actions/auth'
+    PREMIUM_SUCCESS,
+    PREMIUM_FAILURE,
+    FREE_SUCCESS,
+    FREE_FAILURE,
+} from '@actions/user'
 
 const initialState = {
     isAuth: false,
     token: null,
     user: {},
+    isPremium: false,
     error: '',
 }
 
@@ -54,6 +59,26 @@ export default (state = initialState, action) => {
                 token: null,
                 user: {},
                 error: '',
+            }
+        case PREMIUM_SUCCESS:
+            return {
+                ...state,
+                isPremium: action.payload.success,
+            }
+        case PREMIUM_FAILURE:
+            return {
+                ...state,
+                isPremium: false,
+            }
+        case FREE_SUCCESS:
+            return {
+                ...state,
+                isPremium: action.payload.success,
+            }
+        case FREE_FAILURE:
+            return {
+                ...state,
+                isPremium: false,
             }
         default:
             return state

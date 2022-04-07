@@ -4,7 +4,7 @@ import { SafeAreaView, View, TouchableOpacity, Text, Image } from 'react-native'
 import { InterstitialAd, TestIds } from '@react-native-firebase/admob'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { login } from '@actions/auth'
+import { login } from '@actions/user'
 
 import { Padding, TextInput, Button } from '@components/styled-components'
 
@@ -14,8 +14,7 @@ const Login = ({ navigation }) => {
     const { t } = useTranslation()
     const dispatch = useDispatch()
 
-    const isPremium = useSelector(state => state.premium.isPremium)
-    const errorValue = useSelector(state => state.auth.error)
+    const errorValue = useSelector(state => state.user.error)
 
     useEffect(() => {
         const interstitial = InterstitialAd.createForAdRequest(TestIds.INTERSTITIAL)

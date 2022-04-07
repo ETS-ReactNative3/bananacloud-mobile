@@ -10,6 +10,11 @@ export const REGISTER_SUCCESS = 'REGISTER_SUCCESS'
 export const REGISTER_FAILURE = 'REGISTER_FAILURE'
 export const LOGOUT = 'LOGOUT'
 
+export const PREMIUM_SUCCESS = 'PREMIUM_SUCCESS'
+export const PREMIUM_FAILURE = 'PREMIUM_FAILURE'
+export const FREE_SUCCESS = 'FREE_SUCCESS'
+export const FREE_FAILURE = 'FREE_FAILURE'
+
 export const login =
     ({ email, password }) =>
     async dispatch => {
@@ -20,7 +25,6 @@ export const login =
 
             await AsyncStorage.setItem('token', JSON.stringify(token))
             await AsyncStorage.setItem('user', JSON.stringify(user))
-            
 
             showMessage({
                 message: `Bienvenu, ${user.email}`,
@@ -72,4 +76,22 @@ export const logout = () => async dispatch => {
     })
 
     dispatch({ type: LOGOUT })
+}
+
+export const bePremium = () => async dispatch => {
+    const data = await AsyncStorage.getItem('user')
+    const user = JSON.parse(data)
+
+    try {
+        const { data } = await api.post('update-user', { id: user._id, isPremium: true })
+        console.log('SUCCESS')
+    } catch (err) {
+        console.log(err)
+    }
+
+    /*dispatch({ type: PREMIUM_SUCCESS, payload: { success: true } })*/
+}
+
+export const beFree = () => async dispatch => {
+    dispatch({ type: FREE_SUCCESS, payload: { success: false } })
 }

@@ -1,50 +1,20 @@
 import React from 'react'
 import { SafeAreaView, View, Text } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
-// import { PaymentRequest } from 'react-native-payments'
+import { useTranslation } from 'react-i18next'
 
 import { version as version } from '@root/package.json'
 
-import { logout } from '@actions/auth'
-import { bePremium, beFree } from '@actions/premium'
+import { logout } from '@actions/user'
 import { changeLangage } from '@actions/langage'
 
 import { Margin, Button } from '@components/styled-components'
-import { useTranslation } from 'react-i18next'
-
-
-
-const METHOD_DATA = [
-    {
-        supportedMethods: ['apple-pay'],
-        data: {
-            merchantIdentifier: 'merchant.com.tech.eandotti.bananacloud',
-            supportedNetworks: ['visa', 'mastercard'],
-            countryCode: 'FR',
-            currencyCode: 'EUR',
-        },
-    },
-]
-
-const DETAILS = {
-    id: '0001',
-    displayItems: [
-        {
-            label: 'Premium Pass',
-            amount: { currency: 'EUR', value: '4.99' },
-        },
-    ],
-    total: {
-        label: 'BananaCloud',
-        amount: { currency: 'EUR', value: '4.99' },
-    },
-}
 
 const Profile = ({ navigation }) => {
     const dispatch = useDispatch()
     const { t } = useTranslation()
 
-    const isPremium = useSelector(state => state.premium.isPremium)
+    const isPremium = useSelector(state => state.user.isPremium)
     const currentLang = useSelector(state => state.langage.currentLang)
 
     const changeLangNow = async () => {
