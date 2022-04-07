@@ -32,7 +32,8 @@ const Profile = ({ navigation }) => {
                     display: 'flex',
                     height: '100%',
                     justifyContent: 'space-between',
-                }}>
+                }}
+            >
                 <View>
                     <Text style={{ textAlign: 'center' }}>
                         Formule :{' '}
@@ -78,7 +79,8 @@ const Profile = ({ navigation }) => {
                             fontSize: 12,
                             color: 'gray',
                             textAlign: 'center',
-                        }}>
+                        }}
+                    >
                         BananaCloud {version}
                     </Text>
                 </View>

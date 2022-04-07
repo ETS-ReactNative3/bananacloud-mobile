@@ -12,7 +12,7 @@ import Register from '@screens/guest/Register'
 import Profile from '@screens/selfcare/Profile'
 import Favorites from '@screens/selfcare/Favorites'
 import Albums from '@screens/selfcare/Albums'
-import Paiement from '@screens/selfcare/Paiement'
+import Payment from '@screens/selfcare/Payment'
 
 import { GoBack } from '@components/styled-components'
 
@@ -64,8 +64,8 @@ const StackNavigator = () => {
                             })}
                         />
                         <Stack.Screen
-                            name="Paiement"
-                            component={Paiement}
+                            name="Payment"
+                            component={Payment}
                             options={{ headerShown: false }}
                         />
                     </Stack.Group>

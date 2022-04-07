@@ -28,7 +28,8 @@ const Library = ({ navigation }) => {
                     flexDirection: 'column',
                     justifyContent: 'space-between',
                     alignItems: 'center',
-                }}>
+                }}
+            >
                 <Button
                     title={t('favorites.title')}
                     onPress={() => navigation.navigate('Favorites')}

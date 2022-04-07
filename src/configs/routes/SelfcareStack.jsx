@@ -31,7 +31,8 @@ const ProfileButton = ({ letter, navigation }) => {
                 alignItems: 'center',
                 justifyContent: 'center',
             }}
-            onPress={() => navigation.navigate('Profile')}>
+            onPress={() => navigation.navigate('Profile')}
+        >
             <Text style={{ color: 'white', fontSize: 20 }}>{letter}</Text>
         </TouchableOpacity>
     )
@@ -46,7 +47,8 @@ const SelfcareStack = () => {
             screenOptions={({ navigation }) => ({
                 headerTitle: props => <HeaderTitle {...props} />,
                 headerRight: () => <ProfileButton letter={email[0]} navigation={navigation} />,
-            })}>
+            })}
+        >
             <Tab.Screen
                 name="Photos"
                 component={Photos}

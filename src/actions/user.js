@@ -3,6 +3,7 @@ import { showMessage } from 'react-native-flash-message'
 import jwtDecode from 'jwt-decode'
 
 import api from '@utils/api'
+import { getCreditCardToken, charges } from '@utils/Stripe'
 
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
 export const LOGIN_FAILURE = 'LOGIN_FAILURE'
@@ -83,6 +84,26 @@ export const bePremium = () => async dispatch => {
     const user = JSON.parse(data)
 
     try {
+        if (CardInput.valid == false || typeof CardInput.valid == 'undefined') {
+            alert('Invalid Credit Card')
+            return false
+        }
+
+        creditCardToken = await getCreditCardToken(CardInput)
+
+        if (creditCardToken.error) {
+            alert('creditCardToken error')
+            return
+        }
+
+        const payment_data = await charges()
+        if (payment_data.status == 'succeeded') {
+            dispatch(bePremium())
+            alert('Payment Successfully, The player has been added to your player list')
+        } else {
+            alert('Payment failed')
+        }
+
         const { data } = await api.post('update-user', { id: user._id, isPremium: true })
         console.log('SUCCESS')
     } catch (err) {

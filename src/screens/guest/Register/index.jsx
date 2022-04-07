@@ -52,7 +52,8 @@ const Register = ({ navigation }) => {
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                    }}>
+                    }}
+                >
                     <Image
                         source={logo}
                         style={{ width: 200, height: 200, borderRadius: 10, marginBottom: 20 }}
@@ -63,7 +64,8 @@ const Register = ({ navigation }) => {
                             fontSize: 32,
                             marginBottom: 20,
                             color: '#ffffff',
-                        }}>
+                        }}
+                    >
                         {t('register.title')}
                     </Text>
                     <GoogleSigninButton
@@ -107,7 +109,8 @@ const Register = ({ navigation }) => {
                                 textAlign: 'center',
                                 marginTop: 20,
                                 color: '#ffffff',
-                            }}>
+                            }}
+                        >
                             {t('register.goLogin')}
                         </Text>
                     </TouchableOpacity>

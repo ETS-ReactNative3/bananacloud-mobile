@@ -41,7 +41,8 @@ const Login = ({ navigation }) => {
                         display: 'flex',
                         alignItems: 'center',
                         backgroundColor: '#00dafe',
-                    }}>
+                    }}
+                >
                     <Image
                         source={logo}
                         style={{ width: 200, height: 200, borderRadius: 10, marginBottom: 20 }}
@@ -52,7 +53,8 @@ const Login = ({ navigation }) => {
                             fontSize: 32,
                             marginBottom: 20,
                             color: '#ffffff',
-                        }}>
+                        }}
+                    >
                         {t('login.title')}
                     </Text>
                     <TextInput
@@ -82,7 +84,8 @@ const Login = ({ navigation }) => {
                                 textAlign: 'center',
                                 marginTop: 20,
                                 color: '#ffffff',
-                            }}>
+                            }}
+                        >
                             {t('login.goRegister')}
                         </Text>
                     </TouchableOpacity>
