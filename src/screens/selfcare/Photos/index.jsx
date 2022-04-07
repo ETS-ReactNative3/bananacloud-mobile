@@ -1,17 +1,29 @@
-import React, { useState } from 'react'
-import { View, Text, ActivityIndicator } from 'react-native'
+import React, { useEffect, useState } from 'react'
+import { View, Text, ActivityIndicator, FlatList } from 'react-native'
 import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 
 import { uploadFromCamera, uploadFromGallery, uploadImage } from '@utils/upload'
+import { getPhotos } from '@utils/photos/getPhotos'
 
-import HeaderPhoto from '@components/HeaderPhoto'
 import { Button } from '@components/styled-components'
+import CardExample from '@components/CardExample'
+import HeaderPhoto from '@components/HeaderPhoto'
 
 const Photos = () => {
     const { t } = useTranslation()
 
     const userId = useSelector(state => state.user.user._id)
+
+    const [listPhotos, setListPhotos] = useState([])
+
+    useEffect(() => {
+        hydrateListPhotos = async () => {
+            const list = await getPhotos(userId)
+            setListPhotos(list)
+        }
+        hydrateListPhotos()
+    }, [])
 
     const [image, setImage] = useState(null)
     const [uploading, setUploading] = useState(false)
@@ -58,6 +70,11 @@ const Photos = () => {
                     <Text>{t('photos.uploadLoading')}</Text>
                 </View>
             )}
+            <FlatList
+                data={listPhotos}
+                renderItem={item => <CardExample photo={item} />}
+                keyExtractor={item => item.path}
+            />
         </View>
     )
 }
