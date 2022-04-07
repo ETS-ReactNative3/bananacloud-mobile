@@ -1,59 +1,63 @@
 import React, { useState } from 'react'
-import { View, Text, TouchableOpacity } from 'react-native'
-import { launchImageLibrary } from 'react-native-image-picker'
-import storage from '@react-native-firebase/storage'
+import { View, Text, ActivityIndicator } from 'react-native'
+import { useSelector } from 'react-redux'
+import { useTranslation } from 'react-i18next'
+
+import { uploadFromCamera, uploadFromGallery, uploadImage } from '@utils/upload'
 
 import HeaderPhoto from '@components/HeaderPhoto'
+import { Button } from '@components/styled-components'
 
 const Photos = () => {
+    const { t } = useTranslation()
+
+    const userId = useSelector(state => state.user.user._id)
+
     const [image, setImage] = useState(null)
     const [uploading, setUploading] = useState(false)
-    const [transferred, setTransferred] = useState(0)
+    // const [transferred, setTransferred] = useState(0)
 
-    const selectImage = async () => {
-        const result = await launchImageLibrary({
-            mediaType: 'mixed',
-            durationLimit: 15,
-        })
-
-        if (result.didCancel) {
-            console.log('User cancelled image picker')
-        } else if (result.error) {
-            console.log('ImagePicker Error: ', result.error)
-        } else {
-            const source = result.assets[0].uri
-            setImage(source)
-        }
+    const handleUploadFromCamera = async () => {
+        const photo = await uploadFromCamera()
+        setUploading(true)
+        await uploadImage(photo, userId)
+        setUploading(false)
     }
 
-    const uploadImage = async () => {
-        const uri = image
-        const filename = uri.substring(uri.lastIndexOf('/') + 1)
-        const uploadUri = Platform.OS === 'ios' ? uri.replace('file://', '') : uri
+    const handleUploadFromGallery = async () => {
+        const photo = await uploadFromGallery()
         setUploading(true)
-        setTransferred(0)
-        const task = storage().ref(filename).putFile(uploadUri)
-        // set progress state
-        task.on('state_changed', snapshot => {
-            setTransferred(Math.round(snapshot.bytesTransferred / snapshot.totalBytes) * 10000)
-        })
-        try {
-            await task
-        } catch (e) {
-            console.error(e)
-        }
+        await uploadImage(photo, userId)
         setUploading(false)
-        setImage(null)
     }
 
     return (
-        <View style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-            <TouchableOpacity onPress={selectImage}>
-                <Text>Pick an image</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={uploadImage}>
-                <Text>Gooooo</Text>
-            </TouchableOpacity>
+        <View>
+            <View
+                style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    flexDirection: 'row',
+                }}
+            >
+                <Button
+                    title={t('photos.uploadCamera')}
+                    icon="camera-outline"
+                    onPress={() => handleUploadFromCamera()}
+                />
+                <Button
+                    title={t('photos.uploadGallery')}
+                    icon="image-outline"
+                    onPress={() => handleUploadFromGallery()}
+                />
+            </View>
+            {uploading && (
+                <View>
+                    <ActivityIndicator size={32} />
+                    <Text>{t('photos.uploadLoading')}</Text>
+                </View>
+            )}
         </View>
     )
 }
