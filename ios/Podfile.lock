@@ -54,6 +54,9 @@ PODS:
   - Firebase/Messaging (7.11.0):
     - Firebase/CoreOnly
     - FirebaseMessaging (~> 7.11.0)
+  - Firebase/Storage (7.11.0):
+    - Firebase/CoreOnly
+    - FirebaseStorage (~> 7.11.0)
   - FirebaseAnalytics (7.11.0):
     - FirebaseAnalytics/AdIdSupport (= 7.11.0)
     - FirebaseCore (~> 7.0)
@@ -113,6 +116,9 @@ PODS:
     - GoogleUtilities/Environment (~> 7.0)
     - GoogleUtilities/Reachability (~> 7.0)
     - GoogleUtilities/UserDefaults (~> 7.0)
+  - FirebaseStorage (7.11.0):
+    - FirebaseCore (~> 7.0)
+    - GTMSessionFetcher/Core (~> 1.4)
   - Flipper (0.99.0):
     - Flipper-Folly (~> 2.6)
     - Flipper-RSocket (~> 1.4)
@@ -430,6 +436,8 @@ PODS:
   - React-jsinspector (0.67.4)
   - React-logger (0.67.4):
     - glog
+  - react-native-image-picker (4.7.3):
+    - React-Core
   - react-native-payments (0.8.4):
     - Braintree (~> 4)
     - React
@@ -525,6 +533,10 @@ PODS:
     - Firebase/Messaging (= 7.11.0)
     - React-Core
     - RNFBApp
+  - RNFBStorage (11.5.0):
+    - Firebase/Storage (= 7.11.0)
+    - React-Core
+    - RNFBApp
   - RNFS (2.19.0):
     - React-Core
   - RNGoogleSignin (7.2.2):
@@ -582,6 +594,7 @@ DEPENDENCIES:
   - React-jsiexecutor (from `../node_modules/react-native/ReactCommon/jsiexecutor`)
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - React-logger (from `../node_modules/react-native/ReactCommon/logger`)
+  - react-native-image-picker (from `../node_modules/react-native-image-picker`)
   - react-native-payments (from `../node_modules/react-native-payments`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - react-native-splash-screen (from `../node_modules/react-native-splash-screen`)
@@ -603,6 +616,7 @@ DEPENDENCIES:
   - "RNFBApp (from `../node_modules/@react-native-firebase/app`)"
   - "RNFBAuth (from `../node_modules/@react-native-firebase/auth`)"
   - "RNFBMessaging (from `../node_modules/@react-native-firebase/messaging`)"
+  - "RNFBStorage (from `../node_modules/@react-native-firebase/storage`)"
   - RNFS (from `../node_modules/react-native-fs`)
   - "RNGoogleSignin (from `../node_modules/@react-native-google-signin/google-signin`)"
   - RNScreens (from `../node_modules/react-native-screens`)
@@ -622,6 +636,7 @@ SPEC REPOS:
     - FirebaseInstallations
     - FirebaseInstanceID
     - FirebaseMessaging
+    - FirebaseStorage
     - Flipper
     - Flipper-Boost-iOSX
     - Flipper-DoubleConversion
@@ -683,6 +698,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/jsinspector"
   React-logger:
     :path: "../node_modules/react-native/ReactCommon/logger"
+  react-native-image-picker:
+    :path: "../node_modules/react-native-image-picker"
   react-native-payments:
     :path: "../node_modules/react-native-payments"
   react-native-safe-area-context:
@@ -725,6 +742,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-firebase/auth"
   RNFBMessaging:
     :path: "../node_modules/@react-native-firebase/messaging"
+  RNFBStorage:
+    :path: "../node_modules/@react-native-firebase/storage"
   RNFS:
     :path: "../node_modules/react-native-fs"
   RNGoogleSignin:
@@ -752,6 +771,7 @@ SPEC CHECKSUMS:
   FirebaseInstallations: a58d4f72ec5861840b84df489f2668d970df558a
   FirebaseInstanceID: ad5135045a498d7775903efd39762d2cdfa1be27
   FirebaseMessaging: 163435fb6db065e3b6228f1e577b10ed2cc506d2
+  FirebaseStorage: 8542711850ca181a3931c0ed483006a7b46039e7
   Flipper: 30e8eeeed6abdc98edaf32af0cda2f198be4b733
   Flipper-Boost-iOSX: fd1e2b8cbef7e662a122412d7ac5f5bea715403c
   Flipper-DoubleConversion: 57ffbe81ef95306cc9e69c4aa3aeeeeb58a6a28c
@@ -788,6 +808,7 @@ SPEC CHECKSUMS:
   React-jsiexecutor: cbdf37cebdc4f5d8b3d0bf5ccaa6147fd9de9f3d
   React-jsinspector: f4775ea9118cbe1f72b834f0f842baa7a99508d8
   React-logger: a1f028f6d8639a3f364ef80419e5e862e1115250
+  react-native-image-picker: 4e6008ad8c2321622affa2c85432a5ebd02d480c
   react-native-payments: 0cb00209f3b25a72d5b614554abf688e2cc53002
   react-native-safe-area-context: 584dc04881deb49474363f3be89e4ca0e854c057
   react-native-splash-screen: 4312f786b13a81b5169ef346d76d33bc0c6dc457
@@ -809,6 +830,7 @@ SPEC CHECKSUMS:
   RNFBApp: 9c90f9d576861947ba75fe0830567c570bcbcf6d
   RNFBAuth: 504fc29ee5d76ffd3dc0f96d3b1fdb963d2f2905
   RNFBMessaging: c873e6c37f69d22de22cab134413030a9c6330a9
+  RNFBStorage: 052a32c5af38b106e4d6b0a296df304d97be995e
   RNFS: fc610f78fdf8bfc89a9e5cc2f898519f4dba1002
   RNGoogleSignin: d7f8368b82d94f1dec964785d496387ca7f19092
   RNScreens: d6da2b9e29cf523832c2542f47bf1287318b1868
