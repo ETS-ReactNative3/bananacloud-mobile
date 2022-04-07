@@ -3,6 +3,7 @@ import { showMessage } from 'react-native-flash-message'
 import jwtDecode from 'jwt-decode'
 
 import api from '@utils/api'
+import { getCreditCardToken, charges } from '@utils/Stripe'
 
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
 export const LOGIN_FAILURE = 'LOGIN_FAILURE'
@@ -11,6 +12,11 @@ export const REGISTER_FAILURE = 'REGISTER_FAILURE'
 export const LOGOUT = 'LOGOUT'
 export const DARK_THEME = 'DARK_THEME'
 export const LIGHT_THEME = 'LIGHT_THEME'
+
+export const PREMIUM_SUCCESS = 'PREMIUM_SUCCESS'
+export const PREMIUM_FAILURE = 'PREMIUM_FAILURE'
+export const FREE_SUCCESS = 'FREE_SUCCESS'
+export const FREE_FAILURE = 'FREE_FAILURE'
 
 export const login =
     ({ email, password }) =>
@@ -30,7 +36,7 @@ export const login =
 
             dispatch({ type: LOGIN_SUCCESS, payload: { token, user } })
         } catch (err) {
-            dispatch({ type: LOGIN_FAILURE, payload: err.message })
+            dispatch({ type: LOGIN_FAILURE, payload: { error: err.message } })
         }
     }
 
@@ -39,7 +45,10 @@ export const register =
     async dispatch => {
         try {
             if (password !== confirmPassword) {
-                dispatch({ type: REGISTER_FAILURE, payload: 'Mot de passe non identique' })
+                return dispatch({
+                    type: REGISTER_FAILURE,
+                    payload: { error: 'Mot de passe non identique' },
+                })
             }
 
             const { data } = await api.post('auth/register', { email, password })
@@ -56,7 +65,7 @@ export const register =
 
             dispatch({ type: REGISTER_SUCCESS, payload: { token, user } })
         } catch (err) {
-            dispatch({ type: REGISTER_FAILURE, payload: err.message })
+            dispatch({ type: REGISTER_FAILURE, payload: { error: err.message } })
         }
     }
 
@@ -70,4 +79,42 @@ export const logout = () => async dispatch => {
     })
 
     dispatch({ type: LOGOUT })
+}
+
+export const bePremium = () => async dispatch => {
+    const data = await AsyncStorage.getItem('user')
+    const user = JSON.parse(data)
+
+    try {
+        if (CardInput.valid == false || typeof CardInput.valid == 'undefined') {
+            alert('Invalid Credit Card')
+            return false
+        }
+
+        creditCardToken = await getCreditCardToken(CardInput)
+
+        if (creditCardToken.error) {
+            alert('creditCardToken error')
+            return
+        }
+
+        const payment_data = await charges()
+        if (payment_data.status == 'succeeded') {
+            dispatch(bePremium())
+            alert('Payment Successfully, The player has been added to your player list')
+        } else {
+            alert('Payment failed')
+        }
+
+        const { data } = await api.post('update-user', { id: user._id, isPremium: true })
+        console.log('SUCCESS')
+    } catch (err) {
+        console.log(err)
+    }
+
+    /*dispatch({ type: PREMIUM_SUCCESS, payload: { success: true } })*/
+}
+
+export const beFree = () => async dispatch => {
+    dispatch({ type: FREE_SUCCESS, payload: { success: false } })
 }

@@ -15,9 +15,11 @@ Prettier & ESLint for beautiful code 🥰
 
 📲 Launch the app :  
 _Don't forget to update your .env.example to .env.local and set variables_
+_You have to put you google-service.json into android/app_
+_You have to put you GoogleService-Info.plist ios/_
 
 ```
-git clone https://github.com/ecandotti/bananacloud.git
+git clone https://github.com/ecandotti/bananacloud-mobile.git
 cd /bananacloud
 yarn install
 
@@ -36,15 +38,21 @@ yarn ios
 -   Many things... 😮‍💨
 -   [x] Create project
 -   [x] Navigate into the app
--   [x] Install Redux
--   [x] Init Redux-Persist
--   [x] Set Icons
+-   [x] Set Redux / Redux-Persist / Async dispatch
 -   [x] Custom Splash Screen
--   [_] Manage error
--   [_] Input verification
--   [_] Manage theme
--   [_] DarkMode / LightMode
--   [_] Google Auth / Github Auth
+-   [x] Google Admob
+-   [x] Google Analytics
+-   [x] Google Messaging (for Notification Push)
+-   [x] Google Auth (Login thanks Google Account)
+-   [x] Manage error
+-   [x] Input verification
+-   [x] Manage theme set preference user or preference system
+-   [x] Translation FR/EN
+-   [x] Upload image
+-   [_] Collect images of current user
+-   [_] Set & display favorites list
+-   [_] Create & display albums list
+-   [_] Don't forget to inform user about state of app
 -   [_] Use styled-components :(
 -   [_] ...
 
@@ -53,4 +61,4 @@ yarn ios
 <a href="https://github.com/ecandotti">@ecandotti</a> Enzo CANDOTTI  
 <a href="https://github.com/A-Lamine">@A-Lamine</a> Lamine ADEL  
 <a href="https://github.com/walidmokhtari">@walidmokhtari</a> Walid MOKHTARI  
-<a href="https://github.com/lucasmelly">@lucasmelly</a> Melly LUCAS
+<a href="https://github.com/mellylu">@mellylu</a> Melly LUCAS

@@ -1,7 +1,8 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { Text, View, TouchableOpacity } from 'react-native'
+import { Text, TouchableOpacity } from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { useTranslation } from 'react-i18next'
 import IonIcons from 'react-native-vector-icons/Ionicons'
 IonIcons.loadFont()
 
@@ -30,50 +31,52 @@ const ProfileButton = ({ letter, navigation }) => {
                 alignItems: 'center',
                 justifyContent: 'center',
             }}
-            onPress={() => navigation.navigate('Profile')}>
+            onPress={() => navigation.navigate('Profile')}
+        >
             <Text style={{ color: 'white', fontSize: 20 }}>{letter}</Text>
         </TouchableOpacity>
     )
 }
 
 const SelfcareStack = () => {
-    const { email } = useSelector(state => state.auth.user)
+    const { t } = useTranslation()
+    const { email } = useSelector(state => state.user.user)
 
     return (
         <Tab.Navigator
             screenOptions={({ navigation }) => ({
                 headerTitle: props => <HeaderTitle {...props} />,
                 headerRight: () => <ProfileButton letter={email[0]} navigation={navigation} />,
-            })}>
-            {/* <Icon name="Photos" component={Photos} nameIcon="settings-outline" /> */}
+            })}
+        >
             <Tab.Screen
                 name={'Photos'}
                 component={Photos}
                 options={{
-                    title: '',
                     tabBarIcon: ({ size, color }) => (
                         <IonIcons name="images-outline" color={color} size={size} />
                     ),
+                    title: t('photos.title'),
                 }}
             />
             <Tab.Screen
                 name="Search"
                 component={Search}
                 options={{
-                    title: '',
                     tabBarIcon: ({ size, color }) => (
                         <IonIcons name="search-outline" color={color} size={size} />
                     ),
+                    title: t('search.title'),
                 }}
             />
             <Tab.Screen
                 name="Library"
                 component={Library}
                 options={{
-                    title: '',
                     tabBarIcon: ({ size, color }) => (
                         <IonIcons name="library-outline" color={color} size={size} />
                     ),
+                    title: t('library.title'),
                 }}
             />
         </Tab.Navigator>

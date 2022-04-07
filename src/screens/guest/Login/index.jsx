@@ -1,26 +1,37 @@
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { SafeAreaView, View, TouchableOpacity, Text, Image } from 'react-native'
-import { useDispatch } from 'react-redux'
+import { InterstitialAd, TestIds } from '@react-native-firebase/admob'
+import { useDispatch, useSelector } from 'react-redux'
 
-import { login } from '@actions/auth'
+import { login } from '@actions/user'
 
 import { Padding, TextInput, Button } from '@components/styled-components'
 
 import logo from '@root/assets/bananacloud.png'
 
-const Index = ({ navigation }) => {
-    const { t, i18n } = useTranslation()
+const Login = ({ navigation }) => {
+    const { t } = useTranslation()
     const dispatch = useDispatch()
 
+    const errorValue = useSelector(state => state.user.error)
+
     useEffect(() => {
-        i18n.changeLanguage('fr')
+        const interstitial = InterstitialAd.createForAdRequest(TestIds.INTERSTITIAL)
+        interstitial.load()
     }, [])
 
+    const [isLoading, setIsLoading] = useState(false)
     const [user, setUser] = useState({
         email: '',
         password: '',
     })
+
+    const loginMe = async () => {
+        await setIsLoading(true)
+        await dispatch(login(user))
+        await setIsLoading(false)
+    }
 
     return (
         <SafeAreaView style={{ backgroundColor: '#00dafe', height: '100%' }}>
@@ -30,7 +41,8 @@ const Index = ({ navigation }) => {
                         display: 'flex',
                         alignItems: 'center',
                         backgroundColor: '#00dafe',
-                    }}>
+                    }}
+                >
                     <Image
                         source={logo}
                         style={{ width: 200, height: 200, borderRadius: 10, marginBottom: 20 }}
@@ -41,7 +53,8 @@ const Index = ({ navigation }) => {
                             fontSize: 32,
                             marginBottom: 20,
                             color: '#ffffff',
-                        }}>
+                        }}
+                    >
                         {t('login.title')}
                     </Text>
                     <TextInput
@@ -57,9 +70,11 @@ const Index = ({ navigation }) => {
                         color="#dfe6e9"
                         icon="key-outline"
                     />
+                    <Text style={{ color: 'red' }}>{errorValue}</Text>
                     <Button
-                        title="Valider"
-                        onPress={() => dispatch(login(user))}
+                        title={`${isLoading ? t('login.loading') : t('login.validate')}`}
+                        disabled={isLoading}
+                        onPress={loginMe}
                         style={{ bgColor: '#00b894' }}
                     />
                     <TouchableOpacity onPress={() => navigation.navigate('Register')}>
@@ -69,8 +84,9 @@ const Index = ({ navigation }) => {
                                 textAlign: 'center',
                                 marginTop: 20,
                                 color: '#ffffff',
-                            }}>
-                            Je créé mon compte
+                            }}
+                        >
+                            {t('login.goRegister')}
                         </Text>
                     </TouchableOpacity>
                 </View>
@@ -79,4 +95,4 @@ const Index = ({ navigation }) => {
     )
 }
 
-export default Index
+export default Login

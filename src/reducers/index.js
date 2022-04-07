@@ -1,9 +1,7 @@
 import { combineReducers } from 'redux'
 
-import auth from './auth'
+import user from './user'
 import theme from './theme'
+import langage from './langage'
 
-export default combineReducers({
-    auth,
-    theme,
-})
+export default combineReducers({ user, theme, langage })

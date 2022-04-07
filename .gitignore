@@ -50,3 +50,8 @@ buck-out/
 
 # Misc
 .env.local
+
+# Google Credentials
+firebase.json
+/android/app/google-services.json
+/ios/GoogleService-Info.plist

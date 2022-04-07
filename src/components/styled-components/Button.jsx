@@ -2,8 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import IonIcons from 'react-native-vector-icons/Ionicons'
 
-export const Button = ({ title, onPress, icon, style }) => (
-    <ButtonContainer onPress={onPress} style={style}>
+export const Button = ({ title, onPress, icon, style, disabled = false }) => (
+    <ButtonContainer onPress={onPress} style={style} disabled={disabled}>
         {icon && (
             <IconContainer>
                 <IonIcons name={icon} size={18} color={`${style?.color ? style.color : 'white'}`} />
