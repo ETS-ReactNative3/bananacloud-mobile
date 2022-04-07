@@ -7,13 +7,11 @@ import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/lib/integration/react'
 
 import Routes from '@configs/routes'
-import { darkTheme, lightTheme } from '@configs/themes'
 import { persistor, store } from '@configs/store'
 
 import './src/configs/translations/initTranslation'
 
 export default function App() {
-    const isDarkMode = useColorScheme() === 'dark'
 
     useEffect(() => {
         SplashScreen.hide()
@@ -22,10 +20,8 @@ export default function App() {
     return (
         <Provider store={store}>
             <PersistGate loading={null} persistor={persistor}>
-                <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
-                    <Routes />
-                    <FlashMessage position="top" />
-                </ThemeProvider>
+                <Routes />
+                <FlashMessage position="top" />
             </PersistGate>
         </Provider>
     )

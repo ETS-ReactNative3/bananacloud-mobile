@@ -1,20 +1,25 @@
 import React from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import styled from 'styled-components'
 import IonIcons from 'react-native-vector-icons/Ionicons'
 IonIcons.loadFont()
 
 import Photos from '@screens/selfcare/Photos'
+import Settings from '@screens/selfcare/Settings'
 import Search from '@screens/selfcare/Search'
 import Library from '@screens/selfcare/Library'
 import { useSelector } from 'react-redux'
+import Color from '@components/styled-components/Color'
+import { Card, Headline, Title } from 'react-native-paper'
+import Icon from '@components/styled-components/Icon'
 
 const Tab = createBottomTabNavigator()
 
 const HeaderTitle = () => (
-    <Text style={{ fontWeight: 'bold', fontSize: 21 }}>
-        🍌 Banana<Text style={{ color: '#f39c12' }}>Cloud</Text>
-    </Text>
+    <Title>
+        🍌 Banana<Text color={Color.Color.DEFAULT}>Cloud</Text>
+    </Title>
 )
 
 const ProfileButton = ({ letter, navigation }) => {
@@ -45,12 +50,25 @@ const SelfcareStack = () => {
                 headerTitle: props => <HeaderTitle {...props} />,
                 headerRight: () => <ProfileButton letter={email[0]} navigation={navigation} />,
             })}>
+            {/* <Icon name="Photos" component={Photos} nameIcon="settings-outline" /> */}
             <Tab.Screen
-                name="Photos"
+                name={'Photos'}
                 component={Photos}
                 options={{
-                    tabBarIcon: ({ color, size }) => (
-                        <IonIcons name="images-outline" color={color} size={size} />
+                    title: '',
+                    tabBarIcon: ({ size }) => (
+                        <IonIcons name="images-outline" color={Color.Color.DEFAULT} size={size} />
+                    ),
+                }}
+            />
+
+            <Tab.Screen
+                name="Settings"
+                component={Settings}
+                options={{
+                    title: '',
+                    tabBarIcon: ({ size }) => (
+                        <IonIcons name="settings-outline" color={Color.Color.DEFAULT} size={size} />
                     ),
                 }}
             />
@@ -58,20 +76,20 @@ const SelfcareStack = () => {
                 name="Search"
                 component={Search}
                 options={{
-                    tabBarIcon: ({ color, size }) => (
-                        <IonIcons name="search-outline" color={color} size={size} />
+                    title: '',
+                    tabBarIcon: ({ size }) => (
+                        <IonIcons name="search-outline" color={Color.Color.DEFAULT} size={size} />
                     ),
-                    title: 'Rechercher',
                 }}
             />
             <Tab.Screen
                 name="Library"
                 component={Library}
                 options={{
-                    tabBarIcon: ({ color, size }) => (
-                        <IonIcons name="library-outline" color={color} size={size} />
+                    title: '',
+                    tabBarIcon: ({ size }) => (
+                        <IonIcons name="library-outline" color={Color.Color.DEFAULT} size={size} />
                     ),
-                    title: 'Bibliothèque',
                 }}
             />
         </Tab.Navigator>
