@@ -1,13 +1,16 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { SafeAreaView, View, Text, TouchableOpacity, Image } from 'react-native'
+import { useTranslation } from 'react-i18next'
+import { GoogleSigninButton } from '@react-native-google-signin/google-signin'
 
 import { register } from '@actions/auth'
+
+import { onGoogleButtonPress } from '@utils/onGoogleButtonPress'
 
 import { Padding, TextInput, Button } from '@components/styled-components'
 
 import logo from '@root/assets/bananacloud.png'
-import { useTranslation } from 'react-i18next'
 
 const Register = ({ navigation }) => {
     const { t } = useTranslation()
@@ -21,6 +24,19 @@ const Register = ({ navigation }) => {
         password: '',
         confirmPassword: '',
     })
+
+    useEffect(() => {
+        // const initGoogleConfig = async () => {
+        //     await GoogleSignin.configure({
+        //         iosClientId:
+        //             '195454906388-e11t77vv3f4rnk2jmma29hmfbvp4c8eu.apps.googleusercontent.com',
+        //         webClientId:
+        //             '195454906388-7bd59hug9reesa0ihtkgkb700l0usl67.apps.googleusercontent.com',
+        //         offlineAccess: false,
+        //     })
+        // }
+        // initGoogleConfig()
+    }, [])
 
     const registerMe = async () => {
         await setIsLoading(true)
@@ -50,6 +66,13 @@ const Register = ({ navigation }) => {
                         }}>
                         {t('register.title')}
                     </Text>
+                    <GoogleSigninButton
+                        style={{ width: '100%', height: 50 }}
+                        size={GoogleSigninButton.Size.Wide}
+                        color={GoogleSigninButton.Color.Dark}
+                        onPress={() => onGoogleButtonPress()}
+                        disabled={false}
+                    />
                     <TextInput
                         placeholder="john.doe@bananacloud.com"
                         onChangeText={e => setUser({ ...user, email: e })}

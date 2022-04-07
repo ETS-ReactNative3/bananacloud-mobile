@@ -43,9 +43,9 @@ yarn ios
 -   [x] Google Admob
 -   [x] Google Analytics
 -   [x] Google Messaging (for Notification Push)
--   [_] Google Auth (Login thanks Google Account)
--   [_] Manage error
--   [_] Input verification
+-   [x] Google Auth (Login thanks Google Account)
+-   [x] Manage error
+-   [x] Input verification
 -   [_] Manage theme
 -   [_] Translation FR/EN
 -   [_] Don't forget to inform user about state of app
