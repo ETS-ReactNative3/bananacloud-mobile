@@ -3,7 +3,7 @@ import { CreditCardInput } from 'react-native-credit-card-input'
 import styled from 'styled-components'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { bePremium } from '@actions/premium'
+import { bePremium } from '@actions/user'
 
 const Payment = () => {
     const dispatch = useDispatch()
