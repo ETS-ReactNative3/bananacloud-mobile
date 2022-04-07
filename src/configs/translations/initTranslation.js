@@ -11,6 +11,7 @@ const resources = {
 
 i18n.use(initReactI18next).init({
     resources,
+    compatibilityJSON: 'v3',
     fallbackLng: 'FR',
     interpolation: {
         escapeValue: false, // react already safes from xss
