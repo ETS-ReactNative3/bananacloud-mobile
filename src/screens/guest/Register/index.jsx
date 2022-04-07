@@ -23,6 +23,7 @@ const Register = ({ navigation }) => {
         email: '',
         password: '',
         confirmPassword: '',
+        isPremium: false
     })
 
     useEffect(() => {

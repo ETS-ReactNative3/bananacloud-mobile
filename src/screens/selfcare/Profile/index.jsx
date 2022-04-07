@@ -12,6 +12,8 @@ import { changeLangage } from '@actions/langage'
 import { Margin, Button } from '@components/styled-components'
 import { useTranslation } from 'react-i18next'
 
+
+
 const METHOD_DATA = [
     {
         supportedMethods: ['apple-pay'],
@@ -38,7 +40,7 @@ const DETAILS = {
     },
 }
 
-const Profile = () => {
+const Profile = ({ navigation }) => {
     const dispatch = useDispatch()
     const { t } = useTranslation()
 
@@ -73,14 +75,14 @@ const Profile = () => {
                             title={t('profile.freeButton')}
                             icon="cash-outline"
                             style={{ bgColor: '#2c3e50' }}
-                            onPress={() => dispatch(beFree())}
+                            onPress={() => navigation.navigate('Paiement')}
                         />
                     ) : (
                         <Button
                             title={t('profile.premiumButton')}
                             icon="cash-outline"
                             style={{ bgColor: '#f39c12' }}
-                            onPress={() => dispatch(bePremium())}
+                            onPress={() => navigation.navigate('Paiement')}
                         />
                     )}
                 </View>

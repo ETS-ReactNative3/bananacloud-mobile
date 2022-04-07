@@ -20,6 +20,7 @@ export const login =
 
             await AsyncStorage.setItem('token', JSON.stringify(token))
             await AsyncStorage.setItem('user', JSON.stringify(user))
+            
 
             showMessage({
                 message: `Bienvenu, ${user.email}`,

@@ -12,6 +12,7 @@ import Register from '@screens/guest/Register'
 import Profile from '@screens/selfcare/Profile'
 import Favorites from '@screens/selfcare/Favorites'
 import Albums from '@screens/selfcare/Albums'
+import Paiement from '@screens/selfcare/Paiement'
 
 import { GoBack } from '@components/styled-components'
 
@@ -61,6 +62,11 @@ const StackNavigator = () => {
                                 headerLeft: () => <GoBack onPress={() => navigation.goBack()} />,
                                 title: t('albums.title'),
                             })}
+                        />
+                        <Stack.Screen
+                            name="Paiement"
+                            component={Paiement}
+                            options={{ headerShown: false }}
                         />
                     </Stack.Group>
                 ) : (
