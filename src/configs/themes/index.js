@@ -1,5 +1,3 @@
-import { DarkTheme } from '@react-navigation/native'
-console.log(DarkTheme)
 const lightTheme = {
     colors: {
         background: '#f5f6fa',
@@ -26,7 +24,7 @@ const darkTheme = {
     },
     btnColors: {
         primary: '#ffffff',
-        secondary: '#3c9648',
+        secondary: '#ffffff',
         danger: '#c0392b',
         info: '#2980b9',
         border: '#232428',
