@@ -92,7 +92,7 @@ const Paiement = (props) => {
       if(pament_data.status == 'succeeded')
       {
         dispatch(bePremium())
-        alert("Payment Successfully, The player has been added to your player list")
+        alert("Payment Successfully")
       }
       else{
         alert('Payment failed');
