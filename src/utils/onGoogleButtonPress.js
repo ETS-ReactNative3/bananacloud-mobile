@@ -4,13 +4,17 @@ import { GoogleSignin } from '@react-native-google-signin/google-signin'
 import { WEB_ID_GOOGLE } from '@env'
 
 export const onGoogleButtonPress = async () => {
+   
     await GoogleSignin.configure({
         webClientId: WEB_ID_GOOGLE,
     })
 
-    const { idToken } = await GoogleSignin.signIn()
 
-    const googleCredential = auth.GoogleAuthProvider.credential(idToken)
+    const user = await GoogleSignin.signIn()
+    console.log(user);
+    
+    //const googleCredential = auth.GoogleAuthProvider.credential(idToken)
 
-    return auth().signInWithCredential(googleCredential)
+
+    //return auth().signInWithCredential(googleCredential)
 }
