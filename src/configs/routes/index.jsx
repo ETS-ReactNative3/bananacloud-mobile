@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react'
-import { useColorScheme } from 'react-native'
+import { useColorScheme, TouchableOpacity } from 'react-native'
 import { useSelector } from 'react-redux'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { ThemeProvider } from 'styled-components'
 import { useTranslation } from 'react-i18next'
+import IonIcons from 'react-native-vector-icons/Ionicons'
 
 import { whichTheme } from '@utils/theme'
 
@@ -16,6 +17,7 @@ import Profile from '@screens/selfcare/Profile'
 import Favorites from '@screens/selfcare/Favorites'
 import Albums from '@screens/selfcare/Albums'
 import Payment from '@screens/selfcare/Payment'
+import Details from '@screens/selfcare/Details'
 
 import { GoBack } from '@components/styled-components'
 
@@ -90,7 +92,32 @@ const StackNavigator = () => {
                             <Stack.Screen
                                 name="Payment"
                                 component={Payment}
-                                options={{ headerShown: false }}
+                                options={({ navigation }) => ({
+                                    headerLeft: () => (
+                                        <GoBack onPress={() => navigation.goBack()} />
+                                    ),
+                                    title: t('payment.title'),
+                                })}
+                            />
+                            <Stack.Screen
+                                name="Details"
+                                component={Details}
+                                options={({ navigation }) => ({
+                                    headerLeft: () => (
+                                        <GoBack onPress={() => navigation.goBack()} />
+                                    ),
+                                    headerRight: () => (
+                                        <TouchableOpacity onPress={() => console.log(photo)}>
+                                            {true ? (
+                                                <IonIcons name="heart" size={21} />
+                                            ) : (
+                                                <IonIcons name="heart-outline" size={21} />
+                                            )}
+                                        </TouchableOpacity>
+                                    ),
+                                    headerTransparent: true,
+                                    title: '',
+                                })}
                             />
                         </Stack.Group>
                     ) : (

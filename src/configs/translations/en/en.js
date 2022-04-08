@@ -34,7 +34,6 @@ export default {
         profile: {
             title: 'Profile',
             free: 'Free',
-            freeButton: 'Pass to free version',
             premium: 'Premium',
             premiumButton: 'Pass to premium version',
             changeLang: 'Change langage',
@@ -42,5 +41,9 @@ export default {
             dark: 'Dark',
             system: 'System',
         },
+        payment: {
+            title: 'Payment',
+            paymentButton: 'Pay now'
+        }
     },
 }

@@ -1,7 +1,6 @@
 import { PK_STRIPE, SK_STRIPE } from '@env'
 
 const CURRENCY = 'EUR'
-let CARD_TOKEN = null
 
 export const getCreditCardToken = async creditCardData => {
     const card = {
@@ -32,11 +31,11 @@ export const getCreditCardToken = async creditCardData => {
     }
 }
 
-export const charges = async () => {
+export const charges = async (token) => {
     const card = {
         amount: 50,
         currency: CURRENCY,
-        source: CARD_TOKEN,
+        source: token,
         description: 'Banana++',
     }
 
@@ -44,7 +43,6 @@ export const charges = async () => {
         const query = await fetch('https://api.stripe.com/v1/charges', {
             headers: {
                 Accept: 'application/json',
-
                 'Content-Type': 'application/x-www-form-urlencoded',
                 Authorization: `Bearer ${SK_STRIPE}`,
             },

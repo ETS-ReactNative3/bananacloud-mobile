@@ -12,7 +12,7 @@ const Library = ({ navigation }) => {
             <View
                 style={{
                     display: 'flex',
-                    flexDirection: 'column',
+                    flexDirection: 'row',
                     justifyContent: 'space-between',
                     alignItems: 'center',
                 }}

@@ -26,6 +26,7 @@ export default (state = initialState, action) => {
                 isAuth: true,
                 token: action.payload.token,
                 user: action.payload.user,
+                isPremium: action.payload.user.isPremium,
                 error: '',
             }
         case LOGIN_FAILURE:
@@ -42,6 +43,7 @@ export default (state = initialState, action) => {
                 isAuth: true,
                 token: action.payload.token,
                 user: action.payload.user,
+                isPremium: action.payload.user.isPremium,
                 error: '',
             }
         case REGISTER_FAILURE:

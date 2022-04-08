@@ -49,6 +49,7 @@ yarn ios
 -   [x] Manage theme set preference user or preference system
 -   [x] Translation FR/EN
 -   [x] Upload image
+-   [x] Stripe
 -   [_] Collect images of current user
 -   [_] Set & display favorites list
 -   [_] Create & display albums list

@@ -9,7 +9,9 @@ export const Button = ({ title, onPress, icon, style, disabled = false }) => (
                 <IonIcons name={icon} size={18} color={`${style?.color ? 'red' : 'white'}`} />
             </IconContainer>
         )}
-        <ButtonText color={`${style?.color ? style.color : 'white'}`}>{title}</ButtonText>
+        {title && (
+            <ButtonText color={`${style?.color ? style.color : 'white'}`}>{title}</ButtonText>
+        )}
     </ButtonContainer>
 )
 
@@ -26,7 +28,7 @@ const ButtonContainer = styled.TouchableOpacity`
 `
 
 const IconContainer = styled.View`
-    margin-right: 10px;
+    margin-right: 0;
 `
 
 const ButtonText = styled.Text`
@@ -34,4 +36,5 @@ const ButtonText = styled.Text`
     text-align: center;
     color: ${({ color }) => (color ? color : 'white')};
     font-size: 16px;
+    margin-left: 10px;
 `

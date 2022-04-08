@@ -15,8 +15,8 @@ export default {
         logout: 'Déconnexion',
         photos: {
             title: 'Photos',
-            uploadCamera: 'Depuis votre appareil photo',
-            uploadGallery: "Depuis votre galerie d'image",
+            uploadCamera: 'Appareil photo',
+            uploadGallery: "Galerie d'image",
             uploadLoading: 'Envoie en cours...',
         },
         search: {
@@ -34,7 +34,6 @@ export default {
         profile: {
             title: 'Profil',
             free: 'Gratuit',
-            freeButton: 'Passer à la version gratuite',
             premium: 'Payante',
             premiumButton: 'Passer à la version payante',
             changeLang: 'Changer de langue',
@@ -42,5 +41,9 @@ export default {
             dark: 'Sombre',
             system: 'Système',
         },
+        payment: {
+            title: 'Paiement',
+            paymentButton: 'Obtenir mon pass'
+        }
     },
 }

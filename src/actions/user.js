@@ -81,38 +81,34 @@ export const logout = () => async dispatch => {
     dispatch({ type: LOGOUT })
 }
 
-export const bePremium = () => async dispatch => {
-    const data = await AsyncStorage.getItem('user')
-    const user = JSON.parse(data)
-
+export const bePremium = (CardInput, userId) => async dispatch => {
+    
     try {
         if (CardInput.valid == false || typeof CardInput.valid == 'undefined') {
             alert('Invalid Credit Card')
             return false
         }
 
-        creditCardToken = await getCreditCardToken(CardInput)
+        const creditCardToken = await getCreditCardToken(CardInput)
 
         if (creditCardToken.error) {
             alert('creditCardToken error')
             return
         }
 
-        const payment_data = await charges()
+        const payment_data = await charges(creditCardToken.id)
+        
         if (payment_data.status == 'succeeded') {
-            dispatch(bePremium())
-            alert('Payment Successfully, The player has been added to your player list')
+            dispatch({ type: PREMIUM_SUCCESS, payload: { success: true } })
+            await api.post('update-user', { id: userId, isPremium: true })
+            alert('Payment Successfully')
         } else {
             alert('Payment failed')
         }
 
-        const { data } = await api.post('update-user', { id: user._id, isPremium: true })
-        console.log('SUCCESS')
     } catch (err) {
         console.log(err)
     }
-
-    /*dispatch({ type: PREMIUM_SUCCESS, payload: { success: true } })*/
 }
 
 export const beFree = () => async dispatch => {
