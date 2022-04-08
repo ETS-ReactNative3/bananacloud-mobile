@@ -11,6 +11,7 @@ import {
 } from 'react-native'
 import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
+import IonIcons from 'react-native-vector-icons/Ionicons'
 
 import { uploadFromCamera, uploadFromGallery, uploadImage } from '@utils/upload'
 import { getPhotos } from '@utils/photos/getPhotos'
@@ -42,18 +43,22 @@ const Photos = () => {
 
     const handleUploadFromCamera = async () => {
         const photo = await uploadFromCamera()
-        setUploading(true)
-        await uploadImage(photo, userId)
-        setUploading(false)
-        hydrateListPhotos()
+        if (photo) {
+            setUploading(true)
+            await uploadImage(photo, userId)
+            setUploading(false)
+            hydrateListPhotos()
+        }
     }
 
     const handleUploadFromGallery = async () => {
         const photo = await uploadFromGallery()
-        setUploading(true)
-        await uploadImage(photo, userId)
-        setUploading(false)
-        hydrateListPhotos()
+        if (photo) {
+            setUploading(true)
+            await uploadImage(photo, userId)
+            setUploading(false)
+            hydrateListPhotos()
+        }
     }
 
     return (
@@ -61,7 +66,7 @@ const Photos = () => {
             {uploading && (
                 <View>
                     <ActivityIndicator size={32} />
-                    <Text>{t('photos.uploadLoading')}</Text>
+                    <Text style={{ textAlign: 'center' }}>{t('photos.uploadLoading')}</Text>
                 </View>
             )}
             {listPhotos.length > 0 && (
@@ -93,7 +98,7 @@ const Photos = () => {
                 <Button icon="cloud-upload-outline" onPress={() => setModalVisible(true)} />
             </View>
             <Modal
-                animationType="fade"
+                animationType="slide"
                 transparent={true}
                 visible={modalVisible}
                 style={{ position: 'absolute', top: 0, bottom: 0 }}
@@ -110,29 +115,34 @@ const Photos = () => {
                     <View
                         style={{
                             position: 'relative',
-                            backgroundColor: 'gray',
-                            padding: 10,
+                            backgroundColor: '#ecf0f1',
+                            padding: 50,
                             borderRadius: 10,
                             display: 'flex',
                             justifyContent: 'center',
                             alignItems: 'center',
-                            flexDirection: 'row',
+                            flexDirection: 'column',
                         }}
                     >
-                        <View style={{ position: 'absolute', top: 0, right: 5 }}>
+                        <View style={{ position: 'absolute', top: 5, right: 5 }}>
                             <TouchableOpacity
                                 icon="close-outline"
                                 onPress={() => setModalVisible(false)}
-                            ></TouchableOpacity>
+                                style={{}}
+                            >
+                                <IonIcons name="close-outline" size={28} />
+                            </TouchableOpacity>
                         </View>
-                        <Margin ml={5} mr={5}>
+                        <Margin mb={5} mt={5}>
                             <Button
+                                title={t('photos.uploadCamera')}
                                 icon="camera-outline"
                                 onPress={() => handleUploadFromCamera()}
                             />
                         </Margin>
-                        <Margin ml={5} mr={5}>
+                        <Margin mb={5} mt={5}>
                             <Button
+                                title={t('photos.uploadGallery')}
                                 icon="image-outline"
                                 onPress={() => handleUploadFromGallery()}
                             />
