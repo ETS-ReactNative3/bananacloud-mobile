@@ -70,11 +70,13 @@ const Photos = () => {
                     <Text>{t('photos.uploadLoading')}</Text>
                 </View>
             )}
-            <FlatList
-                data={listPhotos}
-                renderItem={item => <CardExample photo={item} />}
-                keyExtractor={item => item.path}
-            />
+            {listPhotos.length > 0 && (
+                <FlatList
+                    data={listPhotos}
+                    renderItem={item => <CardExample photo={item} />}
+                    keyExtractor={item => item.path}
+                />
+            )}
         </View>
     )
 }
