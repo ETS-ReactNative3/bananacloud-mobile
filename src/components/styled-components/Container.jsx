@@ -9,5 +9,5 @@ export const Container = ({ children }) => (
 )
 
 const ViewContainer = styled.View`
-    padding: 0 10px;
+    padding: 10% 5%;
 `

@@ -81,7 +81,12 @@ const StackNavigator = () => {
                             <Stack.Screen
                                 name="Payment"
                                 component={Payment}
-                                options={{ headerShown: false }}
+                                options={({ navigation }) => ({
+                                    headerLeft: () => (
+                                        <GoBack onPress={() => navigation.goBack()} />
+                                    ),
+                                    title: t('payment.title'),
+                                })}
                             />
                         </Stack.Group>
                     ) : (
