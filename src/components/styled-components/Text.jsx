@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 
-export const Text = ({ children, secondary = false }) => <Text secondary>{children}</Text>
+export const Text = ({ children, secondary = false }) => <TextColor secondary>{children}</TextColor>
 
-const Text = styled.Text`
+const TextColor = styled.Text`
     color: ${props => (props.secondary ? props.theme.colors.secondary : 'black')};
 `

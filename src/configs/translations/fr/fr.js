@@ -37,6 +37,9 @@ export default {
             premium: 'Payante',
             premiumButton: 'Passer à la version payante',
             changeLang: 'Changer de langue',
+            light: 'Clair',
+            dark: 'Sombre',
+            system: 'Système',
         },
         payment: {
             title: 'Paiement',

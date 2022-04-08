@@ -1,8 +1,10 @@
+import { DarkTheme } from '@react-navigation/native'
+console.log(DarkTheme)
 const lightTheme = {
     colors: {
-        background: 'white',
-        primary: '#ffffff',
-        secondary: '#4ded77',
+        background: '#f5f6fa',
+        primary: '#232428',
+        secondary: '#232428',
         gray: '#bdc3c7',
     },
     btnColors: {
@@ -11,21 +13,25 @@ const lightTheme = {
         danger: '#c0392b',
         info: '#2980b9',
     },
+    dark: false,
 }
 
 const darkTheme = {
     colors: {
-        background: 'black',
-        primary: '#000000',
-        secondary: '#4ded77',
+        background: '#232428',
+        primary: '#FFFFFF',
+        secondary: '#FFFFFF',
         gray: '#bdc3c7',
+        text: '#FFFFFF',
     },
     btnColors: {
         primary: '#ffffff',
         secondary: '#3c9648',
         danger: '#c0392b',
         info: '#2980b9',
+        border: '#232428',
     },
+    dark: true,
 }
 
 export { lightTheme, darkTheme }

@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { Text, TouchableOpacity } from 'react-native'
+import { TouchableOpacity, Text } from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { useTranslation } from 'react-i18next'
 import IonIcons from 'react-native-vector-icons/Ionicons'
@@ -9,13 +9,13 @@ IonIcons.loadFont()
 import Photos from '@screens/selfcare/Photos'
 import Search from '@screens/selfcare/Search'
 import Library from '@screens/selfcare/Library'
+import { Text as TextColor } from '@components/styled-components'
 
 const Tab = createBottomTabNavigator()
-
 const HeaderTitle = () => (
-    <Text>
+    <TextColor>
         🍌 Banana<Text>Cloud</Text>
-    </Text>
+    </TextColor>
 )
 
 const ProfileButton = ({ letter, navigation }) => {

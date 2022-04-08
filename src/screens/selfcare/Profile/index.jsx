@@ -11,7 +11,7 @@ import { version as version } from '@root/package.json'
 
 import { changeLangage } from '@actions/langage'
 
-import { Margin, Button } from '@components/styled-components'
+import { Margin, Button, Text as TextColor } from '@components/styled-components'
 
 const Profile = ({ navigation }) => {
     const dispatch = useDispatch()
@@ -48,13 +48,20 @@ const Profile = ({ navigation }) => {
                 />
 
                 <View>
-                    <Text style={{ textAlign: 'center' }}>
+                    <TextColor>
                         Formule :{' '}
                         <Text style={{ fontWeight: 'bold' }}>
                             {isPremium ? t('profile.premium') : t('profile.free')}
                         </Text>
-                    </Text>
-                    {!isPremium && (
+                    </TextColor>
+                    {isPremium ? (
+                        <Button
+                            title={t('profile.freeButton')}
+                            icon="cash-outline"
+                            style={{ bgColor: '#2c3e50' }}
+                            onPress={() => navigation.navigate('Payment')}
+                        />
+                    ) : (
                         <Button
                             title={t('profile.premiumButton')}
                             icon="cash-outline"
@@ -64,9 +71,9 @@ const Profile = ({ navigation }) => {
                     )}
                 </View>
                 <View>
-                    <Text style={{ textAlign: 'center' }}>
+                    <TextColor style={{ textAlign: 'center' }}>
                         Langue : <Text style={{ fontWeight: 'bold' }}>{currentLang}</Text>
-                    </Text>
+                    </TextColor>
                     <Button
                         title={t('profile.changeLang')}
                         icon="flag-outline"
@@ -129,7 +136,7 @@ const Profile = ({ navigation }) => {
                         </View>
                         <Margin mb={5} mt={5}>
                             <Button
-                                title={LIGHT_THEME}
+                                title={t('profile.light')}
                                 icon="sunny-outline"
                                 onPress={() => {
                                     dispatch(chooseTheme(LIGHT_THEME), setModalVisible(false))
@@ -138,7 +145,7 @@ const Profile = ({ navigation }) => {
                         </Margin>
                         <Margin mb={5} mt={5}>
                             <Button
-                                title={DARK_THEME}
+                                title={t('profile.dark')}
                                 icon="moon-outline"
                                 onPress={() => {
                                     dispatch(chooseTheme(DARK_THEME), setModalVisible(false))
@@ -147,7 +154,7 @@ const Profile = ({ navigation }) => {
                         </Margin>
                         <Margin mb={5} mt={5}>
                             <Button
-                                title={SYSTEM_THEME}
+                                title={t('profile.system')}
                                 icon="settings-outline"
                                 onPress={() => {
                                     dispatch(chooseTheme(SYSTEM_THEME), setModalVisible(false))
