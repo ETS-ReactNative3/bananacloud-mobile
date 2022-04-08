@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { TouchableOpacity, Text, Image } from 'react-native'
+import { Image } from 'react-native'
 import { InterstitialAd, TestIds } from '@react-native-firebase/admob'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
