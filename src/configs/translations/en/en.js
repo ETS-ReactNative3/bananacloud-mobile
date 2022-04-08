@@ -38,6 +38,9 @@ export default {
             premium: 'Premium',
             premiumButton: 'Pass to premium version',
             changeLang: 'Change langage',
+            light: 'Light',
+            dark: 'Dark',
+            system: 'System',
         },
     },
 }

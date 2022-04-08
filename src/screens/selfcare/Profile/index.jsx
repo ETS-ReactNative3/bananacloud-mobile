@@ -11,7 +11,7 @@ import { version as version } from '@root/package.json'
 
 import { changeLangage } from '@actions/langage'
 
-import { Margin, Button } from '@components/styled-components'
+import { Margin, Button, Text as TextColor } from '@components/styled-components'
 
 const Profile = ({ navigation }) => {
     const dispatch = useDispatch()
@@ -45,18 +45,18 @@ const Profile = ({ navigation }) => {
                     onValueChange={theme => dispatch(chooseTheme(theme))}
                     style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
                 >
-                    <Picker.Item label="Light" value={LIGHT_THEME} />
-                    <Picker.Item label="Dark" value={DARK_THEME} />
-                    <Picker.Item label="System" value={SYSTEM_THEME} />
+                    <Picker.Item label={t('profile.light')} value={LIGHT_THEME} />
+                    <Picker.Item label={t('profile.dark')} value={DARK_THEME} />
+                    <Picker.Item label={t('profile.system')} value={SYSTEM_THEME} />
                 </Picker>
 
                 <View>
-                    <Text style={{ textAlign: 'center' }}>
+                    <TextColor>
                         Formule :{' '}
                         <Text style={{ fontWeight: 'bold' }}>
                             {isPremium ? t('profile.premium') : t('profile.free')}
                         </Text>
-                    </Text>
+                    </TextColor>
                     {isPremium ? (
                         <Button
                             title={t('profile.freeButton')}
@@ -74,9 +74,9 @@ const Profile = ({ navigation }) => {
                     )}
                 </View>
                 <View>
-                    <Text style={{ textAlign: 'center' }}>
+                    <TextColor style={{ textAlign: 'center' }}>
                         Langue : <Text style={{ fontWeight: 'bold' }}>{currentLang}</Text>
-                    </Text>
+                    </TextColor>
                     <Button
                         title={t('profile.changeLang')}
                         icon="flag-outline"

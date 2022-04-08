@@ -52,6 +52,9 @@ const StackNavigator = () => {
                                 name={'Profile'}
                                 component={Profile}
                                 options={({ navigation }) => ({
+                                    headerStyle: {
+                                        backgroundColor: theme.dark ? '#232428' : '#f5f6fa',
+                                    },
                                     headerLeft: () => (
                                         <GoBack onPress={() => navigation.goBack()} />
                                     ),
@@ -62,6 +65,9 @@ const StackNavigator = () => {
                                 name="Favorites"
                                 component={Favorites}
                                 options={({ navigation }) => ({
+                                    headerStyle: {
+                                        backgroundColor: theme.dark ? '#232428' : '#f5f6fa',
+                                    },
                                     headerLeft: () => (
                                         <GoBack onPress={() => navigation.goBack()} />
                                     ),
@@ -72,6 +78,9 @@ const StackNavigator = () => {
                                 name="Albums"
                                 component={Albums}
                                 options={({ navigation }) => ({
+                                    headerStyle: {
+                                        backgroundColor: theme.dark ? '#232428' : 'white',
+                                    },
                                     headerLeft: () => (
                                         <GoBack onPress={() => navigation.goBack()} />
                                     ),

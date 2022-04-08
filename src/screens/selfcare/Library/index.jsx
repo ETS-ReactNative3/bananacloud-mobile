@@ -21,7 +21,7 @@ const Library = ({ navigation }) => {
                     title={t('favorites.title')}
                     onPress={() => navigation.navigate('Favorites')}
                     icon="heart-outline"
-                    style={{ flex: 1, marginRight: 5, bgColor: '#f2f2f2', color: '#f39c12' }}
+                    style={{ flex: 1, marginRight: 5, bgColor: '#544747', color: '#f39c12' }}
                 />
                 <Button
                     title={t('albums.title')}

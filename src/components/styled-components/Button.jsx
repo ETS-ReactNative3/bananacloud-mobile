@@ -6,7 +6,7 @@ export const Button = ({ title, onPress, icon, style, disabled = false }) => (
     <ButtonContainer onPress={onPress} style={style} disabled={disabled}>
         {icon && (
             <IconContainer>
-                <IonIcons name={icon} size={18} color={`${style?.color ? style.color : 'white'}`} />
+                <IonIcons name={icon} size={18} color={`${style?.color ? 'red' : 'white'}`} />
             </IconContainer>
         )}
         <ButtonText color={`${style?.color ? style.color : 'white'}`}>{title}</ButtonText>
