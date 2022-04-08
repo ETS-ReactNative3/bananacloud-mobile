@@ -1,12 +1,12 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Image } from 'react-native'
 
 const Details = ({ route }) => {
-    const photoInfo = route.params.photo
+    const photoInfos = route.params.photo.item
 
     return (
         <View style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-            <Text>Details</Text>
+            <Image source={{ uri: photoInfos?.path }} style={{ width: '100%', height: '100%' }} />
         </View>
     )
 }

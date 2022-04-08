@@ -16,7 +16,7 @@ const Card = ({ photo }) => {
             style={{ width: 150 }}
             onPress={() =>
                 navigation.navigate('Details', {
-                    photo: item,
+                    photo,
                 })
             }
         >

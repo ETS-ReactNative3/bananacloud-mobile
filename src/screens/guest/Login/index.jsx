@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Image } from 'react-native'
-import { InterstitialAd, TestIds } from '@react-native-firebase/admob'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 
 import { login } from '@actions/user'
 
-import { Padding, TextInput, Button } from '@components/styled-components'
+import { Padding, TextInput } from '@components/styled-components'
 
 import logo from '@root/assets/bananacloud.png'
 
@@ -16,11 +15,6 @@ const Login = ({ navigation }) => {
     const dispatch = useDispatch()
 
     const errorValue = useSelector(state => state.user.error)
-
-    useEffect(() => {
-        const interstitial = InterstitialAd.createForAdRequest(TestIds.INTERSTITIAL)
-        interstitial.load()
-    }, [])
 
     const [isLoading, setIsLoading] = useState(false)
     const [user, setUser] = useState({
