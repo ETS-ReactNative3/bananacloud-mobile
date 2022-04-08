@@ -34,10 +34,13 @@ export default {
         profile: {
             title: 'Profil',
             free: 'Gratuit',
-            freeButton: 'Passer à la version gratuite',
             premium: 'Payante',
             premiumButton: 'Passer à la version payante',
             changeLang: 'Changer de langue',
         },
+        payment: {
+            title: 'Paiement',
+            paymentButton: 'Obtenir mon pass'
+        }
     },
 }

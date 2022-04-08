@@ -57,21 +57,14 @@ const Profile = ({ navigation }) => {
                             {isPremium ? t('profile.premium') : t('profile.free')}
                         </Text>
                     </Text>
-                    {isPremium ? (
-                        <Button
-                            title={t('profile.freeButton')}
-                            icon="cash-outline"
-                            style={{ bgColor: '#2c3e50' }}
-                            onPress={() => navigation.navigate('Payment')}
-                        />
-                    ) : (
+                    {!isPremium &&
                         <Button
                             title={t('profile.premiumButton')}
                             icon="cash-outline"
                             style={{ bgColor: '#f39c12' }}
                             onPress={() => navigation.navigate('Payment')}
                         />
-                    )}
+                    }
                 </View>
                 <View>
                     <Text style={{ textAlign: 'center' }}>
