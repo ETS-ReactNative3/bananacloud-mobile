@@ -4,7 +4,7 @@ import { SafeAreaView, View, Text, TouchableOpacity, Image } from 'react-native'
 import { useTranslation } from 'react-i18next'
 import { GoogleSigninButton } from '@react-native-google-signin/google-signin'
 
-import { register } from '@actions/auth'
+import { register } from '@actions/user'
 
 import { onGoogleButtonPress } from '@utils/onGoogleButtonPress'
 
@@ -16,14 +16,13 @@ const Register = ({ navigation }) => {
     const { t } = useTranslation()
     const dispatch = useDispatch()
 
-    const errorValue = useSelector(state => state.auth.error)
+    const errorValue = useSelector(state => state.user.error)
 
     const [isLoading, setIsLoading] = useState(false)
     const [user, setUser] = useState({
         email: '',
         password: '',
         confirmPassword: '',
-        isPremium: false
     })
 
     useEffect(() => {
@@ -53,7 +52,8 @@ const Register = ({ navigation }) => {
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                    }}>
+                    }}
+                >
                     <Image
                         source={logo}
                         style={{ width: 200, height: 200, borderRadius: 10, marginBottom: 20 }}
@@ -64,7 +64,8 @@ const Register = ({ navigation }) => {
                             fontSize: 32,
                             marginBottom: 20,
                             color: '#ffffff',
-                        }}>
+                        }}
+                    >
                         {t('register.title')}
                     </Text>
                     <GoogleSigninButton
@@ -108,7 +109,8 @@ const Register = ({ navigation }) => {
                                 textAlign: 'center',
                                 marginTop: 20,
                                 color: '#ffffff',
-                            }}>
+                            }}
+                        >
                             {t('register.goLogin')}
                         </Text>
                     </TouchableOpacity>

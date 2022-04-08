@@ -12,10 +12,11 @@ const Library = ({ navigation }) => {
             <View
                 style={{
                     display: 'flex',
-                    flexDirection: 'row',
+                    flexDirection: 'column',
                     justifyContent: 'space-between',
                     alignItems: 'center',
-                }}>
+                }}
+            >
                 <Button
                     title={t('favorites.title')}
                     onPress={() => navigation.navigate('Favorites')}

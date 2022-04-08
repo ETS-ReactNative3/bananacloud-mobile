@@ -1,7 +1,7 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import { Text, TouchableOpacity } from 'react-native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import IonIcons from 'react-native-vector-icons/Ionicons'
 IonIcons.loadFont()
@@ -13,8 +13,8 @@ import Library from '@screens/selfcare/Library'
 const Tab = createBottomTabNavigator()
 
 const HeaderTitle = () => (
-    <Text style={{ fontWeight: 'bold', fontSize: 21 }}>
-        🍌 Banana<Text style={{ color: '#f39c12' }}>Cloud</Text>
+    <Text>
+        🍌 Banana<Text>Cloud</Text>
     </Text>
 )
 
@@ -31,7 +31,8 @@ const ProfileButton = ({ letter, navigation }) => {
                 alignItems: 'center',
                 justifyContent: 'center',
             }}
-            onPress={() => navigation.navigate('Profile')}>
+            onPress={() => navigation.navigate('Profile')}
+        >
             <Text style={{ color: 'white', fontSize: 20 }}>{letter}</Text>
         </TouchableOpacity>
     )
@@ -39,19 +40,20 @@ const ProfileButton = ({ letter, navigation }) => {
 
 const SelfcareStack = () => {
     const { t } = useTranslation()
-    const { email } = useSelector(state => state.auth.user)
+    const { email } = useSelector(state => state.user.user)
 
     return (
         <Tab.Navigator
             screenOptions={({ navigation }) => ({
                 headerTitle: props => <HeaderTitle {...props} />,
                 headerRight: () => <ProfileButton letter={email[0]} navigation={navigation} />,
-            })}>
+            })}
+        >
             <Tab.Screen
-                name="Photos"
+                name={'Photos'}
                 component={Photos}
                 options={{
-                    tabBarIcon: ({ color, size }) => (
+                    tabBarIcon: ({ size, color }) => (
                         <IonIcons name="images-outline" color={color} size={size} />
                     ),
                     title: t('photos.title'),
@@ -61,7 +63,7 @@ const SelfcareStack = () => {
                 name="Search"
                 component={Search}
                 options={{
-                    tabBarIcon: ({ color, size }) => (
+                    tabBarIcon: ({ size, color }) => (
                         <IonIcons name="search-outline" color={color} size={size} />
                     ),
                     title: t('search.title'),
@@ -71,7 +73,7 @@ const SelfcareStack = () => {
                 name="Library"
                 component={Library}
                 options={{
-                    tabBarIcon: ({ color, size }) => (
+                    tabBarIcon: ({ size, color }) => (
                         <IonIcons name="library-outline" color={color} size={size} />
                     ),
                     title: t('library.title'),

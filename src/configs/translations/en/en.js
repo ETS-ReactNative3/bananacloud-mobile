@@ -15,6 +15,9 @@ export default {
         logout: 'Logout',
         photos: {
             title: 'Photos',
+            uploadCamera: 'From camera',
+            uploadGallery: 'From gallery',
+            uploadLoading: 'Upload loading...',
         },
         search: {
             title: 'Search',

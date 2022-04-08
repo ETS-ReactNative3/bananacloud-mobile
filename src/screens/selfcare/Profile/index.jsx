@@ -1,50 +1,23 @@
 import React from 'react'
 import { SafeAreaView, View, Text } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
-// import { PaymentRequest } from 'react-native-payments'
+import { Picker } from '@react-native-picker/picker'
+import { useTranslation } from 'react-i18next'
+
+import { DARK_THEME, LIGHT_THEME, SYSTEM_THEME, chooseTheme } from '@actions/theme'
+import { logout } from '@actions/user'
 
 import { version as version } from '@root/package.json'
 
-import { logout } from '@actions/auth'
-import { bePremium, beFree } from '@actions/premium'
 import { changeLangage } from '@actions/langage'
 
 import { Margin, Button } from '@components/styled-components'
-import { useTranslation } from 'react-i18next'
-
-
-
-const METHOD_DATA = [
-    {
-        supportedMethods: ['apple-pay'],
-        data: {
-            merchantIdentifier: 'merchant.com.tech.eandotti.bananacloud',
-            supportedNetworks: ['visa', 'mastercard'],
-            countryCode: 'FR',
-            currencyCode: 'EUR',
-        },
-    },
-]
-
-const DETAILS = {
-    id: '0001',
-    displayItems: [
-        {
-            label: 'Premium Pass',
-            amount: { currency: 'EUR', value: '4.99' },
-        },
-    ],
-    total: {
-        label: 'BananaCloud',
-        amount: { currency: 'EUR', value: '4.99' },
-    },
-}
 
 const Profile = ({ navigation }) => {
     const dispatch = useDispatch()
     const { t } = useTranslation()
 
-    const isPremium = useSelector(state => state.premium.isPremium)
+    const isPremium = useSelector(state => state.user.isPremium)
     const currentLang = useSelector(state => state.langage.currentLang)
 
     const changeLangNow = async () => {
@@ -55,6 +28,8 @@ const Profile = ({ navigation }) => {
         }
     }
 
+    const currentTheme = useSelector(state => state.theme.currentTheme)
+
     return (
         <Margin mt={10} ml={5} mr={5}>
             <SafeAreaView
@@ -62,7 +37,19 @@ const Profile = ({ navigation }) => {
                     display: 'flex',
                     height: '100%',
                     justifyContent: 'space-between',
-                }}>
+                }}
+            >
+                <Picker
+                    selectedValue={currentTheme}
+                    mode={'dialog'}
+                    onValueChange={theme => dispatch(chooseTheme(theme))}
+                    style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+                >
+                    <Picker.Item label="Light" value={LIGHT_THEME} />
+                    <Picker.Item label="Dark" value={DARK_THEME} />
+                    <Picker.Item label="System" value={SYSTEM_THEME} />
+                </Picker>
+
                 <View>
                     <Text style={{ textAlign: 'center' }}>
                         Formule :{' '}
@@ -75,14 +62,14 @@ const Profile = ({ navigation }) => {
                             title={t('profile.freeButton')}
                             icon="cash-outline"
                             style={{ bgColor: '#2c3e50' }}
-                            onPress={() => navigation.navigate('Paiement')}
+                            onPress={() => navigation.navigate('Payment')}
                         />
                     ) : (
                         <Button
                             title={t('profile.premiumButton')}
                             icon="cash-outline"
                             style={{ bgColor: '#f39c12' }}
-                            onPress={() => navigation.navigate('Paiement')}
+                            onPress={() => navigation.navigate('Payment')}
                         />
                     )}
                 </View>
@@ -108,7 +95,8 @@ const Profile = ({ navigation }) => {
                             fontSize: 12,
                             color: 'gray',
                             textAlign: 'center',
-                        }}>
+                        }}
+                    >
                         BananaCloud {version}
                     </Text>
                 </View>

@@ -1,7 +1,7 @@
 import { CHANGE_LANGAGE, ERROR } from '@actions/langage'
 
 const initialState = {
-    currentLang: 'fr',
+    currentLang: 'FR',
     error: '',
 }
 

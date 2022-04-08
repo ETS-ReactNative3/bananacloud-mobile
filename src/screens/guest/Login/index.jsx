@@ -4,7 +4,7 @@ import { SafeAreaView, View, TouchableOpacity, Text, Image } from 'react-native'
 import { InterstitialAd, TestIds } from '@react-native-firebase/admob'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { login } from '@actions/auth'
+import { login } from '@actions/user'
 
 import { Padding, TextInput, Button } from '@components/styled-components'
 
@@ -14,8 +14,7 @@ const Login = ({ navigation }) => {
     const { t } = useTranslation()
     const dispatch = useDispatch()
 
-    const isPremium = useSelector(state => state.premium.isPremium)
-    const errorValue = useSelector(state => state.auth.error)
+    const errorValue = useSelector(state => state.user.error)
 
     useEffect(() => {
         const interstitial = InterstitialAd.createForAdRequest(TestIds.INTERSTITIAL)
@@ -42,7 +41,8 @@ const Login = ({ navigation }) => {
                         display: 'flex',
                         alignItems: 'center',
                         backgroundColor: '#00dafe',
-                    }}>
+                    }}
+                >
                     <Image
                         source={logo}
                         style={{ width: 200, height: 200, borderRadius: 10, marginBottom: 20 }}
@@ -53,7 +53,8 @@ const Login = ({ navigation }) => {
                             fontSize: 32,
                             marginBottom: 20,
                             color: '#ffffff',
-                        }}>
+                        }}
+                    >
                         {t('login.title')}
                     </Text>
                     <TextInput
@@ -83,7 +84,8 @@ const Login = ({ navigation }) => {
                                 textAlign: 'center',
                                 marginTop: 20,
                                 color: '#ffffff',
-                            }}>
+                            }}
+                        >
                             {t('login.goRegister')}
                         </Text>
                     </TouchableOpacity>
