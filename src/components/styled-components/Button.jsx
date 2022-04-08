@@ -26,7 +26,7 @@ const ButtonContainer = styled.TouchableOpacity`
 `
 
 const IconContainer = styled.View`
-    margin-right: 10px;
+    margin-right: 0;
 `
 
 const ButtonText = styled.Text`
