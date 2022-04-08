@@ -15,8 +15,8 @@ export default {
         logout: 'Déconnexion',
         photos: {
             title: 'Photos',
-            uploadCamera: 'Depuis votre appareil photo',
-            uploadGallery: "Depuis votre galerie d'image",
+            uploadCamera: 'Appareil photo',
+            uploadGallery: "Galerie d'image",
             uploadLoading: 'Envoie en cours...',
         },
         search: {
