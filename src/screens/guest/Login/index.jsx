@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { SafeAreaView, View, TouchableOpacity, Text, Image } from 'react-native'
+import { TouchableOpacity, Text, Image } from 'react-native'
 import { InterstitialAd, TestIds } from '@react-native-firebase/admob'
 import { useDispatch, useSelector } from 'react-redux'
+import styled from 'styled-components'
 
 import { login } from '@actions/user'
 
@@ -34,35 +35,23 @@ const Login = ({ navigation }) => {
     }
 
     return (
-        <SafeAreaView style={{ backgroundColor: '#00dafe', height: '100%' }}>
+        <MySafeAreaView>
             <Padding pl={10} pr={10}>
-                <View
-                    style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        backgroundColor: '#00dafe',
-                    }}
-                >
+                <MyView>
                     <Image
                         source={logo}
                         style={{ width: 200, height: 200, borderRadius: 10, marginBottom: 20 }}
                     />
-                    <Text
-                        style={{
-                            fontWeight: 'bold',
-                            fontSize: 32,
-                            marginBottom: 20,
-                            color: '#ffffff',
-                        }}
-                    >
-                        {t('login.title')}
-                    </Text>
+
+                    <Title>{t('login.title')}</Title>
+
                     <TextInput
                         placeholder="john.doe@bananacloud.com"
                         onChangeText={e => setUser({ ...user, email: e })}
                         color="#dfe6e9"
                         icon="person-outline"
                     />
+
                     <TextInput
                         placeholder="********"
                         onChangeText={e => setUser({ ...user, password: e })}
@@ -70,29 +59,57 @@ const Login = ({ navigation }) => {
                         color="#dfe6e9"
                         icon="key-outline"
                     />
-                    <Text style={{ color: 'red' }}>{errorValue}</Text>
-                    <Button
-                        title={`${isLoading ? t('login.loading') : t('login.validate')}`}
+
+                    <MyText weight="bold" decoration="none" align="center" top="0px" color="red">
+                        {errorValue}
+                    </MyText>
+
+                    <BtnSubmit
                         disabled={isLoading}
                         onPress={loginMe}
                         style={{ bgColor: '#00b894' }}
-                    />
-                    <TouchableOpacity onPress={() => navigation.navigate('Register')}>
-                        <Text
-                            style={{
-                                textDecorationLine: 'underline',
-                                textAlign: 'center',
-                                marginTop: 20,
-                                color: '#ffffff',
-                            }}
-                        >
+                    >
+                        <MyText decoration="none" align="center" top="0px" color="black">{`${
+                            isLoading ? t('login.loading') : t('login.validate')
+                        }`}</MyText>
+                    </BtnSubmit>
+
+                    <Register onPress={() => navigation.navigate('Register')}>
+                        <MyText decoration="underline" align="center" top="5%" color="#ffffff">
                             {t('login.goRegister')}
-                        </Text>
-                    </TouchableOpacity>
-                </View>
+                        </MyText>
+                    </Register>
+                </MyView>
             </Padding>
-        </SafeAreaView>
+        </MySafeAreaView>
     )
 }
 
+const MySafeAreaView = styled.SafeAreaView`
+    background-color: #00dafe;
+    height: 100%;
+`
+const MyView = styled.View`
+    display: flex;
+    align-items: center;
+`
+const BtnSubmit = styled.TouchableOpacity`
+    background-color: #00b894;
+    padding: 5%;
+    border-radius: 10px;
+`
+const Register = styled.TouchableOpacity``
+
+const MyText = styled.Text`
+    text-decoration: ${props => props.decoration};
+    text-align: ${props => props.align};
+    margin-top: ${props => props.top};
+    color: ${props => props.color};
+`
+const Title = styled.Text`
+    font-size: 30px;
+    color: #ffff;
+    font-weight: bold;
+    margin-bottom: 5%;
+`
 export default Login

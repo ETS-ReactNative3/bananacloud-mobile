@@ -31,7 +31,7 @@ const View = styled.View`
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding: 15px;
+    padding: 2%;
     margin-top: 15px;
     margin-bottom: 15px;
     border-radius: 10px;
