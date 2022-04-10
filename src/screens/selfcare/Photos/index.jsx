@@ -70,23 +70,26 @@ const Photos = () => {
                 </View>
             )}
             {listPhotos.length > 0 && (
-                <FlatList
-                    data={listPhotos}
-                    numColumns={2}
-                    renderItem={item => (
-                        <View
-                            style={{
-                                width: width / 2,
-                                display: 'flex',
-                                alignItems: 'center',
-                                marginBottom: 20,
-                            }}
-                        >
-                            <Card photo={item} />
-                        </View>
-                    )}
-                    keyExtractor={item => item.path}
-                />
+                <>
+                    <Margin mt={10} />
+                    <FlatList
+                        data={listPhotos}
+                        numColumns={2}
+                        renderItem={item => (
+                            <View
+                                style={{
+                                    width: width / 2,
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    marginBottom: 20,
+                                }}
+                            >
+                                <Card photo={item} />
+                            </View>
+                        )}
+                        keyExtractor={item => item.path}
+                    />
+                </>
             )}
             <View
                 style={{
