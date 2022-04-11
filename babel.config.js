@@ -30,6 +30,7 @@ module.exports = function (api) {
                     alias: {
                         '*': '.',
                         '@root': './',
+                        '@assets': './assets',
                         '@src': './src',
                         '@components': './src/components',
                         '@screens': './src/screens',
