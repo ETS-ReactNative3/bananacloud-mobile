@@ -50,6 +50,16 @@ const SelfcareStack = () => {
             })}
         >
             <Tab.Screen
+                name="Library"
+                component={Library}
+                options={{
+                    tabBarIcon: ({ size, color }) => (
+                        <IonIcons name="library-outline" color={color} size={size} />
+                    ),
+                    title: t('library.title'),
+                }}
+            />
+            <Tab.Screen
                 name={'Photos'}
                 component={Photos}
                 options={{
@@ -67,16 +77,6 @@ const SelfcareStack = () => {
                         <IonIcons name="search-outline" color={color} size={size} />
                     ),
                     title: t('search.title'),
-                }}
-            />
-            <Tab.Screen
-                name="Library"
-                component={Library}
-                options={{
-                    tabBarIcon: ({ size, color }) => (
-                        <IonIcons name="library-outline" color={color} size={size} />
-                    ),
-                    title: t('library.title'),
                 }}
             />
         </Tab.Navigator>

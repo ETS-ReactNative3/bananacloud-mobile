@@ -30,7 +30,6 @@ const StackNavigator = () => {
     const isAuth = useSelector(state => state.user.isAuth)
     const currentLang = useSelector(state => state.langage.currentLang)
     const currentTheme = useSelector(state => state.theme.currentTheme)
-
     const colorScheme = useColorScheme()
 
     const theme = whichTheme(currentTheme, colorScheme)

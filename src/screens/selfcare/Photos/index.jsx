@@ -19,6 +19,7 @@ import { getPhotos } from '@utils/photos/getPhotos'
 import { Button, Margin } from '@components/styled-components'
 import Card from '@components/Card'
 import HeaderPhoto from '@components/HeaderPhoto'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 const Photos = () => {
     const { t } = useTranslation()
@@ -28,6 +29,11 @@ const Photos = () => {
 
     const [listPhotos, setListPhotos] = useState([])
     const [modalVisible, setModalVisible] = useState(false)
+
+    AsyncStorage.getItem('token').then(res => {
+        console.log('res')
+        console.log(res)
+    })
 
     hydrateListPhotos = async () => {
         const list = await getPhotos(userId)

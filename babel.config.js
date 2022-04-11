@@ -36,6 +36,7 @@ module.exports = function (api) {
                         '@configs': './src/configs',
                         '@actions': './src/actions',
                         '@utils': './src/utils',
+                        '@public': './src/public',
                     },
                 },
             ],
