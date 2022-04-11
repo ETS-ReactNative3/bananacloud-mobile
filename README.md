@@ -50,10 +50,10 @@ yarn ios
 -   [x] Translation FR/EN
 -   [x] Upload image
 -   [x] Stripe
--   [_] Collect images of current user
+-   [x] Collect images of current user
 -   [_] Set & display favorites list
--   [_] Create & display albums list
--   [_] Don't forget to inform user about state of app
+-   [x] Create & display albums list
+-   [x] Don't forget to inform user about state of app
 -   [_] Use styled-components :(
 -   [_] ...
 
