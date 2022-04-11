@@ -5,7 +5,7 @@ import RNFS from 'react-native-fs'
 export const addAlbum = async (userId, albumName) => {
     try {
         const albumPath = `${RNFS.DocumentDirectoryPath}/${albumName}.json`
-        await RNFS.writeFile(albumPath, JSON.stringify([{ id: 0, path: 'isetest.png' }]), 'utf8')
+        await RNFS.writeFile(albumPath, JSON.stringify([]), 'utf8')
 
         await storage().ref(`/${userId}/albums/${albumName}.json`).putFile(albumPath)
 
