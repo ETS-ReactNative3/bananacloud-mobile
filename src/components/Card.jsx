@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
-import { View, Image, ActivityIndicator, TouchableOpacity } from 'react-native'
+import { View, Image, ActivityIndicator, TouchableOpacity, Modal, Text } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import IonIcons from 'react-native-vector-icons/Ionicons'
 
 import { Button, Margin } from './styled-components'
 
-const Card = ({ photo }) => {
+const Card = props => {
     const navigation = useNavigation()
     const favoritesList = true
-
+    const photo = props.photo
     const [isLoading, setIsLoading] = useState(true)
 
     return (
@@ -26,8 +26,7 @@ const Card = ({ photo }) => {
                     style={{ width: '100%', height: 150, borderRadius: 15 }}
                     onLoadEnd={() => setIsLoading(false)}
                 />
-                <TouchableOpacity
-                    onPress={() => console.log(photo)}
+                <View
                     style={{
                         position: 'absolute',
                         bottom: 10,
@@ -37,13 +36,36 @@ const Card = ({ photo }) => {
                         padding: 5,
                     }}
                 >
-                    {favoritesList.length > 0 ? (
-                        <IonIcons name="heart" color="yellow" size={21} />
-                    ) : (
-                        <IonIcons name="heart-outline" size={21} />
-                    )}
-                </TouchableOpacity>
+                    <TouchableOpacity onPress={() => console.log(photo)}>
+                        {favoritesList ? (
+                            <IonIcons name="heart" color="#f39c12" size={21} />
+                        ) : (
+                            <IonIcons name="heart-outline" size={21} />
+                        )}
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => console.log(photo)}>
+                        {favoritesList ? (
+                            <IonIcons
+                                name="folder"
+                                color="#f39c12"
+                                size={21}
+                                onPress={() => {
+                                    props.setIsVisible(true)
+                                }}
+                            />
+                        ) : (
+                            <IonIcons
+                                name="folder"
+                                size={21}
+                                onPress={() => {
+                                    setIsVisible(true)
+                                }}
+                            />
+                        )}
+                    </TouchableOpacity>
+                </View>
             </View>
+
             {isLoading && (
                 <ActivityIndicator
                     size={32}

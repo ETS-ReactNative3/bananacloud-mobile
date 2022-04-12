@@ -7,7 +7,6 @@ import {
     TouchableOpacity,
     FlatList,
     Dimensions,
-    Modal,
 } from 'react-native'
 import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
@@ -15,9 +14,11 @@ import IonIcons from 'react-native-vector-icons/Ionicons'
 
 import { uploadFromCamera, uploadFromGallery, uploadImage } from '@utils/upload'
 import { getPhotos } from '@utils/photos/getPhotos'
+import { getAlbums } from '@utils/albums/getAlbums'
 
 import { Button, Margin } from '@components/styled-components'
 import Card from '@components/Card'
+import Modal from '@components/Modal'
 
 const Photos = () => {
     const { t } = useTranslation()
@@ -25,8 +26,21 @@ const Photos = () => {
     const { width } = Dimensions.get('window')
     const userId = useSelector(state => state.user.user._id)
 
+    const [albumsList, setAlbumsList] = useState([])
+
+    const hydrateAlbums = async () => {
+        const list = await getAlbums(userId)
+        setAlbumsList(list)
+    }
+
+    useEffect(() => {
+        hydrateAlbums()
+    }, [])
+
     const [listPhotos, setListPhotos] = useState([])
+
     const [modalVisible, setModalVisible] = useState(false)
+    const [visible, setIsVisible] = useState(false)
 
     hydrateListPhotos = async () => {
         const list = await getPhotos(userId)
@@ -81,7 +95,7 @@ const Photos = () => {
                                 marginBottom: 20,
                             }}
                         >
-                            <Card photo={item} />
+                            <Card photo={item} setIsVisible={setIsVisible} />
                         </View>
                     )}
                     keyExtractor={item => item.path}
@@ -96,58 +110,35 @@ const Photos = () => {
             >
                 <Button icon="cloud-upload-outline" onPress={() => setModalVisible(true)} />
             </View>
-            <Modal
-                animationType="slide"
-                transparent={true}
-                visible={modalVisible}
-                style={{ position: 'absolute', top: 0, bottom: 0 }}
-            >
-                <SafeAreaView
-                    style={{
-                        flex: 1,
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        flexDirection: 'row',
-                    }}
-                >
-                    <View
-                        style={{
-                            position: 'relative',
-                            backgroundColor: '#ecf0f1',
-                            padding: 50,
-                            borderRadius: 10,
-                            display: 'flex',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            flexDirection: 'column',
-                        }}
-                    >
-                        <View style={{ position: 'absolute', top: 5, right: 5 }}>
-                            <TouchableOpacity
-                                icon="close-outline"
-                                onPress={() => setModalVisible(false)}
-                                style={{}}
-                            >
-                                <IonIcons name="close-outline" size={28} />
-                            </TouchableOpacity>
-                        </View>
-                        <Margin mb={5} mt={5}>
-                            <Button
-                                title={t('photos.uploadCamera')}
-                                icon="camera-outline"
-                                onPress={() => handleUploadFromCamera()}
-                            />
+            <Modal visible={modalVisible} onPress={() => setModalVisible(false)}>
+                <Margin mb={5} mt={5}>
+                    <Button
+                        title={t('photos.uploadCamera')}
+                        icon="camera-outline"
+                        onPress={() => handleUploadFromCamera()}
+                    />
+                </Margin>
+                <Margin mb={5} mt={5}>
+                    <Button
+                        title={t('photos.uploadGallery')}
+                        icon="image-outline"
+                        onPress={() => handleUploadFromGallery()}
+                    />
+                </Margin>
+            </Modal>
+
+            <Modal visible={visible} onPress={() => setIsVisible(false)}>
+                <Text>Placer l'image dans un dossier</Text>
+                <FlatList
+                    data={albumsList}
+                    numColumns={2}
+                    renderItem={({ item }) => (
+                        <Margin mb={5} mt={5} ml={5} mr={5}>
+                            <Button title={item} icon="folder"></Button>
                         </Margin>
-                        <Margin mb={5} mt={5}>
-                            <Button
-                                title={t('photos.uploadGallery')}
-                                icon="image-outline"
-                                onPress={() => handleUploadFromGallery()}
-                            />
-                        </Margin>
-                    </View>
-                </SafeAreaView>
+                    )}
+                    keyExtractor={item => item.id}
+                />
             </Modal>
         </View>
     )
