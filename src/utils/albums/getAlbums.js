@@ -1,5 +1,4 @@
 import storage from '@react-native-firebase/storage'
-import { getStorage, ref, deleteObject } from '@firebase/storage'
 
 export const getAlbums = async userId => {
     let albumsList = []

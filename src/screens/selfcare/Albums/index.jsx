@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { View, Text, FlatList, SafeAreaView, TouchableOpacity } from 'react-native'
+import { View, Text, FlatList, TouchableOpacity } from 'react-native'
 import { useSelector } from 'react-redux'
 import IonIcons from 'react-native-vector-icons/Ionicons'
 import MCIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+MCIcons.loadFont()
 import AntDesign from 'react-native-vector-icons/AntDesign'
-import { useFocusEffect } from '@react-navigation/native'
+AntDesign.loadFont()
 
 import { getAlbums } from '@utils/albums/getAlbums'
 import { addAlbum } from '@utils/albums/addAlbum'
@@ -30,17 +31,14 @@ const Albums = () => {
         hydrateAlbums(userId)
     }
 
-    const deleteFolder = async (userId, item) => {
+    const deleteFolder = async item => {
         await removeAlbums(userId, item)
-        await hydrateAlbums()
+        hydrateAlbums(userId)
     }
 
     useEffect(() => {
-        hydrateAlbums()
+        hydrateAlbums(userId)
     }, [])
-    useFocusEffect(() => {
-        hydrateAlbums
-    })
 
     return (
         <>
@@ -65,7 +63,7 @@ const Albums = () => {
                                         <View style={{ flexDirection: 'row' }}>
                                             <Text>{item}</Text>
                                             <TouchableOpacity
-                                                onPress={() => deleteFolder(userId, item)}
+                                                onPress={() => deleteFolder(item)}
                                                 style={{ left: '100%' }}
                                             >
                                                 <MCIcons name="delete" size={20}></MCIcons>

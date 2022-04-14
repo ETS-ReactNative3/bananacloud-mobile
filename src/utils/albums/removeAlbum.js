@@ -2,17 +2,17 @@ import storage from '@react-native-firebase/storage'
 import { showMessage } from 'react-native-flash-message'
 
 export const removeAlbums = async (userId, name) => {
-    const album = await storage().ref(`${userId}/albums/${name}.json`)
+    const album = storage().ref(`${userId}/albums/${name}.json`)
 
     album
         .delete()
-        .then(function () {
+        .then(() => {
             showMessage({
                 message: 'Album supprimé',
                 type: 'info',
             })
         })
-        .catch(function (error) {
+        .catch(error => {
             console.log(error)
             showMessage({
                 message: 'error',
