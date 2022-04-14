@@ -1,13 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import {
-    SafeAreaView,
-    View,
-    Text,
-    ActivityIndicator,
-    TouchableOpacity,
-    FlatList,
-    Dimensions,
-} from 'react-native'
+import { View, Text, ActivityIndicator, TouchableOpacity, FlatList, Dimensions } from 'react-native'
 import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import IonIcons from 'react-native-vector-icons/Ionicons'
@@ -16,7 +8,7 @@ import { uploadFromCamera, uploadFromGallery, uploadImage } from '@utils/upload'
 import { getPhotos } from '@utils/photos/getPhotos'
 import { getAlbums } from '@utils/albums/getAlbums'
 
-import { Button, Margin } from '@components/styled-components'
+import { Button, Margin, Container } from '@components/styled-components'
 import Card from '@components/Card'
 import Modal from '@components/Modal'
 
@@ -129,12 +121,20 @@ const Photos = () => {
 
             <Modal visible={visible} onPress={() => setIsVisible(false)}>
                 <Text>Placer l'image dans un dossier</Text>
+
                 <FlatList
+                    horizontal
+                    pagingEnabled={true}
+                    showsHorizontalScrollIndicator={false}
+                    legacyImplementation={false}
                     data={albumsList}
-                    numColumns={2}
                     renderItem={({ item }) => (
                         <Margin mb={5} mt={5} ml={5} mr={5}>
-                            <Button title={item} icon="folder"></Button>
+                            <Button
+                                title={item}
+                                icon="folder"
+                                style={{ color: '#000000', bgColor: '#ffffff' }}
+                            ></Button>
                         </Margin>
                     )}
                     keyExtractor={item => item.id}
