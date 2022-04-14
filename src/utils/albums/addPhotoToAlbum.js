@@ -8,10 +8,13 @@ export const addPhotoToAlbum = async (albumName, photoPath, userId) => {
             .ref(`${userId}/albums/${albumName}.json`)
             .getDownloadURL()
 
-        const test = RNFS.downloadFile({
+        RNFS.downloadFile({
             fromUrl: albumContentPath,
             toFile: `${RNFS.DocumentDirectoryPath}/${albumName}.json`,
         })
+
+        const content = await RNFS.readFile(`${RNFS.DocumentDirectoryPath}/${albumName}.json`)
+        console.log(content)
 
         // RNFS.readFile(albumContentPath).then(res => console.log(res))
 
