@@ -9,6 +9,8 @@ export const addAlbum = async (userId, albumName) => {
 
         await storage().ref(`/${userId}/albums/${albumName}.json`).putFile(albumPath)
 
+        await RNFS.unlink(albumPath)
+
         showMessage({
             message: 'Album créé',
             type: 'info',
