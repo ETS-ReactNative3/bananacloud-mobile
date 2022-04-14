@@ -3,10 +3,10 @@ import { View, Text, Modal, SafeAreaView, TouchableOpacity } from 'react-native'
 import IonIcons from 'react-native-vector-icons/Ionicons'
 import styled from 'styled-components'
 
-const ModalChoice = props => {
+const ModalChoice = ({ visible, onPress, children }) => {
     return (
         <View>
-            <Modall animationType="slide" transparent={true} visible={props.visible}>
+            <Modall animationType="slide" transparent={true} visible={visible}>
                 <SafeAreaView
                     style={{
                         marginTop: 'auto',
@@ -30,11 +30,11 @@ const ModalChoice = props => {
                         }}
                     >
                         <View style={{ position: 'absolute', top: 5, right: 5 }}>
-                            <TouchableOpacity icon="close-outline" onPress={props.onPress}>
+                            <TouchableOpacity icon="close-outline" onPress={onPress}>
                                 <IonIcons name="close-outline" size={28} />
                             </TouchableOpacity>
                         </View>
-                        {props.children}
+                        {children}
                     </View>
                 </SafeAreaView>
             </Modall>
