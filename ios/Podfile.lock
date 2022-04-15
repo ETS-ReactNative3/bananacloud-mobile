@@ -542,6 +542,11 @@ PODS:
   - RNGoogleSignin (7.2.2):
     - GoogleSignIn (~> 6.1.0)
     - React-Core
+  - RNNotifee (5.1.0):
+    - React-Core
+    - RNNotifee/NotifeeCore (= 5.1.0)
+  - RNNotifee/NotifeeCore (5.1.0):
+    - React-Core
   - RNScreens (3.10.2):
     - React-Core
     - React-RCTImage
@@ -619,6 +624,7 @@ DEPENDENCIES:
   - "RNFBStorage (from `../node_modules/@react-native-firebase/storage`)"
   - RNFS (from `../node_modules/react-native-fs`)
   - "RNGoogleSignin (from `../node_modules/@react-native-google-signin/google-signin`)"
+  - "RNNotifee (from `../node_modules/@notifee/react-native`)"
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
@@ -748,6 +754,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-fs"
   RNGoogleSignin:
     :path: "../node_modules/@react-native-google-signin/google-signin"
+  RNNotifee:
+    :path: "../node_modules/@notifee/react-native"
   RNScreens:
     :path: "../node_modules/react-native-screens"
   RNVectorIcons:
@@ -833,6 +841,7 @@ SPEC CHECKSUMS:
   RNFBStorage: 052a32c5af38b106e4d6b0a296df304d97be995e
   RNFS: fc610f78fdf8bfc89a9e5cc2f898519f4dba1002
   RNGoogleSignin: d7f8368b82d94f1dec964785d496387ca7f19092
+  RNNotifee: 6692f7bff575e9f25b5370a37530f5d5b3cb3a7b
   RNScreens: d6da2b9e29cf523832c2542f47bf1287318b1868
   RNVectorIcons: 7923e585eaeb139b9f4531d25a125a1500162a0b
   Stripe: 5914399ac5878056b985d56b409cb4bb1e7fc7e8
