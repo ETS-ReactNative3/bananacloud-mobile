@@ -17,7 +17,7 @@ import { addPhotoToAlbum } from '@utils/albums/addPhotoToAlbum'
 
 import { Button, Margin } from './styled-components'
 
-const Card = ({ photo }) => {
+const Card = ({ photo, isAlbum }) => {
     const navigation = useNavigation()
     const userId = useSelector(state => state.user.user._id)
     const favoritesList = true
@@ -66,16 +66,22 @@ const Card = ({ photo }) => {
                         padding: 5,
                     }}
                 >
-                    <TouchableOpacity onPress={() => console.log(photo)}>
-                        {favoritesList ? (
-                            <IonIcons name="heart" color="#f39c12" size={21} />
-                        ) : (
-                            <IonIcons name="heart-outline" size={21} />
-                        )}
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => setIsVisible(true)}>
-                        <IonIcons name="folder" color="#f39c12" size={21} />
-                    </TouchableOpacity>
+                    {isAlbum === 'true' ? (
+                        <></>
+                    ) : (
+                        <>
+                            <TouchableOpacity onPress={() => console.log(photo)}>
+                                {favoritesList ? (
+                                    <IonIcons name="heart" color="#f39c12" size={21} />
+                                ) : (
+                                    <IonIcons name="heart-outline" size={21} />
+                                )}
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={() => setIsVisible(true)}>
+                                <IonIcons name="folder" color="#f39c12" size={21} />
+                            </TouchableOpacity>
+                        </>
+                    )}
                 </View>
             </View>
 

@@ -14,7 +14,7 @@ import { removeAlbums } from '@utils/albums/removeAlbum'
 import { Button, TextInput, Container } from '@components/styled-components'
 import Modal from '@components/Modal'
 
-const Albums = () => {
+const Albums = ({ navigation }) => {
     const userId = useSelector(state => state.user.user._id)
     const [visible, setIsVisible] = useState(false)
     const [name, setName] = useState('')
@@ -55,11 +55,22 @@ const Albums = () => {
                                 numColumns={3}
                                 renderItem={({ item }) => (
                                     <Container>
-                                        <IonIcons
-                                            name="folder"
-                                            color="#f39c12"
-                                            size={85}
-                                        ></IonIcons>
+                                        <TouchableOpacity
+                                            onPress={() =>
+                                                navigation.navigate({
+                                                    name: 'PhotoAlbum',
+                                                    params: {
+                                                        paramNameAlbum: item,
+                                                    },
+                                                })
+                                            }
+                                        >
+                                            <IonIcons
+                                                name="folder"
+                                                color="#f39c12"
+                                                size={85}
+                                            ></IonIcons>
+                                        </TouchableOpacity>
                                         <View style={{ flexDirection: 'row' }}>
                                             <Text>{item}</Text>
                                             <TouchableOpacity
