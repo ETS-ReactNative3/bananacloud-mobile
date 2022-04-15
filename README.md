@@ -2,21 +2,22 @@
 
 ## 📚 Some infos
 
-| Library used      | Utility            |
-| ----------------- | ------------------ |
-| ReactNative       | Framwork DevMobile |
-| React Navigation  | Router in App      |
-| React Vector      | Icons              |
-| AsyncStorage      | Store info         |
-| React-Native-fs   | Use filesystem     |
-| Styled-Components | CSS in Mobile      |
+| Library used          | Utility            |
+| --------------------- | ------------------ |
+| React-Native          | Framwork DevMobile |
+| React Navigation      | Router in App      |
+| React Vector          | Icons              |
+| Redux                 | Store info         |
+| React-Native-fs       | Use filesystem     |
+| React-Native-firebase | Firebase utils     |
+| React-Native-picker   | take/import photo  |
 
 Prettier & ESLint for beautiful code 🥰
 
 📲 Launch the app :  
 _Don't forget to update your .env.example to .env.local and set variables_
-_You have to put you google-service.json into android/app_
-_You have to put you GoogleService-Info.plist ios/_
+_You have to put your google-service.json into android/app_
+_You have to put your GoogleService-Info.plist ios/_
 
 ```
 git clone https://github.com/ecandotti/bananacloud-mobile.git
@@ -25,35 +26,36 @@ yarn install
 
 npx pod-install ios
 
+echo "let's goooo"
+
 yarn start
-yarn ios
+yarn ios or yarn android
 ```
 
 ## 💪 We can :
 
--   Do nothing rn, but stay connect
+| Features                   | Status |
+| -------------------------- | ------ |
+| Custom Splash Screen       | ✅     |
+| Authentication             | ✅     |
+| Redux (Data persist)       | ✅     |
+| Google AdMob               | ✅     |
+| Google Analytics           | ✅     |
+| Google Messaging (Notif)   | ✅     |
+| Dark/Light/System mode     | ✅     |
+| Translation FR/EN          | ✅     |
+| Upload photo               | ✅     |
+| Display photos per account | ✅     |
+| Create/Delete albums       | ✅     |
+| Styled-components          | ✅     |
+| Favorites list             | ⛔️    |
+| Search per metadata        | ⛔️    |
+| Premium Pass /w Stripe     | ✅     |
 
 ## 🗒 To Do :
 
 -   Many things... 😮‍💨
--   [x] Create project
--   [x] Navigate into the app
--   [x] Set Redux / Redux-Persist / Async dispatch
--   [x] Custom Splash Screen
--   [x] Google Admob
--   [x] Google Analytics
--   [x] Google Messaging (for Notification Push)
--   [x] Google Auth (Login thanks Google Account)
--   [x] Manage error
--   [x] Input verification
--   [x] Manage theme set preference user or preference system
--   [x] Translation FR/EN
--   [x] Upload image
--   [x] Stripe
--   [x] Collect images of current user
 -   [_] Set & display favorites list
--   [x] Create & display albums list
--   [x] Don't forget to inform user about state of app
 -   [_] Use styled-components :(
 -   [_] ...
 
