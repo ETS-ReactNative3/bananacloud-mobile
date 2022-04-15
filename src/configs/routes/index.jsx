@@ -18,6 +18,7 @@ import Favorites from '@screens/selfcare/Favorites'
 import Albums from '@screens/selfcare/Albums'
 import Payment from '@screens/selfcare/Payment'
 import Details from '@screens/selfcare/Details'
+import PhotoAlbum from '@screens/selfcare/PhotoAlbum'
 
 import { GoBack } from '@components/styled-components'
 
@@ -116,6 +117,19 @@ const StackNavigator = () => {
                                     ),
                                     headerTransparent: true,
                                     title: '',
+                                })}
+                            />
+                            <Stack.Screen
+                                name="PhotoAlbum"
+                                component={PhotoAlbum}
+                                options={({ navigation }) => ({
+                                    headerStyle: {
+                                        backgroundColor: theme.dark ? '#232428' : '#f5f6fa',
+                                    },
+                                    headerLeft: () => (
+                                        <GoBack onPress={() => navigation.goBack()} />
+                                    ),
+                                    title: 'Photo Album',
                                 })}
                             />
                         </Stack.Group>
