@@ -122,14 +122,14 @@ const StackNavigator = () => {
                             <Stack.Screen
                                 name="AlbumDetail"
                                 component={AlbumDetail}
-                                options={({ navigation }) => ({
+                                options={({ navigation, route }) => ({
                                     headerStyle: {
                                         backgroundColor: theme.dark ? '#232428' : '#f5f6fa',
                                     },
                                     headerLeft: () => (
                                         <GoBack onPress={() => navigation.goBack()} />
                                     ),
-                                    title: 'Photo Album',
+                                    title: route.params.albumName,
                                 })}
                             />
                         </Stack.Group>
