@@ -1,6 +1,6 @@
 {
     "name": "bananacloud",
-    "version": "0.8.1",
+    "version": "1.0.4",
     "private": true,
     "scripts": {
         "android": "react-native run-android",
