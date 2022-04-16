@@ -16,7 +16,9 @@ const Search = () => {
             return alert(t('search.alreadyPremium'))
         }
 
-        const interstitialAd = InterstitialAd.createForAdRequest(TestIds.INTERSTITIAL)
+        const interstitialAd = InterstitialAd.createForAdRequest(
+            'ca-app-pub-9539113506509263/9888016585',
+        )
 
         interstitialAd.onAdEvent((type, error) => {
             if (type === AdEventType.LOADED) {

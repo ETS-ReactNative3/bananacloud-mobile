@@ -29,7 +29,9 @@ npx pod-install ios
 echo "let's goooo"
 
 yarn start
-yarn ios or yarn android
+yarn ios
+# or
+yarn android
 ```
 
 ## 💪 We can :
