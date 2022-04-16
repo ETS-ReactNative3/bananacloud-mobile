@@ -19,14 +19,10 @@ const Search = () => {
         const interstitialAd = InterstitialAd.createForAdRequest(TestIds.INTERSTITIAL)
 
         interstitialAd.onAdEvent((type, error) => {
-            console.log('type: ', type)
-            console.log('error: ', error)
             if (type === AdEventType.LOADED) {
-                console.log('show')
                 interstitialAd.show()
             }
         })
-        console.log('load')
         interstitialAd.load()
     }
 
