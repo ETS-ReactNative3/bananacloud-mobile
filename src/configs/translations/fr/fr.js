@@ -21,7 +21,7 @@ export default {
             emptyPhotos: 'Pas de photo disponible',
         },
         search: {
-            title: 'Rechercher',
+            title: 'Pub',
             showPubBtn: 'Afficher la publicité',
             alreadyPremium:
                 'Vous avez la formule payante, je vous interdit de regarder de la publicité !',
@@ -31,6 +31,7 @@ export default {
         },
         favorites: {
             title: 'Favoris',
+            emptyPhotos: 'Pas de photo disponible',
         },
         albums: {
             title: 'Albums',

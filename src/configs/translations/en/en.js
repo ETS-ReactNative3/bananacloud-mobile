@@ -21,7 +21,7 @@ export default {
             emptyPhotos: 'No photo available',
         },
         search: {
-            title: 'Search',
+            title: 'Ads',
             showPubBtn: 'Show ads',
             alreadyPremium: "You're premium, stop watching ads !!!",
         },
@@ -30,6 +30,7 @@ export default {
         },
         favorites: {
             title: 'Favorites',
+            emptyPhotos: 'No photo available',
         },
         albums: {
             title: 'Albums',
