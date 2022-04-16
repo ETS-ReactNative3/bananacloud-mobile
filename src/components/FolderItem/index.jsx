@@ -1,12 +1,18 @@
-import { View, Text } from 'react-native'
 import React from 'react'
+import { View, TouchableOpacity } from 'react-native'
+import { useSelector, useDispatch } from 'react-redux'
 import IonIcons from 'react-native-vector-icons/Ionicons'
 import MCIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 MCIcons.loadFont()
 
-import { Container } from '@components/styled-components'
+import { removeAlbum } from '@actions/album'
 
-const FolderItem = () => {
+import { Container, StyledText } from '@components/styled-components'
+
+const FolderItem = ({ albumName, navigation }) => {
+    const dispatch = useDispatch()
+    const userId = useSelector(state => state.user.user._id)
+
     return (
         <Container>
             <TouchableOpacity
@@ -14,7 +20,7 @@ const FolderItem = () => {
                     navigation.navigate({
                         name: 'AlbumDetail',
                         params: {
-                            paramNameAlbum: item,
+                            albumName,
                         },
                     })
                 }
@@ -22,8 +28,11 @@ const FolderItem = () => {
                 <IonIcons name="folder" color="#f39c12" size={85}></IonIcons>
             </TouchableOpacity>
             <View style={{ flexDirection: 'row' }}>
-                <Text>{item}</Text>
-                <TouchableOpacity onPress={() => deleteFolder(item)} style={{ left: '100%' }}>
+                <StyledText>{albumName}</StyledText>
+                <TouchableOpacity
+                    onPress={() => dispatch(removeAlbum(userId, albumName))}
+                    style={{ left: '100%' }}
+                >
                     <MCIcons name="delete" size={20}></MCIcons>
                 </TouchableOpacity>
             </View>
