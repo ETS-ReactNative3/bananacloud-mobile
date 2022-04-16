@@ -1,5 +1,6 @@
 import React from 'react'
 import { Text } from 'react-native'
+import styled from 'styled-components'
 
 const Favorites = () => {
     return (
@@ -10,9 +11,9 @@ const Favorites = () => {
 }
 
 const MainView = styled.View`
-    display: 'flex';
-    justify-content: 'center';
-    align-items: 'center';
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `
 
 export default Favorites

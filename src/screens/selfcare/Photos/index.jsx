@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { View, Text, ActivityIndicator, FlatList, Dimensions } from 'react-native'
+import { Text, ActivityIndicator, FlatList } from 'react-native'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { useTranslation } from 'react-i18next'
@@ -13,8 +13,6 @@ import Modal from '@components/Modal'
 
 const Photos = () => {
     const { t } = useTranslation()
-
-    const { width } = Dimensions.get('window')
     const userId = useSelector(state => state.user.user._id)
 
     const [listPhotos, setListPhotos] = useState([])
@@ -57,35 +55,28 @@ const Photos = () => {
     return (
         <MainView>
             {uploading && (
-                <View>
+                <CenterView>
                     <ActivityIndicator size={32} />
                     <Text>{t('photos.uploadLoading')}</Text>
-                </View>
+                </CenterView>
             )}
             {listPhotos.length > 0 ? (
-                <Margin mt={20}>
+                <Margin mt={15}>
                     <FlatList
                         data={listPhotos}
                         numColumns={2}
                         renderItem={item => (
-                            <View
-                                style={{
-                                    width: width / 2,
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    marginBottom: 20,
-                                }}
-                            >
+                            <CustomView>
                                 <Card photo={item} />
-                            </View>
+                            </CustomView>
                         )}
                         keyExtractor={item => item.path}
                     />
                 </Margin>
             ) : (
-                <View>
-                    <Text>{t('photos.emptyPhotos')}</Text>
-                </View>
+                <CenterView>
+                    <TextCenter>{t('photos.emptyPhotos')}</TextCenter>
+                </CenterView>
             )}
             <UploadButton>
                 <Button icon="cloud-upload-outline" onPress={() => setModalVisible(true)} />
@@ -112,11 +103,27 @@ const Photos = () => {
 
 const MainView = styled.View`
     flex: 1;
-    position: 'relative';
+    position: relative;
+`
+
+const CenterView = styled.View`
+    width: 100%;
+    text-align: center;
+`
+
+const TextCenter = styled.Text`
+    text-align: center;
+`
+
+const CustomView = styled.View`
+    width: 50%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
 `
 
 const UploadButton = styled.View`
-    position: 'absolute';
+    position: absolute;
     right: 10px;
     bottom: 10px;
 `

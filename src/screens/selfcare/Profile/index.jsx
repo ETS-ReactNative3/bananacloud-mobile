@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { SafeAreaView, View, Text, Modal, TouchableOpacity } from 'react-native'
+import { View, TouchableOpacity } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import IonIcons from 'react-native-vector-icons/Ionicons'
@@ -43,10 +43,10 @@ const Profile = ({ navigation }) => {
 
                 <View>
                     <StyledText>
-                        Formule :
-                        <Text style={{ fontWeight: 'bold' }}>
+                        Formule :{' '}
+                        <StyledText bold>
                             {isPremium ? t('profile.premium') : t('profile.free')}
-                        </Text>
+                        </StyledText>
                     </StyledText>
                     {!isPremium && (
                         <Button
@@ -124,46 +124,47 @@ const Profile = ({ navigation }) => {
 }
 
 const MainView = styled.SafeAreaView`
-    display: 'flex';
-    height: '100%';
-    justify-content: 'space-between';
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: space-between;
 `
 
 const CloseView = styled.View`
-    position: 'absolute';
+    position: absolute;
     top: 5px;
     right: 5px;
 `
 
 const AppVersionText = styled.Text`
     font-size: 12px;
-    color: 'gray';
-    text-align: 'center';
+    color: gray;
+    text-align: center;
 `
 
 const ModalView = styled.Modal`
-    position: 'absolute';
+    position: absolute;
     top: 0;
     bottom: 0;
 `
 
 const ModalSafeAreaView = styled.SafeAreaView`
     flex: 1;
-    display: 'flex';
-    justify-content: 'center';
-    align-items: 'center';
-    flex-direction: 'row';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
 `
 
 const SubModalView = styled.View`
-    position: 'relative';
-    background-color: '#ecf0f1';
+    position: relative;
+    background-color: #ecf0f1;
     padding: 50px;
     border-radius: 10px;
-    display: 'flex';
-    justify-content: 'center';
-    align-items: 'center';
-    flex-direction: 'column';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 `
 
 export default Profile

@@ -26,10 +26,10 @@ const Library = ({ navigation }) => {
 }
 
 const MainView = styled.View`
-    display: 'flex';
-    flex-direction: 'row';
-    justify-content: 'space-between';
-    align-items: 'center';
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 `
 
 export default Library
