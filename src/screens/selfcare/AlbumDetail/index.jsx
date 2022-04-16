@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
-import { View, FlatList, Dimensions } from 'react-native'
+import { View, FlatList } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
+import styled from 'styled-components'
 
 import { getPhotosAlbum } from '@actions/album'
 
@@ -16,8 +17,6 @@ const AlbumDetail = ({ route }) => {
 
     const albumName = route.params.albumName
 
-    const { width } = Dimensions.get('window')
-
     useEffect(() => {
         dispatch(getPhotosAlbum(userId, albumName))
     }, [])
@@ -29,16 +28,9 @@ const AlbumDetail = ({ route }) => {
                     data={photosList}
                     numColumns={2}
                     renderItem={item => (
-                        <View
-                            style={{
-                                width: width / 2,
-                                display: 'flex',
-                                alignItems: 'center',
-                                marginBottom: 20,
-                            }}
-                        >
+                        <CustomView>
                             <Card isAlbum="true" photo={item} />
-                        </View>
+                        </CustomView>
                     )}
                     keyExtractor={item => item}
                 />
@@ -50,5 +42,12 @@ const AlbumDetail = ({ route }) => {
         </Margin>
     )
 }
+
+const CustomView = styled.View`
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+`
 
 export default AlbumDetail

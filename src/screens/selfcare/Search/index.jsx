@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import { InterstitialAd, TestIds, AdEventType } from '@react-native-firebase/admob'
 
-import { StyledText, Margin, Button } from '@components/styled-components'
+import { Margin, Button } from '@components/styled-components'
 
 const Search = () => {
     const { t } = useTranslation()

@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { SafeAreaView, View, Text, TouchableOpacity, Image } from 'react-native'
+import { Text, TouchableOpacity } from 'react-native'
 import { useTranslation } from 'react-i18next'
+import styled from 'styled-components'
 import { GoogleSigninButton } from '@react-native-google-signin/google-signin'
 
 import { register } from '@actions/user'
@@ -32,30 +33,13 @@ const Register = ({ navigation }) => {
     }
 
     return (
-        <SafeAreaView style={{ backgroundColor: '#00dafe', height: '100%' }}>
+        <MainView>
             <Padding pl={10} pr={10}>
-                <View
-                    style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                    }}
-                >
-                    <Image
-                        source={logo}
-                        style={{ width: 200, height: 200, borderRadius: 10, marginBottom: 20 }}
-                    />
-                    <Text
-                        style={{
-                            fontWeight: 'bold',
-                            fontSize: 32,
-                            marginBottom: 20,
-                            color: '#ffffff',
-                        }}
-                    >
-                        {t('register.title')}
-                    </Text>
+                <CenterView>
+                    <CustomImage source={logo} />
+                    <TitleText>{t('register.title')}</TitleText>
                     <GoogleSigninButton
+                        // Exception styled 🥲
                         style={{ width: '100%', height: 50 }}
                         size={GoogleSigninButton.Size.Wide}
                         color={GoogleSigninButton.Color.Dark}
@@ -82,7 +66,7 @@ const Register = ({ navigation }) => {
                         color="#dfe6e9"
                         icon="key-outline"
                     />
-                    <Text style={{ color: 'red' }}>{errorValue}</Text>
+                    <TextRed style={{ color: 'red' }}>{errorValue}</TextRed>
                     <Button
                         title={`${isLoading ? t('register.loading') : t('register.validate')}`}
                         disabled={isLoading}
@@ -90,21 +74,48 @@ const Register = ({ navigation }) => {
                         style={{ bgColor: '#00b894' }}
                     />
                     <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-                        <Text
-                            style={{
-                                textDecorationLine: 'underline',
-                                textAlign: 'center',
-                                marginTop: 20,
-                                color: '#ffffff',
-                            }}
-                        >
-                            {t('register.goLogin')}
-                        </Text>
+                        <BackText>{t('register.goLogin')}</BackText>
                     </TouchableOpacity>
-                </View>
+                </CenterView>
             </Padding>
-        </SafeAreaView>
+        </MainView>
     )
 }
+
+const MainView = styled.SafeAreaView`
+    background-color: #00dafe;
+    height: 100%;
+`
+
+const CenterView = styled.View`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`
+
+const CustomImage = styled.Image`
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+`
+
+const TitleText = styled.Text`
+    font-weight: bold;
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #ffffff;
+`
+
+const TextRed = styled.Text`
+    color: red;
+`
+
+const BackText = styled.Text`
+    text-decoration: underline;
+    text-align: center;
+    margin-top: 20px;
+    color: #ffffff;
+`
 
 export default Register

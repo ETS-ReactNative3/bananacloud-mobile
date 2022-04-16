@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Image } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 
@@ -32,10 +31,7 @@ const Login = ({ navigation }) => {
         <MySafeAreaView>
             <Padding pl={10} pr={10}>
                 <MyView>
-                    <Image
-                        source={logo}
-                        style={{ width: 200, height: 200, borderRadius: 10, marginBottom: 20 }}
-                    />
+                    <CustomImage source={logo} />
 
                     <Title>{t('login.title')}</Title>
 
@@ -78,6 +74,13 @@ const Login = ({ navigation }) => {
         </MySafeAreaView>
     )
 }
+
+const CustomImage = styled.Image`
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+`
 
 const MySafeAreaView = styled.SafeAreaView`
     background-color: #00dafe;
