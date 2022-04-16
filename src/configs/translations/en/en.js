@@ -22,6 +22,8 @@ export default {
         },
         search: {
             title: 'Search',
+            showPubBtn: 'Show ads',
+            alreadyPremium: "You're premium, stop watching ads !!!",
         },
         library: {
             title: 'Library',
@@ -47,5 +49,8 @@ export default {
             paymentButton: 'Pay now',
         },
         albumDetail: { noPhoto: 'No photo available' },
+        card: {
+            placePicture: 'Place picture in album',
+        },
     },
 }

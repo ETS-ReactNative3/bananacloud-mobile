@@ -22,6 +22,9 @@ export default {
         },
         search: {
             title: 'Rechercher',
+            showPubBtn: 'Afficher la publicité',
+            alreadyPremium:
+                'Vous avez la formule payante, je vous interdit de regarder de la publicité !',
         },
         library: {
             title: 'Bibliothèque',
@@ -47,5 +50,8 @@ export default {
             paymentButton: 'Obtenir mon pass',
         },
         albumDetail: { noPhoto: 'Pas de photo disponible' },
+        card: {
+            placePicture: "Placer l'image dans un album",
+        },
     },
 }
