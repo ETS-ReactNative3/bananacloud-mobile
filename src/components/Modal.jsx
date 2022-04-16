@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, Modal, SafeAreaView, TouchableOpacity } from 'react-native'
+import { View, SafeAreaView, TouchableOpacity } from 'react-native'
 import IonIcons from 'react-native-vector-icons/Ionicons'
 import styled from 'styled-components'
 
