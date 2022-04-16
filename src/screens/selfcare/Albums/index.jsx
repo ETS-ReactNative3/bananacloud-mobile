@@ -1,22 +1,34 @@
 import React, { useState, useEffect } from 'react'
-import { View, FlatList, TouchableOpacity } from 'react-native'
-import { useSelector } from 'react-redux'
+import { View, FlatList, TouchableOpacity, ActivityIndicator } from 'react-native'
+import { useSelector, useDispatch } from 'react-redux'
 import styled from 'styled-components'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 AntDesign.loadFont()
+
+import { createAlbum, hydrateAlbums } from '@actions/album'
 
 import { Button, TextInput, Container, StyledText } from '@components/styled-components'
 import Modal from '@components/Modal'
 import FolderItem from '@components/FolderItem'
 
 const Albums = ({ navigation }) => {
+    const dispatch = useDispatch()
     const userId = useSelector(state => state.user.user._id)
+    const albumsList = useSelector(state => state.album.albumsList)
 
+    const [isLoading, setIsLoading] = useState(true)
     const [visible, setIsVisible] = useState(false)
     const [name, setName] = useState('')
 
+    const handleCreateFolder = () => {
+        dispatch(createAlbum(userId, name))
+        setName('')
+        setIsVisible(false)
+    }
+
     useEffect(() => {
-        hydrateAlbums(userId)
+        dispatch(hydrateAlbums(userId))
+        setIsLoading(false)
     }, [])
 
     return (
@@ -26,12 +38,14 @@ const Albums = ({ navigation }) => {
                     <AntDesign name="addfolder" size={35} color="red" />
                 </TouchableOpacity>
 
-                {albumsList.length > 0 ? (
+                {isLoading ? (
+                    <ActivityIndicator />
+                ) : albumsList.length > 0 ? (
                     <FlatList
                         data={albumsList}
                         numColumns={3}
                         renderItem={({ item }) => (
-                            <FolderItem folder={item} navigation={navigation} />
+                            <FolderItem albumName={item} navigation={navigation} />
                         )}
                         keyExtractor={item => item.id}
                     />
@@ -48,7 +62,7 @@ const Albums = ({ navigation }) => {
                         onChangeText={e => setName(e)}
                         color="#dfe6e9"
                     />
-                    <Button title="Valider" onPress={createFolder} />
+                    <Button title="Valider" onPress={handleCreateFolder} />
                 </Modal>
             </MainView>
         </Container>
@@ -56,9 +70,9 @@ const Albums = ({ navigation }) => {
 }
 
 const MainView = styled.View`
-    display: 'flex';
-    justify-content: 'center';
-    align-items: 'center';
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `
 
 export default Albums
