@@ -14,7 +14,7 @@ export const REMOVE_FAILED = 'REMOVE_FAILED'
 export const PHOTOS_ALBUM_SUCCESS = 'PHOTOS_ALBUM_SUCCESS'
 export const PHOTOS_ALBUM_FAILED = 'PHOTOS_ALBUM_FAILED'
 
-export const hydrateAlbum = () => async dispatch => {
+export const hydrateAlbums = userId => async dispatch => {
     try {
         let albumsList = []
 
@@ -33,7 +33,7 @@ export const hydrateAlbum = () => async dispatch => {
     }
 }
 
-export const createFolder = (userId, albumName) => async dispatch => {
+export const createAlbum = (userId, albumName) => async dispatch => {
     try {
         const albumPath = `${RNFS.DocumentDirectoryPath}/${albumName}.json`
         await RNFS.writeFile(albumPath, JSON.stringify([]), 'utf8')
@@ -69,11 +69,11 @@ export const createFolder = (userId, albumName) => async dispatch => {
     }
 }
 
-export const removeAlbums = (userId, name) => async dispatch => {
+export const removeAlbum = (userId, name) => async dispatch => {
     storage()
         .ref(`${userId}/albums/${name}.json`)
         .delete()
-        .then(() => {
+        .then(async () => {
             showMessage({
                 message: 'Album supprimé',
                 type: 'info',
@@ -103,7 +103,7 @@ export const removeAlbums = (userId, name) => async dispatch => {
         })
 }
 
-export const getPhotoAlbum = async albumName => dispatch => {
+export const getPhotosAlbum = albumName => async dispatch => {
     try {
         let photosList = []
 
