@@ -18,9 +18,12 @@ export default {
             uploadCamera: 'From camera',
             uploadGallery: 'From gallery',
             uploadLoading: 'Upload loading...',
+            emptyPhotos: 'No photo available',
         },
         search: {
             title: 'Search',
+            showPubBtn: 'Show ads',
+            alreadyPremium: "You're premium, stop watching ads !!!",
         },
         library: {
             title: 'Library',
@@ -43,7 +46,11 @@ export default {
         },
         payment: {
             title: 'Payment',
-            paymentButton: 'Pay now'
-        }
+            paymentButton: 'Pay now',
+        },
+        albumDetail: { noPhoto: 'No photo available' },
+        card: {
+            placePicture: 'Place picture in album',
+        },
     },
 }

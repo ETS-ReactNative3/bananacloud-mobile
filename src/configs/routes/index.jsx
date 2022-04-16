@@ -18,6 +18,7 @@ import Favorites from '@screens/selfcare/Favorites'
 import Albums from '@screens/selfcare/Albums'
 import Payment from '@screens/selfcare/Payment'
 import Details from '@screens/selfcare/Details'
+import AlbumDetail from '@screens/selfcare/AlbumDetail'
 
 import { GoBack } from '@components/styled-components'
 
@@ -30,7 +31,6 @@ const StackNavigator = () => {
     const isAuth = useSelector(state => state.user.isAuth)
     const currentLang = useSelector(state => state.langage.currentLang)
     const currentTheme = useSelector(state => state.theme.currentTheme)
-
     const colorScheme = useColorScheme()
 
     const theme = whichTheme(currentTheme, colorScheme)
@@ -117,6 +117,19 @@ const StackNavigator = () => {
                                     ),
                                     headerTransparent: true,
                                     title: '',
+                                })}
+                            />
+                            <Stack.Screen
+                                name="AlbumDetail"
+                                component={AlbumDetail}
+                                options={({ navigation, route }) => ({
+                                    headerStyle: {
+                                        backgroundColor: theme.dark ? '#232428' : '#f5f6fa',
+                                    },
+                                    headerLeft: () => (
+                                        <GoBack onPress={() => navigation.goBack()} />
+                                    ),
+                                    title: route.params.albumName,
                                 })}
                             />
                         </Stack.Group>

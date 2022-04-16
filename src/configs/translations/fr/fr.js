@@ -17,10 +17,14 @@ export default {
             title: 'Photos',
             uploadCamera: 'Appareil photo',
             uploadGallery: "Galerie d'image",
-            uploadLoading: 'Envoie en cours...',
+            uploadLoading: 'Envoi en cours...',
+            emptyPhotos: 'Pas de photo disponible',
         },
         search: {
             title: 'Rechercher',
+            showPubBtn: 'Afficher la publicité',
+            alreadyPremium:
+                'Vous avez la formule payante, je vous interdit de regarder de la publicité !',
         },
         library: {
             title: 'Bibliothèque',
@@ -43,7 +47,11 @@ export default {
         },
         payment: {
             title: 'Paiement',
-            paymentButton: 'Obtenir mon pass'
-        }
+            paymentButton: 'Obtenir mon pass',
+        },
+        albumDetail: { noPhoto: 'Pas de photo disponible' },
+        card: {
+            placePicture: "Placer l'image dans un album",
+        },
     },
 }

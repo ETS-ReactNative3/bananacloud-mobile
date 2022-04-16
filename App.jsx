@@ -3,7 +3,6 @@ import SplashScreen from 'react-native-splash-screen'
 import FlashMessage from 'react-native-flash-message'
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/lib/integration/react'
-// import admob from '@react-native-firebase/admob'
 import messaging from '@react-native-firebase/messaging'
 
 import Routes from '@configs/routes'

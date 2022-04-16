@@ -1,160 +1,128 @@
 import React, { useEffect, useState } from 'react'
-import {
-    SafeAreaView,
-    View,
-    Text,
-    ActivityIndicator,
-    TouchableOpacity,
-    FlatList,
-    Dimensions,
-    Modal,
-} from 'react-native'
-import { useSelector } from 'react-redux'
+import { Text, ActivityIndicator, FlatList } from 'react-native'
+import { useDispatch, useSelector } from 'react-redux'
+import styled from 'styled-components'
 import { useTranslation } from 'react-i18next'
-import IonIcons from 'react-native-vector-icons/Ionicons'
 
-import { uploadFromCamera, uploadFromGallery, uploadImage } from '@utils/upload'
-import { getPhotos } from '@utils/photos/getPhotos'
+import { getMedia, uploadMedia } from '@actions/media'
+
+import { uploadFromCamera, uploadFromGallery } from '@utils/upload'
 
 import { Button, Margin } from '@components/styled-components'
 import Card from '@components/Card'
-import HeaderPhoto from '@components/HeaderPhoto'
+import Modal from '@components/Modal'
 
 const Photos = () => {
     const { t } = useTranslation()
-
-    const { width } = Dimensions.get('window')
+    const dispatch = useDispatch()
     const userId = useSelector(state => state.user.user._id)
+    const mediaList = useSelector(state => state.media.mediaList)
 
-    const [listPhotos, setListPhotos] = useState([])
     const [modalVisible, setModalVisible] = useState(false)
-
-    hydrateListPhotos = async () => {
-        const list = await getPhotos(userId)
-        setListPhotos(list)
-    }
+    const [uploading, setUploading] = useState(false)
 
     useEffect(() => {
-        hydrateListPhotos()
+        dispatch(getMedia(userId))
     }, [])
-
-    const [uploading, setUploading] = useState(false)
-    // const [transferred, setTransferred] = useState(0)
 
     const handleUploadFromCamera = async () => {
         const photo = await uploadFromCamera()
+
         if (photo) {
             setUploading(true)
-            await uploadImage(photo, userId)
-            setUploading(false)
-            hydrateListPhotos()
+            dispatch(uploadMedia(photo, userId)).then(() => {
+                setUploading(false)
+                setModalVisible(false)
+            })
         }
     }
 
     const handleUploadFromGallery = async () => {
         const photo = await uploadFromGallery()
+
         if (photo) {
             setUploading(true)
-            await uploadImage(photo, userId)
-            setUploading(false)
-            hydrateListPhotos()
+            dispatch(uploadMedia(photo, userId)).then(() => {
+                setUploading(false)
+                setModalVisible(false)
+            })
         }
     }
 
     return (
-        <View style={{ flex: 1, position: 'relative' }}>
+        <MainView>
             {uploading && (
-                <View>
+                <CenterView>
                     <ActivityIndicator size={32} />
-                    <Text style={{ textAlign: 'center' }}>{t('photos.uploadLoading')}</Text>
-                </View>
+                    <TextCenter>{t('photos.uploadLoading')}</TextCenter>
+                </CenterView>
             )}
-            {listPhotos.length > 0 && (
-                <>
-                    <Margin mt={10} />
+            {mediaList.length > 0 ? (
+                <Margin mt={15}>
                     <FlatList
-                        data={listPhotos}
+                        data={mediaList}
                         numColumns={2}
                         renderItem={item => (
-                            <View
-                                style={{
-                                    width: width / 2,
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    marginBottom: 20,
-                                }}
-                            >
+                            <CustomView>
                                 <Card photo={item} />
-                            </View>
+                            </CustomView>
                         )}
                         keyExtractor={item => item.path}
                     />
-                </>
+                </Margin>
+            ) : (
+                <CenterView>
+                    <TextCenter>{t('photos.emptyPhotos')}</TextCenter>
+                </CenterView>
             )}
-            <View
-                style={{
-                    position: 'absolute',
-                    right: 10,
-                    bottom: 10,
-                }}
-            >
+            <UploadButton>
                 <Button icon="cloud-upload-outline" onPress={() => setModalVisible(true)} />
-            </View>
-            <Modal
-                animationType="slide"
-                transparent={true}
-                visible={modalVisible}
-                style={{ position: 'absolute', top: 0, bottom: 0 }}
-            >
-                <SafeAreaView
-                    style={{
-                        flex: 1,
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        flexDirection: 'row',
-                    }}
-                >
-                    <View
-                        style={{
-                            position: 'relative',
-                            backgroundColor: '#ecf0f1',
-                            padding: 50,
-                            borderRadius: 10,
-                            display: 'flex',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            flexDirection: 'column',
-                        }}
-                    >
-                        <View style={{ position: 'absolute', top: 5, right: 5 }}>
-                            <TouchableOpacity
-                                icon="close-outline"
-                                onPress={() => setModalVisible(false)}
-                                style={{}}
-                            >
-                                <IonIcons name="close-outline" size={28} />
-                            </TouchableOpacity>
-                        </View>
-                        <Margin mb={5} mt={5}>
-                            <Button
-                                title={t('photos.uploadCamera')}
-                                icon="camera-outline"
-                                onPress={() => handleUploadFromCamera()}
-                            />
-                        </Margin>
-                        <Margin mb={5} mt={5}>
-                            <Button
-                                title={t('photos.uploadGallery')}
-                                icon="image-outline"
-                                onPress={() => handleUploadFromGallery()}
-                            />
-                        </Margin>
-                    </View>
-                </SafeAreaView>
+            </UploadButton>
+            <Modal visible={modalVisible} onPress={() => setModalVisible(false)}>
+                <Margin mb={5} mt={5}>
+                    <Button
+                        title={t('photos.uploadCamera')}
+                        icon="camera-outline"
+                        onPress={() => handleUploadFromCamera()}
+                    />
+                </Margin>
+                <Margin mb={5} mt={5}>
+                    <Button
+                        title={t('photos.uploadGallery')}
+                        icon="image-outline"
+                        onPress={() => handleUploadFromGallery()}
+                    />
+                </Margin>
             </Modal>
-        </View>
+        </MainView>
     )
 }
+
+const MainView = styled.View`
+    flex: 1;
+    position: relative;
+`
+
+const CenterView = styled.View`
+    width: 100%;
+    text-align: center;
+`
+
+const TextCenter = styled.Text`
+    text-align: center;
+`
+
+const CustomView = styled.View`
+    width: 50%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+`
+
+const UploadButton = styled.View`
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+`
 
 export default Photos

@@ -82,7 +82,6 @@ export const logout = () => async dispatch => {
 }
 
 export const bePremium = (CardInput, userId) => async dispatch => {
-    
     try {
         if (CardInput.valid == false || typeof CardInput.valid == 'undefined') {
             alert('Invalid Credit Card')
@@ -97,7 +96,7 @@ export const bePremium = (CardInput, userId) => async dispatch => {
         }
 
         const payment_data = await charges(creditCardToken.id)
-        
+
         if (payment_data.status == 'succeeded') {
             dispatch({ type: PREMIUM_SUCCESS, payload: { success: true } })
             await api.post('update-user', { id: userId, isPremium: true })
@@ -105,9 +104,11 @@ export const bePremium = (CardInput, userId) => async dispatch => {
         } else {
             alert('Payment failed')
         }
-
     } catch (err) {
-        console.log(err)
+        showMessage({
+            message: `error : ${err}`,
+            type: 'warning',
+        })
     }
 }
 

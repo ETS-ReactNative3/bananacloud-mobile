@@ -52,6 +52,11 @@ buck-out/
 .env.local
 
 # Google Credentials
+.firebase/
 firebase.json
 /android/app/google-services.json
 /ios/GoogleService-Info.plist
+firebase-debug.log
+storage.rules
+ui-debug.log
+.firebaserc
