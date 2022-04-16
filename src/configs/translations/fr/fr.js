@@ -58,6 +58,12 @@ export default {
         reduxMsg: {
             addedSucces: 'Ajouté avec succès',
             alreadyAdded: "Déjà dans l'album",
+            wrongPassword: 'Mot de passe non identique',
+            successLogout: 'Vous avez été correctement déconnecté',
+            successUpload: 'Envoi réussi',
+            cantChangeLang: 'Impossible de changer la langue',
+            albumCreatedSuccess: 'Album créé avec succes',
+            albumCreatedFailed: "Erreur lors de la création de l'album",
         },
     },
 }

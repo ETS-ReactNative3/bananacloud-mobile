@@ -2,6 +2,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import { showMessage } from 'react-native-flash-message'
 import jwtDecode from 'jwt-decode'
 
+import i18n from '@configs/translations/initTranslation'
+
 import api from '@utils/api'
 import { getCreditCardToken, charges } from '@utils/Stripe'
 
@@ -30,7 +32,7 @@ export const login =
             await AsyncStorage.setItem('user', JSON.stringify(user))
 
             showMessage({
-                message: `Bienvenu, ${user.email}`,
+                message: `Hey, ${user.email}`,
                 type: 'success',
             })
 
@@ -47,7 +49,7 @@ export const register =
             if (password !== confirmPassword) {
                 return dispatch({
                     type: REGISTER_FAILURE,
-                    payload: { error: 'Mot de passe non identique' },
+                    payload: { error: i18n.t('reduxMsg.wrongPassword') },
                 })
             }
 
@@ -59,7 +61,7 @@ export const register =
             await AsyncStorage.setItem('user', JSON.stringify(user))
 
             showMessage({
-                message: `Bienvenu, ${user.email}`,
+                message: `Hey, ${user.email}`,
                 type: 'success',
             })
 
@@ -74,7 +76,7 @@ export const logout = () => async dispatch => {
     await AsyncStorage.removeItem('user')
 
     showMessage({
-        message: 'Vous avez été correctement déconnecté',
+        message: i18n.t('reduxMsg.successLogout'),
         type: 'success',
     })
 
@@ -106,7 +108,7 @@ export const bePremium = (CardInput, userId) => async dispatch => {
         }
     } catch (err) {
         showMessage({
-            message: `error : ${err}`,
+            message: `${err}`,
             type: 'warning',
         })
     }

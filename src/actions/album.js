@@ -2,6 +2,8 @@ import storage from '@react-native-firebase/storage'
 import { showMessage } from 'react-native-flash-message'
 import RNFS from 'react-native-fs'
 
+import i18n from '@configs/translations/initTranslation'
+
 export const HYDRATE_SUCCESS = 'HYDRATE_SUCCESS'
 export const HYDRATE_FAILED = 'HYDRATE_FAILED'
 
@@ -43,7 +45,7 @@ export const createAlbum = (userId, albumName) => async dispatch => {
         await RNFS.unlink(albumPath)
 
         showMessage({
-            message: 'Album créé',
+            message: i18n.t('reduxMsg.albumCreatedSuccess'),
             type: 'info',
         })
 
@@ -61,7 +63,7 @@ export const createAlbum = (userId, albumName) => async dispatch => {
         dispatch({ type: CREATE_SUCCESS, payload: { albumsList } })
     } catch (error) {
         showMessage({
-            message: 'error',
+            message: i18n.t('reduxMsg.albumCreatedFailed'),
             type: 'warning',
         })
 

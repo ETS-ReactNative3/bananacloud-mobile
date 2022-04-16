@@ -2,6 +2,8 @@ import { Image } from 'react-native-compressor'
 import storage from '@react-native-firebase/storage'
 import { showMessage } from 'react-native-flash-message'
 
+import i18n from '@configs/translations/initTranslation'
+
 export const UPLOAD_SUCCESS = 'UPLOAD_SUCCESS'
 export const UPLOAD_FAILED = 'UPLOAD_FAILED'
 
@@ -20,7 +22,7 @@ export const uploadMedia = (photo, userId) => async dispatch => {
     try {
         await task
         showMessage({
-            message: `Success`,
+            message: i18n.t('reduxMsg.successUpload'),
             type: 'success',
         })
 

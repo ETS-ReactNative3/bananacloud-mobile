@@ -16,7 +16,7 @@ export const changeLangage = lang => async dispatch => {
         default:
             return dispatch({
                 type: ERROR,
-                payload: { error: 'Impossible de changer la langue' },
+                payload: { error: i18n.t('reduxMsg.cantChangLang') },
             })
     }
 

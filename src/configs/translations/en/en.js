@@ -57,6 +57,12 @@ export default {
         reduxMsg: {
             addedSucces: 'Added successful',
             alreadyAdded: 'Already added',
+            wrongPassword: 'Not same password',
+            successLogout: 'Success disconnected',
+            successUpload: 'Success upload',
+            cantChangeLang: "Can't change langage",
+            albumCreatedSuccess: 'Album created success',
+            albumCreatedFailed: 'Created album failed',
         },
     },
 }
