@@ -15,6 +15,7 @@ export default (state = initialState, action) => {
         case UPLOAD_SUCCESS:
             return {
                 ...state,
+                mediaList: action.payload.mediaList,
                 error: '',
             }
         case UPLOAD_FAILED:
