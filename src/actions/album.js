@@ -93,9 +93,8 @@ export const removeAlbum = (userId, name) => async dispatch => {
             dispatch({ type: REMOVE_SUCCESS, payload: { albumsList } })
         })
         .catch(error => {
-            console.log(error)
             showMessage({
-                message: 'error',
+                message: `error ${error}`,
                 type: 'warning',
             })
 

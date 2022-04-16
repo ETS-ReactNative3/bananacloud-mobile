@@ -6,13 +6,9 @@ export const uploadFromGallery = async () => {
         durationLimit: 15,
     })
 
-    if (result.didCancel) {
-        console.log('User cancelled image picker')
-        return null
-    } else if (result.error) {
-        console.log('ImagePicker Error: ', result.error)
-        return null
-    } else {
+    if (result.didCancel) return null
+    else if (result.error) return null
+    else {
         const source = result.assets[0].uri
         return source
     }
@@ -24,13 +20,9 @@ export const uploadFromCamera = async () => {
         durationLimit: 15,
     })
 
-    if (result.didCancel) {
-        console.log('User cancelled image picker')
-        return null
-    } else if (result.error) {
-        console.log('ImagePicker Error: ', result.error)
-        return null
-    } else {
+    if (result.didCancel) return null
+    else if (result.error) return null
+    else {
         const source = result.assets[0].uri
         return source
     }
