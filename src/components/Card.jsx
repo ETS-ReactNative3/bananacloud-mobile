@@ -11,19 +11,23 @@ import {
 import styled from 'styled-components'
 import ImageView from 'react-native-image-view'
 import { useTranslation } from 'react-i18next'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import IonIcons from 'react-native-vector-icons/Ionicons'
 
 import { addPhotoToAlbum } from '@utils/albums/addPhotoToAlbum'
+
+import { addOrRemoveToFavlist } from '@actions/favorite'
 
 import { Button, Margin, Container } from './styled-components'
 
 const Card = ({ photo }) => {
     const { t } = useTranslation()
+    const dispatch = useDispatch()
     const userId = useSelector(state => state.user.user._id)
+    const favlist = useSelector(state => state.favorite.favlist)
     const albumsList = useSelector(state => state.album.albumsList)
 
-    const favoritesList = false
+    const alreadyFavlisted = favlist.filter(el => el.relativePath === photo.item.relativePath)
 
     const [isImageViewVisible, setIsImageViewVisible] = useState(false)
 
@@ -55,8 +59,12 @@ const Card = ({ photo }) => {
                         }}
                     >
                         <>
-                            <TouchableOpacity onPress={() => console.log(photo)}>
-                                {favoritesList ? (
+                            <TouchableOpacity
+                                onPress={() =>
+                                    dispatch(addOrRemoveToFavlist(favlist, photo.item.relativePath))
+                                }
+                            >
+                                {alreadyFavlisted.length > 0 ? (
                                     <IonIcons name="heart" color="#f39c12" size={21} />
                                 ) : (
                                     <IonIcons name="heart-outline" color="#f39c12" size={21} />
