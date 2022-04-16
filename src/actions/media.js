@@ -1,3 +1,4 @@
+import { Image } from 'react-native-compressor'
 import storage from '@react-native-firebase/storage'
 import { showMessage } from 'react-native-flash-message'
 
@@ -8,7 +9,9 @@ export const ALL_PHOTOS_SUCCESS = 'ALL_PHOTOS_SUCCESS'
 export const ALL_PHOTOS_FAILED = 'ALL_PHOTOS_FAILED'
 
 export const uploadMedia = (photo, userId) => async dispatch => {
-    const uri = photo
+    const uri = await Image.compress(photo, {
+        compressionMethod: 'auto',
+    })
     const filename = uri.substring(uri.lastIndexOf('/') + 1)
     const uploadUri = Platform.OS === 'ios' ? uri.replace('file://', '') : uri
 
