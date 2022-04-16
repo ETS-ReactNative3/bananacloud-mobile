@@ -1,4 +1,3 @@
-import React, { useState } from 'react'
 import { showMessage } from 'react-native-flash-message'
 import storage from '@react-native-firebase/storage'
 import RNFS from 'react-native-fs'
@@ -33,6 +32,7 @@ export const addPhotoToAlbum = async (albumName, photoPath, userId) => {
                 await storage().ref(`/${userId}/albums/${albumName}.json`).putFile(albumPath)
 
                 await RNFS.unlink(albumPath)
+                await RNFS.unlink(`${RNFS.DocumentDirectoryPath}/${albumName}_old.json`)
 
                 showMessage({
                     message: 'Ajouté avec succès',

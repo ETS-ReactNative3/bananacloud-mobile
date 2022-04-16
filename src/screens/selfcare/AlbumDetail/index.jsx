@@ -1,28 +1,32 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { View, FlatList, Dimensions } from 'react-native'
+import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 
+import { getPhotosAlbum } from '@actions/album'
+
 import Card from '@components/Card'
-import { StyledText } from '@components/styled-components'
+import { StyledText, Margin } from '@components/styled-components'
 
 const AlbumDetail = ({ route }) => {
     const { t } = useTranslation()
+    const dispatch = useDispatch()
+    const userId = useSelector(state => state.user.user._id)
+    const photosList = useSelector(state => state.album.photosList)
 
     const albumName = route.params.albumName
 
     const { width } = Dimensions.get('window')
 
-    const [listPhotosAlbum, setListPhotosAlbum] = useState({})
-
     useEffect(() => {
-        // hydrateListPhotosAlbum()
+        dispatch(getPhotosAlbum(userId, albumName))
     }, [])
 
     return (
-        <View>
-            {listPhotosAlbum ? (
+        <Margin mt={15}>
+            {photosList ? (
                 <FlatList
-                    data={listPhotosAlbum}
+                    data={photosList}
                     numColumns={2}
                     renderItem={item => (
                         <View
@@ -43,7 +47,7 @@ const AlbumDetail = ({ route }) => {
                     <StyledText>{t('albumDetail.noPhoto')}</StyledText>
                 </View>
             )}
-        </View>
+        </Margin>
     )
 }
 

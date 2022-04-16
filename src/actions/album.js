@@ -102,19 +102,30 @@ export const removeAlbum = (userId, name) => async dispatch => {
         })
 }
 
-export const getPhotosAlbum = albumName => async dispatch => {
+export const getPhotosAlbum = (userId, albumName) => async dispatch => {
     try {
         let photosList = []
 
-        const file = await RNFS.readFile(`${RNFS.DocumentDirectoryPath}/${albumName}_old.json`)
-        const fileList = JSON.parse(file)
+        const albumContentPath = await storage()
+            .ref(`${userId}/albums/${albumName}.json`)
+            .getDownloadURL()
 
-        for (const key in fileList) {
-            const path = await storage().ref(fileList[key].path).getDownloadURL()
-            photosList.push({ path: path.toString(), relativePath: fileList[key].path })
-        }
+        RNFS.downloadFile({
+            fromUrl: albumContentPath,
+            toFile: `${RNFS.DocumentDirectoryPath}/${albumName}.json`,
+        }).promise.then(async () => {
+            const file = await RNFS.readFile(`${RNFS.DocumentDirectoryPath}/${albumName}.json`)
+            const fileContent = JSON.parse(file)
 
-        dispatch({ type: PHOTOS_ALBUM_SUCCESS, payload: { photosList } })
+            for (const key in fileContent) {
+                const path = await storage().ref(fileContent[key].path).getDownloadURL()
+                photosList.push({ path: path.toString(), relativePath: fileContent[key].path })
+            }
+
+            RNFS.unlink(`${RNFS.DocumentDirectoryPath}/${albumName}.json`)
+
+            dispatch({ type: PHOTOS_ALBUM_SUCCESS, payload: { photosList } })
+        })
     } catch (error) {
         dispatch({ type: PHOTOS_ALBUM_FAILED, payload: { error } })
     }
