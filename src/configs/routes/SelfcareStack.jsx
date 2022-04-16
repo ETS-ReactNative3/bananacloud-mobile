@@ -9,13 +9,17 @@ IonIcons.loadFont()
 import Photos from '@screens/selfcare/Photos'
 import Search from '@screens/selfcare/Search'
 import Library from '@screens/selfcare/Library'
-import { Text as TextColor } from '@components/styled-components'
+import { StyledText } from '@components/styled-components'
 
 const Tab = createBottomTabNavigator()
+
 const HeaderTitle = () => (
-    <TextColor>
-        🍌 Banana<Text>Cloud</Text>
-    </TextColor>
+    <StyledText bold title color="#f39c12">
+        🍌 Banana
+        <StyledText bold title>
+            Cloud
+        </StyledText>
+    </StyledText>
 )
 
 const ProfileButton = ({ letter, navigation }) => {
@@ -47,6 +51,7 @@ const SelfcareStack = () => {
             screenOptions={({ navigation }) => ({
                 headerTitle: props => <HeaderTitle {...props} />,
                 headerRight: () => <ProfileButton letter={email[0]} navigation={navigation} />,
+                tabBarActiveTintColor: '#f39c12',
             })}
         >
             <Tab.Screen
