@@ -24,7 +24,7 @@ const AlbumDetail = ({ route }) => {
 
     return (
         <Margin mt={15}>
-            {photosList ? (
+            {photosList[0]?.path ? (
                 <FlatList
                     data={photosList}
                     numColumns={2}
@@ -44,7 +44,7 @@ const AlbumDetail = ({ route }) => {
                 />
             ) : (
                 <View>
-                    <StyledText>{t('albumDetail.noPhoto')}</StyledText>
+                    <StyledText center>{t('albumDetail.noPhoto')}</StyledText>
                 </View>
             )}
         </Margin>
