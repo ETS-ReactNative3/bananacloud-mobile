@@ -84,7 +84,6 @@ const Profile = ({ navigation }) => {
                             <TouchableOpacity
                                 icon="close-outline"
                                 onPress={() => setModalVisible(false)}
-                                style={{}}
                             >
                                 <IonIcons name="close-outline" size={28} />
                             </TouchableOpacity>

@@ -2,6 +2,8 @@ import { showMessage } from 'react-native-flash-message'
 import storage from '@react-native-firebase/storage'
 import RNFS from 'react-native-fs'
 
+import i18n from '@configs/translations/initTranslation'
+
 export const addPhotoToAlbum = async (albumName, photoPath, userId) => {
     try {
         let content = ''
@@ -35,19 +37,19 @@ export const addPhotoToAlbum = async (albumName, photoPath, userId) => {
                 await RNFS.unlink(`${RNFS.DocumentDirectoryPath}/${albumName}_old.json`)
 
                 showMessage({
-                    message: 'Ajouté avec succès',
+                    message: i18n.t('reduxMsg.addedSucces'),
                     type: 'info',
                 })
             } else {
                 showMessage({
-                    message: 'Photo déjà dans album',
+                    message: i18n.t('reduxMsg.alreadyAdded'),
                     type: 'info',
                 })
             }
         })
     } catch (error) {
         showMessage({
-            message: `Une erreur : ${error}`,
+            message: `${error}`,
             type: 'warning',
         })
     }

@@ -18,8 +18,6 @@ export const getCreditCardToken = async creditCardData => {
                 Authorization: `Bearer ${PK_STRIPE}`,
             },
             method: 'post',
-            // Format the credit card data to a string of key-value pairs
-            // divided by &
             body: Object.keys(card)
                 .map(key => key + '=' + card[key])
                 .join('&'),
@@ -31,7 +29,7 @@ export const getCreditCardToken = async creditCardData => {
     }
 }
 
-export const charges = async (token) => {
+export const charges = async token => {
     const card = {
         amount: 50,
         currency: CURRENCY,

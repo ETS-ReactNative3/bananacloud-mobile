@@ -34,6 +34,7 @@ export default {
         },
         albums: {
             title: 'Albums',
+            emptyAlbum: 'No album available',
         },
         profile: {
             title: 'Profile',
@@ -52,6 +53,10 @@ export default {
         albumDetail: { noPhoto: 'No photo available' },
         card: {
             placePicture: 'Place picture in album',
+        },
+        reduxMsg: {
+            addedSucces: 'Added successful',
+            alreadyAdded: 'Already added',
         },
     },
 }

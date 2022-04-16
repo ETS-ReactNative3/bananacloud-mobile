@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { View, FlatList, TouchableOpacity, ActivityIndicator } from 'react-native'
 import { useSelector, useDispatch } from 'react-redux'
+import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 AntDesign.loadFont()
@@ -12,6 +13,7 @@ import Modal from '@components/Modal'
 import FolderItem from '@components/FolderItem'
 
 const Albums = ({ navigation }) => {
+    const { t } = useTranslation()
     const dispatch = useDispatch()
     const userId = useSelector(state => state.user.user._id)
     const albumsList = useSelector(state => state.album.albumsList)
@@ -51,18 +53,18 @@ const Albums = ({ navigation }) => {
                     />
                 ) : (
                     <View>
-                        <StyledText>Pas d'albums</StyledText>
+                        <StyledText>{t('albums.emptyAlbum')}</StyledText>
                     </View>
                 )}
 
                 <Modal visible={visible} onPress={() => setIsVisible(false)}>
                     <TextInput
-                        placeholder="Nom dossier"
+                        placeholder="Paris"
                         value={name}
                         onChangeText={e => setName(e)}
                         color="#dfe6e9"
                     />
-                    <Button title="Valider" onPress={handleCreateFolder} />
+                    <Button title={t('login.validate')} onPress={handleCreateFolder} />
                 </Modal>
             </MainView>
         </Container>
