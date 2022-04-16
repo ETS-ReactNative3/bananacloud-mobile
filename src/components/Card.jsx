@@ -8,6 +8,7 @@ import {
     Text,
     FlatList,
 } from 'react-native'
+import styled from 'styled-components'
 import { useNavigation } from '@react-navigation/native'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
@@ -83,7 +84,12 @@ const Card = ({ photo }) => {
 
             <Modal visible={visible} onPress={() => setIsVisible(false)}>
                 <Container>
-                    <Text>{t('card.placePicture')}</Text>
+                    <SameLine>
+                        <Text>{t('card.placePicture')}</Text>
+                        <TouchableOpacity onPress={() => setIsVisible(false)}>
+                            <IonIcons name="close" size={32} />
+                        </TouchableOpacity>
+                    </SameLine>
 
                     <FlatList
                         showsVerticalScrollIndicator={false}
@@ -106,5 +112,12 @@ const Card = ({ photo }) => {
         </TouchableOpacity>
     )
 }
+
+const SameLine = styled.View`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+`
 
 export default Card
