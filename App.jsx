@@ -17,7 +17,7 @@ export default function App() {
         requestUserPermission()
 
         messaging().setBackgroundMessageHandler(remoteMessage => {
-            console.log(
+            alert(
                 'Notification caused app to open from background state:',
                 remoteMessage.notification,
             )
@@ -25,7 +25,7 @@ export default function App() {
         })
 
         messaging().onMessage(mess => {
-            console.log('from onMessage ', mess)
+            alert('from onMessage ', mess)
         })
     }, [])
 

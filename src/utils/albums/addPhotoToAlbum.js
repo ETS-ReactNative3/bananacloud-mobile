@@ -46,7 +46,6 @@ export const addPhotoToAlbum = async (albumName, photoPath, userId) => {
             }
         })
     } catch (error) {
-        console.log(error)
         showMessage({
             message: `Une erreur : ${error}`,
             type: 'warning',
