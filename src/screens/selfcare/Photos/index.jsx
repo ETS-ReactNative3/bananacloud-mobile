@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { Text, ActivityIndicator, FlatList } from 'react-native'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { useTranslation } from 'react-i18next'
 
-import { uploadFromCamera, uploadFromGallery, uploadImage } from '@utils/upload'
-import { getPhotos } from '@utils/photos/getPhotos'
+import { getMedia, uploadMedia } from '@actions/media'
+
+import { uploadFromCamera, uploadFromGallery } from '@utils/upload'
 
 import { Button, Margin } from '@components/styled-components'
 import Card from '@components/Card'
@@ -13,31 +14,27 @@ import Modal from '@components/Modal'
 
 const Photos = () => {
     const { t } = useTranslation()
+    const dispatch = useDispatch()
     const userId = useSelector(state => state.user.user._id)
-
-    const [listPhotos, setListPhotos] = useState([])
+    const mediaList = useSelector(state => state.media.mediaList)
 
     const [modalVisible, setModalVisible] = useState(false)
+    const [uploading, setUploading] = useState(false)
 
-    hydrateListPhotos = async () => {
-        const list = await getPhotos(userId)
-        setListPhotos(list)
-    }
+    console.log(mediaList)
 
     useEffect(() => {
-        hydrateListPhotos()
+        dispatch(getMedia(userId))
     }, [])
-
-    const [uploading, setUploading] = useState(false)
 
     const handleUploadFromCamera = async () => {
         const photo = await uploadFromCamera()
 
         if (photo) {
             setUploading(true)
-            await uploadImage(photo, userId)
-            setUploading(false)
-            hydrateListPhotos()
+            dispatch(uploadMedia(photo, userId)).then(() => {
+                setUploading(false)
+            })
         }
     }
 
@@ -46,9 +43,9 @@ const Photos = () => {
 
         if (photo) {
             setUploading(true)
-            await uploadImage(photo, userId)
-            setUploading(false)
-            hydrateListPhotos()
+            dispatch(uploadMedia(photo, userId)).then(() => {
+                setUploading(false)
+            })
         }
     }
 
@@ -60,10 +57,10 @@ const Photos = () => {
                     <Text>{t('photos.uploadLoading')}</Text>
                 </CenterView>
             )}
-            {listPhotos.length > 0 ? (
+            {mediaList.length > 0 ? (
                 <Margin mt={15}>
                     <FlatList
-                        data={listPhotos}
+                        data={mediaList}
                         numColumns={2}
                         renderItem={item => (
                             <CustomView>
