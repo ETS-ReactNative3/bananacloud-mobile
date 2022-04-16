@@ -15,6 +15,7 @@ export const addPhotoToAlbum = async (albumName, photoPath, userId) => {
             fromUrl: albumContentPath,
             toFile: `${RNFS.DocumentDirectoryPath}/${albumName}_old.json`,
         })
+
         content = JSON.parse(
             await RNFS.readFile(`${RNFS.DocumentDirectoryPath}/${albumName}_old.json`),
         )
@@ -24,6 +25,7 @@ export const addPhotoToAlbum = async (albumName, photoPath, userId) => {
                 return el.path
             }
         })
+
         if (photoExist === -1) {
             content = [...content, { path: photoPath }]
             const albumPath = `${RNFS.DocumentDirectoryPath}/${albumName}.json`
