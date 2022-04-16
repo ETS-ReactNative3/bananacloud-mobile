@@ -1,26 +1,21 @@
 import React, { useState, useEffect } from 'react'
 import { View, FlatList, Dimensions } from 'react-native'
-
-import { getPhotoAlbum } from '@utils/albums/getPhotoAlbum'
+import { useTranslation } from 'react-i18next'
 
 import Card from '@components/Card'
-import { StyledText } from 'src/components/styled-components'
-import { t } from 'i18next'
+import { StyledText } from '@components/styled-components'
 
 const AlbumDetail = ({ route }) => {
-    const albumName = route.params.paramNameAlbum
+    const { t } = useTranslation()
+
+    const albumName = route.params.albumName
 
     const { width } = Dimensions.get('window')
 
     const [listPhotosAlbum, setListPhotosAlbum] = useState({})
 
-    const hydrateListPhotosAlbum = async () => {
-        const list = await getPhotoAlbum(albumName)
-        setListPhotosAlbum(list)
-    }
-
     useEffect(() => {
-        hydrateListPhotosAlbum()
+        // hydrateListPhotosAlbum()
     }, [])
 
     return (
