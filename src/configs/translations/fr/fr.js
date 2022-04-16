@@ -17,7 +17,7 @@ export default {
             title: 'Photos',
             uploadCamera: 'Appareil photo',
             uploadGallery: "Galerie d'image",
-            uploadLoading: 'Envoie en cours...',
+            uploadLoading: 'Envoi en cours...',
             emptyPhotos: 'Pas de photo disponible',
         },
         search: {
