@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Text, ActivityIndicator, FlatList } from 'react-native'
+import { ActivityIndicator, FlatList } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { useTranslation } from 'react-i18next'
