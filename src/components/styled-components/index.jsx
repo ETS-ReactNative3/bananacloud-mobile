@@ -4,6 +4,6 @@ import { TextInput } from './TextInput'
 import { GoBack } from './GoBack'
 import { Padding } from './Padding'
 import { Margin } from './Margin'
-import { Text } from './Text'
+import { StyledText } from './StyledText'
 
-export { Container, Button, TextInput, GoBack, Padding, Margin, Text }
+export { Container, Button, TextInput, GoBack, Padding, Margin, StyledText }
