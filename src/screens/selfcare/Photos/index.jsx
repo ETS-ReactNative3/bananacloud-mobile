@@ -21,8 +21,6 @@ const Photos = () => {
     const [modalVisible, setModalVisible] = useState(false)
     const [uploading, setUploading] = useState(false)
 
-    console.log(mediaList)
-
     useEffect(() => {
         dispatch(getMedia(userId))
     }, [])
@@ -34,6 +32,7 @@ const Photos = () => {
             setUploading(true)
             dispatch(uploadMedia(photo, userId)).then(() => {
                 setUploading(false)
+                setModalVisible(false)
             })
         }
     }
@@ -45,6 +44,7 @@ const Photos = () => {
             setUploading(true)
             dispatch(uploadMedia(photo, userId)).then(() => {
                 setUploading(false)
+                setModalVisible(false)
             })
         }
     }
@@ -54,7 +54,7 @@ const Photos = () => {
             {uploading && (
                 <CenterView>
                     <ActivityIndicator size={32} />
-                    <Text>{t('photos.uploadLoading')}</Text>
+                    <TextCenter>{t('photos.uploadLoading')}</TextCenter>
                 </CenterView>
             )}
             {mediaList.length > 0 ? (
