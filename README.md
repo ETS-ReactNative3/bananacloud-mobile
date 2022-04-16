@@ -49,7 +49,7 @@ yarn ios or yarn android
 | Create/Delete albums       | ✅     |
 | Styled-components          | ✅     |
 | Favorites list             | ⏳     |
-| Compress media             | ⏳     |
+| Compress media             | ✅     |
 | Search per metadata        | ⛔️    |
 | Premium Pass /w Stripe     | ✅     |
 
