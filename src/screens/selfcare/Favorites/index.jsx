@@ -1,12 +1,18 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { Text } from 'react-native'
 
 const Favorites = () => {
     return (
-        <View style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <MainView>
             <Text>Favoris</Text>
-        </View>
+        </MainView>
     )
 }
+
+const MainView = styled.View`
+    display: 'flex';
+    justify-content: 'center';
+    align-items: 'center';
+`
 
 export default Favorites

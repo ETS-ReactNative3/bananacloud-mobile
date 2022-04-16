@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import styled from 'styled-components'
 import { SafeAreaView, View, Text, Modal, TouchableOpacity } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
@@ -6,12 +7,11 @@ import IonIcons from 'react-native-vector-icons/Ionicons'
 
 import { DARK_THEME, LIGHT_THEME, SYSTEM_THEME, chooseTheme } from '@actions/theme'
 import { logout } from '@actions/user'
+import { changeLangage } from '@actions/langage'
 
 import { version as version } from '@root/package.json'
 
-import { changeLangage } from '@actions/langage'
-
-import { Margin, Button, Text as TextColor } from '@components/styled-components'
+import { Margin, Button, StyledText } from '@components/styled-components'
 
 const Profile = ({ navigation }) => {
     const dispatch = useDispatch()
@@ -34,13 +34,7 @@ const Profile = ({ navigation }) => {
 
     return (
         <Margin mt={10} ml={5} mr={5}>
-            <SafeAreaView
-                style={{
-                    display: 'flex',
-                    height: '100%',
-                    justifyContent: 'space-between',
-                }}
-            >
+            <MainView>
                 <Button
                     title={currentTheme}
                     style={{ bgColor: '#be2edd' }}
@@ -48,32 +42,25 @@ const Profile = ({ navigation }) => {
                 />
 
                 <View>
-                    <TextColor>
-                        Formule :{' '}
+                    <StyledText>
+                        Formule :
                         <Text style={{ fontWeight: 'bold' }}>
                             {isPremium ? t('profile.premium') : t('profile.free')}
                         </Text>
-                    </TextColor>
-                    {isPremium ? (
-                        <Button
-                            title={t('profile.freeButton')}
-                            icon="cash-outline"
-                            style={{ bgColor: '#2c3e50' }}
-                            onPress={() => navigation.navigate('Payment')}
-                        />
-                    ) : (
+                    </StyledText>
+                    {!isPremium && (
                         <Button
                             title={t('profile.premiumButton')}
                             icon="cash-outline"
-                            style={{ bgColor: '#f39c12' }}
+                            style={{ bgColor: '#2c3e50' }}
                             onPress={() => navigation.navigate('Payment')}
                         />
                     )}
                 </View>
                 <View>
-                    <TextColor style={{ textAlign: 'center' }}>
-                        Langue : <Text style={{ fontWeight: 'bold' }}>{currentLang}</Text>
-                    </TextColor>
+                    <StyledText>
+                        Langue : <StyledText bold>{currentLang}</StyledText>
+                    </StyledText>
                     <Button
                         title={t('profile.changeLang')}
                         icon="flag-outline"
@@ -87,45 +74,13 @@ const Profile = ({ navigation }) => {
                         icon="log-out-outline"
                         onPress={() => dispatch(logout())}
                     />
-                    <Text
-                        style={{
-                            fontSize: 12,
-                            color: 'gray',
-                            textAlign: 'center',
-                        }}
-                    >
-                        BananaCloud {version}
-                    </Text>
+                    <AppVersionText>BananaCloud {version}</AppVersionText>
                 </View>
-            </SafeAreaView>
-            <Modal
-                animationType="slide"
-                transparent={true}
-                visible={modalVisible}
-                style={{ position: 'absolute', top: 0, bottom: 0 }}
-            >
-                <SafeAreaView
-                    style={{
-                        flex: 1,
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        flexDirection: 'row',
-                    }}
-                >
-                    <View
-                        style={{
-                            position: 'relative',
-                            backgroundColor: '#ecf0f1',
-                            padding: 50,
-                            borderRadius: 10,
-                            display: 'flex',
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            flexDirection: 'column',
-                        }}
-                    >
-                        <View style={{ position: 'absolute', top: 5, right: 5 }}>
+            </MainView>
+            <ModalView animationType="slide" transparent={true} visible={modalVisible}>
+                <ModalSafeAreaView>
+                    <SubModalView>
+                        <CloseView>
                             <TouchableOpacity
                                 icon="close-outline"
                                 onPress={() => setModalVisible(false)}
@@ -133,7 +88,7 @@ const Profile = ({ navigation }) => {
                             >
                                 <IonIcons name="close-outline" size={28} />
                             </TouchableOpacity>
-                        </View>
+                        </CloseView>
                         <Margin mb={5} mt={5}>
                             <Button
                                 title={t('profile.light')}
@@ -161,11 +116,54 @@ const Profile = ({ navigation }) => {
                                 }}
                             />
                         </Margin>
-                    </View>
-                </SafeAreaView>
-            </Modal>
+                    </SubModalView>
+                </ModalSafeAreaView>
+            </ModalView>
         </Margin>
     )
 }
+
+const MainView = styled.SafeAreaView`
+    display: 'flex';
+    height: '100%';
+    justify-content: 'space-between';
+`
+
+const CloseView = styled.View`
+    position: 'absolute';
+    top: 5px;
+    right: 5px;
+`
+
+const AppVersionText = styled.Text`
+    font-size: 12px;
+    color: 'gray';
+    text-align: 'center';
+`
+
+const ModalView = styled.Modal`
+    position: 'absolute';
+    top: 0;
+    bottom: 0;
+`
+
+const ModalSafeAreaView = styled.SafeAreaView`
+    flex: 1;
+    display: 'flex';
+    justify-content: 'center';
+    align-items: 'center';
+    flex-direction: 'row';
+`
+
+const SubModalView = styled.View`
+    position: 'relative';
+    background-color: '#ecf0f1';
+    padding: 50px;
+    border-radius: 10px;
+    display: 'flex';
+    justify-content: 'center';
+    align-items: 'center';
+    flex-direction: 'column';
+`
 
 export default Profile

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { View, Text, ActivityIndicator, FlatList, Dimensions } from 'react-native'
 import { useSelector } from 'react-redux'
+import styled from 'styled-components'
 import { useTranslation } from 'react-i18next'
 
 import { uploadFromCamera, uploadFromGallery, uploadImage } from '@utils/upload'
@@ -30,10 +31,10 @@ const Photos = () => {
     }, [])
 
     const [uploading, setUploading] = useState(false)
-    // const [transferred, setTransferred] = useState(0)
 
     const handleUploadFromCamera = async () => {
         const photo = await uploadFromCamera()
+
         if (photo) {
             setUploading(true)
             await uploadImage(photo, userId)
@@ -44,6 +45,7 @@ const Photos = () => {
 
     const handleUploadFromGallery = async () => {
         const photo = await uploadFromGallery()
+
         if (photo) {
             setUploading(true)
             await uploadImage(photo, userId)
@@ -53,14 +55,14 @@ const Photos = () => {
     }
 
     return (
-        <View style={{ flex: 1, position: 'relative' }}>
+        <MainView>
             {uploading && (
                 <View>
                     <ActivityIndicator size={32} />
-                    <Text style={{ textAlign: 'center' }}>{t('photos.uploadLoading')}</Text>
+                    <Text>{t('photos.uploadLoading')}</Text>
                 </View>
             )}
-            {listPhotos.length > 0 && (
+            {listPhotos.length > 0 ? (
                 <Margin mt={20}>
                     <FlatList
                         data={listPhotos}
@@ -80,16 +82,14 @@ const Photos = () => {
                         keyExtractor={item => item.path}
                     />
                 </Margin>
+            ) : (
+                <View>
+                    <Text>{t('photos.emptyPhotos')}</Text>
+                </View>
             )}
-            <View
-                style={{
-                    position: 'absolute',
-                    right: 10,
-                    bottom: 10,
-                }}
-            >
+            <UploadButton>
                 <Button icon="cloud-upload-outline" onPress={() => setModalVisible(true)} />
-            </View>
+            </UploadButton>
             <Modal visible={modalVisible} onPress={() => setModalVisible(false)}>
                 <Margin mb={5} mt={5}>
                     <Button
@@ -106,8 +106,19 @@ const Photos = () => {
                     />
                 </Margin>
             </Modal>
-        </View>
+        </MainView>
     )
 }
+
+const MainView = styled.View`
+    flex: 1;
+    position: 'relative';
+`
+
+const UploadButton = styled.View`
+    position: 'absolute';
+    right: 10px;
+    bottom: 10px;
+`
 
 export default Photos

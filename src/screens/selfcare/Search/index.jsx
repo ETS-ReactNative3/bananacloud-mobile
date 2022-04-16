@@ -1,5 +1,6 @@
 import React from 'react'
-import { View, TouchableOpacity, Text } from 'react-native'
+import { TouchableOpacity, Text } from 'react-native'
+import styled from 'styled-components'
 import { InterstitialAd, TestIds, AdEventType } from '@react-native-firebase/admob'
 
 const Search = () => {
@@ -19,12 +20,18 @@ const Search = () => {
     }
 
     return (
-        <View style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <MainView>
             <TouchableOpacity onPress={showInterstitialAd}>
                 <Text>Show pub</Text>
             </TouchableOpacity>
-        </View>
+        </MainView>
     )
 }
+
+const MainView = styled.View`
+    display: 'flex';
+    justify-content: 'center';
+    align-items: 'center';
+`
 
 export default Search
