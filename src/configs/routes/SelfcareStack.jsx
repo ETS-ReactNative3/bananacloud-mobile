@@ -69,7 +69,7 @@ const SelfcareStack = () => {
                 component={Search}
                 options={{
                     tabBarIcon: ({ size, color }) => (
-                        <IonIcons name="search-outline" color={color} size={size} />
+                        <IonIcons name="logo-bitcoin" color={color} size={size} />
                     ),
                     title: t('search.title'),
                 }}

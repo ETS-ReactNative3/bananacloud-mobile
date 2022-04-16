@@ -17,7 +17,6 @@ import Profile from '@screens/selfcare/Profile'
 import Favorites from '@screens/selfcare/Favorites'
 import Albums from '@screens/selfcare/Albums'
 import Payment from '@screens/selfcare/Payment'
-import Details from '@screens/selfcare/Details'
 import AlbumDetail from '@screens/selfcare/AlbumDetail'
 
 import { GoBack } from '@components/styled-components'
@@ -97,26 +96,6 @@ const StackNavigator = () => {
                                         <GoBack onPress={() => navigation.goBack()} />
                                     ),
                                     title: t('payment.title'),
-                                })}
-                            />
-                            <Stack.Screen
-                                name="Details"
-                                component={Details}
-                                options={({ navigation }) => ({
-                                    headerLeft: () => (
-                                        <GoBack onPress={() => navigation.goBack()} />
-                                    ),
-                                    headerRight: () => (
-                                        <TouchableOpacity onPress={() => console.log(photo)}>
-                                            {true ? (
-                                                <IonIcons name="heart" size={21} />
-                                            ) : (
-                                                <IonIcons name="heart-outline" size={21} />
-                                            )}
-                                        </TouchableOpacity>
-                                    ),
-                                    headerTransparent: true,
-                                    title: '',
                                 })}
                             />
                             <Stack.Screen
