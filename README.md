@@ -48,17 +48,14 @@ yarn ios or yarn android
 | Display photos per account | ✅     |
 | Create/Delete albums       | ✅     |
 | Styled-components          | ✅     |
-| Favorites list             | ⏳     |
+| Favorites list             | ✅     |
 | Compress media             | ✅     |
 | Search per metadata        | ⛔️    |
 | Premium Pass /w Stripe     | ✅     |
 
 ## 🗒 To Do :
 
--   Many things... 😮‍💨
--   [_] Set & display favorites list
--   [_] Use styled-components :(
--   [_] ...
+-   Nothing ! 🤩
 
 ## 👥 Collaborators
 
