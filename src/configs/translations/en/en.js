@@ -18,6 +18,7 @@ export default {
             uploadCamera: 'From camera',
             uploadGallery: 'From gallery',
             uploadLoading: 'Upload loading...',
+            emptyPhotos: 'No photo available',
         },
         search: {
             title: 'Search',
@@ -43,7 +44,8 @@ export default {
         },
         payment: {
             title: 'Payment',
-            paymentButton: 'Pay now'
-        }
+            paymentButton: 'Pay now',
+        },
+        albumDetail: { noPhoto: 'No photo available' },
     },
 }

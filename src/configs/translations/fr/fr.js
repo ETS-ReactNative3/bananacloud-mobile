@@ -18,6 +18,7 @@ export default {
             uploadCamera: 'Appareil photo',
             uploadGallery: "Galerie d'image",
             uploadLoading: 'Envoie en cours...',
+            emptyPhotos: 'Pas de photo disponible',
         },
         search: {
             title: 'Rechercher',
@@ -43,7 +44,8 @@ export default {
         },
         payment: {
             title: 'Paiement',
-            paymentButton: 'Obtenir mon pass'
-        }
+            paymentButton: 'Obtenir mon pass',
+        },
+        albumDetail: { noPhoto: 'Pas de photo disponible' },
     },
 }
