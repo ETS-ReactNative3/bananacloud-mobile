@@ -1,14 +1,19 @@
 import React, { useState, useEffect } from 'react'
-import { View, Text, FlatList, Dimensions } from 'react-native'
+import { View, FlatList, Dimensions } from 'react-native'
 
 import { getPhotoAlbum } from '@utils/albums/getPhotoAlbum'
 
 import Card from '@components/Card'
+import { StyledText } from 'src/components/styled-components'
+import { t } from 'i18next'
 
-const PhotoAlbum = ({ route }) => {
-    const { width } = Dimensions.get('window')
+const AlbumDetail = ({ route }) => {
     const albumName = route.params.paramNameAlbum
-    const [listPhotosAlbum, setListPhotosAlbum] = useState()
+
+    const { width } = Dimensions.get('window')
+
+    const [listPhotosAlbum, setListPhotosAlbum] = useState({})
+
     const hydrateListPhotosAlbum = async () => {
         const list = await getPhotoAlbum(albumName)
         setListPhotosAlbum(list)
@@ -39,10 +44,12 @@ const PhotoAlbum = ({ route }) => {
                     keyExtractor={item => item}
                 />
             ) : (
-                <View></View>
+                <View>
+                    <StyledText>{t('albumDetail.noPhoto')}</StyledText>
+                </View>
             )}
         </View>
     )
 }
 
-export default PhotoAlbum
+export default AlbumDetail
