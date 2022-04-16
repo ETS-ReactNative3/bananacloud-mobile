@@ -10,7 +10,7 @@ import {
 } from '@actions/album'
 
 const initialState = {
-    albumList: [],
+    albumsList: [],
     photosList: [],
     error: '',
 }
@@ -20,7 +20,7 @@ export default (state = initialState, action) => {
         case HYDRATE_SUCCESS:
             return {
                 ...state,
-                albumList: action.payload.albumList,
+                albumsList: action.payload.albumsList,
                 error: '',
             }
         case HYDRATE_FAILED:
@@ -31,7 +31,7 @@ export default (state = initialState, action) => {
         case CREATE_SUCCESS:
             return {
                 ...state,
-                albumList: action.payload.albumList,
+                albumsList: action.payload.albumsList,
                 error: '',
             }
         case CREATE_FAILED:
@@ -42,7 +42,7 @@ export default (state = initialState, action) => {
         case REMOVE_SUCCESS:
             return {
                 ...state,
-                albumList: action.payload.albumList,
+                albumsList: action.payload.albumsList,
                 error: '',
             }
         case REMOVE_FAILED:
