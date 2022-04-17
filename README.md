@@ -21,7 +21,7 @@ _You have to put your GoogleService-Info.plist ios/_
 
 ```
 git clone https://github.com/ecandotti/bananacloud-mobile.git
-cd /bananacloud
+cd /bananacloud-mobile
 yarn install
 
 npx pod-install ios
