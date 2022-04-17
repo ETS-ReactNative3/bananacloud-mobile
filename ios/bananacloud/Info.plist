@@ -21,7 +21,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>GADApplicationIdentifier</key>
-	<string>ca-app-pub-3940256099942544~1458002511</string>
+	<string>ca-app-pub-9539113506509263~6140343267</string>
 	<key>SKAdNetworkItems</key>
 	<array>
 		<dict>
@@ -180,10 +180,10 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.38021654136-lj9hupqe3vjar8vfor8m7b51q5rv4skm</string>
+				<string>com.googleusercontent.apps.195454906388-e11t77vv3f4rnk2jmma29hmfbvp4c8eu</string>
 			</array>
 			<key>Item 0</key>
-			<string>com.googleusercontent.apps.38021654136-lj9hupqe3vjar8vfor8m7b51q5rv4skm</string>
+			<string>com.googleusercontent.apps.195454906388-e11t77vv3f4rnk2jmma29hmfbvp4c8eu</string>
 		</dict>
 		<dict/>
 		<dict/>
