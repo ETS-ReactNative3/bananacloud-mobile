@@ -2,6 +2,8 @@
 
 ## 📚 Some infos
 
+### Tested on iPhone 13 iOS 15.4 📲
+
 | Library used          | Utility            |
 | --------------------- | ------------------ |
 | React-Native          | Framwork DevMobile |
