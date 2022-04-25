@@ -36,6 +36,7 @@ export const login =
 
             dispatch({ type: LOGIN_SUCCESS, payload: { token, user } })
         } catch (err) {
+            console.log("errrorrrr : ",err)
             dispatch({ type: LOGIN_FAILURE, payload: { error: err.message } })
         }
     }

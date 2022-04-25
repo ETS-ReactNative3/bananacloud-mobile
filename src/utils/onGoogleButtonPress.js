@@ -1,7 +1,10 @@
 import auth from '@react-native-firebase/auth'
+import { useDispatch, useSelector } from 'react-redux'
 import { GoogleSignin } from '@react-native-google-signin/google-signin'
 
 import { WEB_ID_GOOGLE } from '@env'
+
+import { register } from '@actions/user'
 
 export const onGoogleButtonPress = async () => {
    

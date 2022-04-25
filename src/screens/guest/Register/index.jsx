@@ -29,9 +29,9 @@ const Register = ({ navigation }) => {
         // const initGoogleConfig = async () => {
         //     await GoogleSignin.configure({
         //         iosClientId:
-        //             '195454906388-e11t77vv3f4rnk2jmma29hmfbvp4c8eu.apps.googleusercontent.com',
+        //             '',
         //         webClientId:
-        //             '195454906388-7bd59hug9reesa0ihtkgkb700l0usl67.apps.googleusercontent.com',
+        //             '',
         //         offlineAccess: false,
         //     })
         // }
